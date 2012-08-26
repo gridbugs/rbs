@@ -130,7 +130,7 @@ function user_login($link, $production, $email, $pass) {
 		// Lets see if the user's registered for other productions
 		$q_anyproduction = "select * from user where email = '$email'";
 		$r_anyproduction = mysql_query($q_anyproduction);
-		if(!$r_thisproduction || mysql_num_rows($r_thisproduction) == 0)
+		if(!$r_anyproduction || mysql_num_rows($r_anyproduction) == 0)
 			return -3;
 		while($row = mysql_fetch_array($r_anyproduction, MYSQL_ASSOC)) {
 			$passwordhash = md5($row['salt'] . $pass);
