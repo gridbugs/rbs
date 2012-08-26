@@ -1,0 +1,89 @@
+/* The CSS file for Law Revue 2010 */
+
+h1 {
+	font-weight: normal;
+}
+
+h2 {
+	font-weight: normal;
+}
+
+body {
+   background-image:url('law_background_2010.png');
+   background-repeat: no-repeat;
+   background-color: #46568B;
+	color: #fff;
+	font-family: "Arial", serif;
+
+}
+
+a {
+	color: #ffcc00;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #ffcc00;
+}
+
+a:hover {
+	color: #ffcc00;
+}
+
+.cseheader {
+	text-align: center;
+}
+
+.csecopy {
+	font-size: 0.6em;
+	text-align: center;
+}
+
+.loginfield input {
+	border: 2px groove #ffcc00;
+	background-color: #fff;
+	color: #000;
+	width: 25em;
+}
+
+.loginsubmit input {
+	background-color: #fff;
+	border-color: #ffcc00;
+	color: #000;
+}
+
+.segment {
+   background-color: #46568B;
+	color: #fff;
+}
+.perfdate {
+   border: 1px solid #ffcc00;
+   color: #ffcc00;
+}
+.perfdateclosed {
+   border: 1px solid #444;
+   color: #444;
+}
+.closedmessage { 
+   color: #444;
+}
+.segmentlink {
+   border: 1px solid #ffcc00;
+   color: #ffcc00;
+}
+.segmentstage {
+   border: 1px solid #444;
+   color: #444;
+}
+#payfortickets {
+   border: 1px solid #ffcc00;
+   color: #ffcc00;
+}
+#anotherday {
+   border: 1px solid #ffcc00;
+   color: #ffcc00;
+}
+.paymentsummaryperf {
+   border: 1px solid #fff;
+}
+

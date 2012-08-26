@@ -1,0 +1,59 @@
+/* The CSS file for Law Revue 2011 */
+
+h1 {
+      font-weight: normal;
+   }
+
+   h2 {
+         font-weight: normal;
+      }
+
+      body {
+            //background-color: #6f93c3;
+               background-image: url(andysroom_wide.jpg); background-repeat: repeat;
+                  color: #fff;
+                     font-family: "Arial", serif;
+
+                  }
+
+                  a {
+                        color: #000;
+                           text-decoration: none;
+                        }
+
+                        a:visited {
+                              color: #000;
+                           }
+
+                           a:hover {
+                                 color: #73e0ff;
+                              }
+
+                              .cseheader {
+                                    margin: 15px 0 -70px 0;
+                                       text-align: center;
+                                    }
+
+                                    .csecopy {
+                                          font-size: 0.8em;
+                                             text-align: center;
+                                                font-weight: bold;
+                                             }
+
+                                             .loginfield input {
+                                                   border: 2px groove #bbebe6;
+                                                      background-color: #f7fffc;
+                                                         color: #000;
+                                                            width: 25em;
+                                                         }
+
+                                                         .loginsubmit input {
+                                                               background-color: #1c404b;
+                                                                  border-color: #25505e;
+                                                                     color: #fff;
+                                                                  }
+
+                                                                  .segment {
+                                                                        background-color: #9797d3;
+                                                                           color: #fff;
+                                                                        }

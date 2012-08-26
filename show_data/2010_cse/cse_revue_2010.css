@@ -1,0 +1,100 @@
+/* The CSS file for CSE Revue 2010 */
+
+h1 {
+	font-weight: normal;
+}
+
+h2 {
+	font-weight: normal;
+}
+
+body {
+   /*background-image:url('trexhi5.png');
+   background-size:80%;
+   background-position:center;
+   background-repeat: no-repeat;*/
+   background-color: #000;
+	color: #fff;
+	font-family: "Arial", serif;
+
+}
+/* These are all the link colours */
+a {
+	color: #61a6e4;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #61a6e4;
+}
+
+a:hover {
+	color: #61a6e4;
+}
+
+.cseheader {
+	border: none;
+   color: #fff; 
+   width: 100%;
+}
+
+.csecopy {
+	font-size: 0.6em;
+	text-align: top-center;
+   
+}
+
+.loginfield input {
+	border: 2px groove #61a6e4;
+	background-color: #000;
+	color: #fff;
+	width: 25em;
+}
+
+.loginsubmit input {
+	background-color: #000;
+	border-color: #61a6e4;
+	color: #fff;
+}
+
+.segment {
+   background-color: #46568B;
+	color: #fff;
+}
+.perfdate {
+   border: 1px solid #61a6e4;
+   color: #61a6e4;
+}
+.perfdateclosed {
+   border: 1px solid #444;
+   color: #444;
+}
+.closedmessage { 
+   color: #444;
+}
+.segmentlink {
+   border: 1px solid #61a6e4;
+   color: #61a6e4;
+}
+.segmentstage {
+   border: 1px solid #444;
+   color: #444;
+}
+#payfortickets {
+   border: 1px solid #61a6e4;
+   color: #61a6e4;
+}
+#anotherday {
+   border: 1px solid #61a6e4;
+   color: #61a6e4;
+}
+.paymentsummaryperf {
+   border: 1px solid #fff;
+}
+.paymentoption {
+   border: 2px solid #fff;
+   background-color: #000;
+}
+.anchorLink {
+   background-color: #000;
+}

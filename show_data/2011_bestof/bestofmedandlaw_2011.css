@@ -1,0 +1,67 @@
+/* The CSS file for CSE Revue 2009 */
+
+h1 {
+	font-weight: normal;
+	font-family: serif;
+}
+
+h2 {
+	font-weight: normal;
+	font-family: serif;
+}
+
+body {
+	background-color: #000;
+	color: #fff;
+	font-family: "Arial", serif;
+
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #fff;
+}
+
+a:hover {
+	color: #fff;
+}
+
+.header {
+	margin: 15px 0 -70px 0;
+	text-align: center;
+}
+
+.copy {
+	font-size: 0.6em;
+	text-align: center;
+}
+
+.loginfield input {
+	border: 2px groove #fff;
+	background-color: #000;
+	color: #fff;
+	width: 25em;
+}
+
+.loginsubmit input {
+	background-color: #000;
+	border-color: #fff;
+	color: #fff;
+}
+
+.segment {
+	background-color: #223;
+	color: #fff;
+}
+
+.priceheader {
+	background-color: #223;
+}
+
+.bigbutton {
+	font-family: serif;
+}
