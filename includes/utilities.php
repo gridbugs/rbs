@@ -55,8 +55,8 @@ function prettytime($date) {
 	return date('g:i a', $date);
 }
 
-function send_email($to, $subject, $message, $headers='') {
-	if(EMAIL_LOG) {
+function send_email($to, $subject, $message, $headers='', $log=false) {
+	if(EMAIL_LOG || $log) {
 		$fh = fopen("email.log", 'a');
 		fwrite($fh, "Emailing...\r\n");
 		fwrite($fh, "To: $to\r\n");
