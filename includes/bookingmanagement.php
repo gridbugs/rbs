@@ -201,12 +201,15 @@ function get_current_deadline($link, $performance) {
 	// Sorting out the deadline.
 	$deadline = time() + $paywindow;
 
+    // If an expiretimeofday is set, round to the expiry time of day on the
+    // same day as $deadline, or the day after if that has already passed.
 	if($expiretimeofday > 0 && $expiretimeofday <= 24) {
-		if(date('G', $deadline) < $expiretimeofday) {
-			$deadline = mktime($expiretimeofday, 0, 0, date("m")  , date("d"), date("Y"));
-		} else {
-			$deadline = mktime($expiretimeofday, 0, 0, date("m")  , date("d")+1, date("Y"));			
-		}
+        $expiretime = mktime($expiretimeofday, 0, 0, date("m", $deadline), date("d", $deadline), date("Y", $deadline));
+        if ($expiretime < $deadline) {
+            $deadline = $expiretime + 60*60*24;
+        } else {
+            $deadline = $expiretime;
+        }
 	}
 
 	if($deadline > $harddeadline)
