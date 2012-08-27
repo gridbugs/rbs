@@ -10,7 +10,7 @@ function print_payment_summary($link, $perfsummary) {
 	if(isset($perfsummary[1])) {
 		echo('<h3 class="paymentbooked">Seats that have been booked but are awaiting payment:</h3>');
 		echo('<table class="paymentsummary">');
-		echo('<th class="paymentseatshead">Seats Booked</th><th class="paymentpricehead">Amount to Pay</th>');
+		echo('<tr><th class="paymentseatshead">Seats Booked</th><th class="paymentpricehead">Amount to Pay</th></tr>');
 		$nexpired = 0;
 		foreach($perfsummary[1] as $row) {
 			echo('<tr><td class="paymentseats">' . $row['num'] . ' ' . $row['name']);

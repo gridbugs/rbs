@@ -74,7 +74,7 @@ function email_prod_admins($link, $prodid, $subject, $message) {
 	$sql = "select email from admin where superadmin = 1 union select email from admin a, prodadmin p where p.admin = a.id and p.production = $prodid";
 	$emails = sql_get_array($link, $sql);
 	foreach($emails as $email) {
-		send_email($email['email'], $subject, $message, "From: webmin.head@cserevue.org.au\r\n");
+		send_email($email['email'], $subject, $message, "From: alerts@cserevue.org.au\r\n");
 	}
 }
 
