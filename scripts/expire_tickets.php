@@ -3,6 +3,7 @@
  * This script expires tickets which removes tickets which have passed their deadline.
  */
 
+date_default_timezone_set("Australia/Sydney");
 include('../includes/utilities.php');
 include("../includes/prodmanagement.php");
 include("../includes/bookingmanagement.php");

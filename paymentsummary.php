@@ -95,7 +95,6 @@ if($production['acceptpaypal'] == 1) echo('<a href="#paypal" class="paymentoptio
 </div>
 <a name="anchor" id="anchor"></a>
 <?
-ob_start();
 if($production['acceptsales']) {
 	$salesinfo = $production['salesinfo'];
 	$salesinfo = str_replace('{paymentid}', $userinfo['paymentid'], $salesinfo);
@@ -114,8 +113,6 @@ if($production['acceptpaypal']) {
 	}
 	echo('</center></div>');
 }
-$paymentoptions = ob_get_contents();
-ob_end_flush();
 ?>
 
 </div>
@@ -130,8 +127,10 @@ if(isset($_POST['price'])) {
     $email = "Hello ".$userinfo['name'].",<br/><br/>";
     $email .= "Thank you for booking your tickets for <strong>".$production['name']."</strong>!<br/>Below you will find a summary of your booking, as well as information on how to proceed.<br/><br/>Please note the expiry time for your booking!<br/>";
     $email .= $paymentsummary;
+    $email .= "<br/><em>Booking number: ".strtoupper($userRow['paymentid'])."</em>";
     $email .= "<br/><br/><h3>Payment Options</h3>";
-    $email .= $paymentoptions;
+    $email .= "Please visit ".$production['sitelocation']." to view your payment options.<br/><strong style='color:red'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
+    $email .= "<br/><br/>If you have any queries, please feel free to respond to this email.<br/><br/>";
     // FIXME: Add a contact email to productions. Currently relying on paypalaccount.
     send_email($userinfo['email'], "Your booking for ".$production['name'], $email, "Content-Type: text/html; charset=ISO-8859-1\r\nFrom: ".$production['paypalaccount']."\r\n");
 }
