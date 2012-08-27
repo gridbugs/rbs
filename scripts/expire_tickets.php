@@ -41,6 +41,7 @@ foreach($bookings as $production => $bookinglist) {
 		$thisemail .= " for performance " . $booking['date'] . ": " . $booking['title'] . "\r\n";
 		$thisemail .= "The deadline was at " . $booking['deadline'] . "\r\n\r\n";
 		expire_booking($link, $booking['id']);
+        echo "Expiring booking for ".$booking['prodname']." -> ".$booking['email']."\n";
         send_email($booking['email'], "Expired Tickets for ".$booking['prodname'], $thisemail, "From: webmin.head@cserevue.org.au\r\n");
         $email .= $thisemail;
 

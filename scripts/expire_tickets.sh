@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd ~/public_html/rms/rbs/scripts/
+cd ~webmin/rbs.cserevue.org.au/scripts
 
 php expire_tickets.php
