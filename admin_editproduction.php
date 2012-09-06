@@ -117,14 +117,14 @@ foreach($theatres as $theatre) {
 	</select>
 	</td>
 </tr>
-<tr>
+<!--tr>
 	<td>Minimum Group Ticket Size:</td>
 	<td><input type="text" name="groupticketsamount" value="<?if($prodid != -1) echo((int)$production['groupticketsamount'])?>"></td>
-</tr>
-<tr>
+</tr-->
+<!--tr>
 	<td>Group Tickets Message:</td>
 	<td><textarea name="groupticketsmessage"><?if($prodid != -1) echo(htmlspecialchars($production['groupticketsmessage']))?></textarea></td>
-</tr>
+</tr-->
 </table>
 </div>
 

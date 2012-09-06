@@ -93,7 +93,7 @@ function add_production($link, $production) {
 	$values .= "'" . mysql_real_escape_string($production['name']) . "'";
 
 	// These columns have no special handling.  Lets just do them all in one go.
-	$stringcols = array("header", "footer", "groupticketsmessage", "css", "sitelocation", "faqlocation", "salesinfo", "ddinfo", "paypalinfo", "paypalaccount");
+	$stringcols = array("header", "footer", "css", "sitelocation", "faqlocation", "salesinfo", "ddinfo", "paypalinfo", "paypalaccount");
 	foreach ($stringcols as $col) {
 		$sql .= ", $col";
 		if(!isset($production[$col]))
@@ -130,7 +130,7 @@ function add_production($link, $production) {
 
 	// theatre
 	$sql .= ", theatre";
-	if(!isset($production['groupticketsmessage']))
+	if(!isset($production['theatre']))
 		return "Please enter a valid theatre";
 	else
 		$values .= ", '" . mysql_real_escape_string($production['theatre']) . "'";
@@ -159,7 +159,7 @@ function modify_production($link, $prodid, $production) {
 	$sql .= "'" . mysql_real_escape_string($production['name']) . "'";
 
 	// These columns have no special handling.  Lets just do them all in one go.
-	$stringcols = array("header", "footer", "groupticketsmessage", "css", "sitelocation", "faqlocation", "salesinfo", "ddinfo", "paypalinfo", "paypalaccount");
+	$stringcols = array("header", "footer", "css", "sitelocation", "faqlocation", "salesinfo", "ddinfo", "paypalinfo", "paypalaccount");
 	foreach ($stringcols as $col) {
 		$sql .= ", $col = ";
 		if(!isset($production[$col]))
@@ -194,7 +194,7 @@ function modify_production($link, $prodid, $production) {
 
 	// theatre
 	$sql .= ", theatre = ";
-	if(!isset($production['groupticketsmessage']))
+	if(!isset($production['theatre']))
 		return "Please enter a valid theatre";
 	else
 		$sql .= "'" . mysql_real_escape_string($production['theatre']) . "'";
