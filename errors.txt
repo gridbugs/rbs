@@ -1,7 +1,0 @@
-Log: Production ID not set, or production was not found: Is Error? 
-Log: Is Error? 
-Log: Is Error? 
-Log: Is Error? 
-Error! 2 fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: SSL: Connection reset by peer /tmp_amd/kamen/export/kamen/1/cserevue/public_html/rms/rbs/paypal.php 181
-Error! 2 fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: php_stream_sock_ssl_activate_with_method: SSL handshake/connection failed /tmp_amd/kamen/export/kamen/1/cserevue/public_html/rms/rbs/paypal.php 181
-Error! 2 fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: failed to activate SSL mode 1 /tmp_amd/kamen/export/kamen/1/cserevue/public_html/rms/rbs/paypal.php 181
