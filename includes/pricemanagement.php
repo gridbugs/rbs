@@ -10,7 +10,7 @@ include_once('utilities.php');
  */
 function get_prices($link, $performance) {
 	$performance = (int)$performance;
-	$sql = "SELECT * FROM price WHERE performance = $performance";
+	$sql = "SELECT * FROM price WHERE performance = $performance ORDER BY id ASC";
 	return sql_get_array($link, $sql);
 }
 
