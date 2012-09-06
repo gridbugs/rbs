@@ -30,7 +30,7 @@ Please <a href="mailto:webmin.head@cserevue.org.au">Email the Webmaster</a> and 
 <? } else { ?>
 Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or, if that doesn't answer your question, <a href="mailto:webmin.head@cserevue.org.au">Email the Webmaster</a> and we'll help as soon as we can!
 <br>
-Please note, group bookings (fifteen or more seats) are eligible for a group discount. Please email <a href="mailto:producers@lawrevue.org">producers@lawrevue.org</a> if you'd like to make a group booking.
+Please note, group bookings (fifteen or more seats) are eligible for a group discount. Please email <a href="mailto:producers@cserevue.org">producers@cserevue.org</a> if you'd like to make a group booking.
 <? } ?>
 </div>
 
