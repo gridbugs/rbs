@@ -38,8 +38,8 @@ Please note, group bookings (fifteen or more seats) are eligible for a group dis
 <div id="login">
 
 <h1>Login</h1>
-<form method="post" action="logintest.php">
-<p class="loginblurb">If you have already made an account here please login below.</p>
+<form method="post" action="logintest.php#main">
+<p class="loginblurb">If you have an existing booking please login below.</p>
 <div class="loginfield"><div class="loginlabel">Email Address:</div><input type="text" name="email"></div>
 <div class="loginfield"><div class="loginlabel">Password:</div><input type="password" name="pass"></div>
 <input type="hidden" name="production" value="<?=$prodid?>">
@@ -48,17 +48,23 @@ Please note, group bookings (fifteen or more seats) are eligible for a group dis
 </div>
 <div id="register">
 <h1>Register</h1>
-<p class="loginblurb">To order tickets we would like you to enter in your contact details.  We will use these if we need to contact you about a change to the tickets or if you're running late to pick up the tickets.  We won't use these to send out spam or marketing messages.</p>
+<p class="loginblurb">Please enter in your contact details.</p>
 <form method="post" action="register.php#main">
-<div class="loginfield"><div class="loginlabel">Email Address:</div><input type="text" name="email"></div>
+<div class="loginfield"><div class="loginlabel">Email Address:</div><input type="text" name="email" autofocus="autofocus"></div>
 <div class="loginfield"><div class="loginlabel">Password:</div><input type="password" name="pass"></div>
 <div class="loginfield"><div class="loginlabel">Repeat Password:</div><input type="password" name="pass_repeat"></div>
 <div class="loginfield"><div class="loginlabel">First Name:</div><input type="text" name="fname"></div>
 <div class="loginfield"><div class="loginlabel">Last Name:</div><input type="text" name="lname"></div>
-<div class="loginfield"><div class="loginlabel">Contact Phone Number:</div><input type="text" name="phone"></div>
+<div class="loginfield"><div class="loginlabel">Phone Number:</div><input type="text" name="phone"></div>
 <input type="hidden" name="production" value="<?=$prodid?>">
 <div class="loginsubmit"><input type="submit" value="Register"></div>
 </form>
+<div class="loginblurb disclaimer">Your contact details will not be used for any purposes other than the following:
+<ul>
+<li>To send you your booking details and notify you of any necessary changes to your booking.</li>
+<li>To confirm your arrival in case you are running late.</li>
+</ul>
+Your details will not be used for distribution of spam or for marketing purposes and will never be shared with any external entities without your prior permission.</div>
 </div>
 
 </div>

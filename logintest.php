@@ -52,7 +52,7 @@ if(isset($_GET['reset'])){
         // Print out the confirmation message.
         print_prod_header($link, $production, $htmlheaders);
 
-        echo "<div id='loginform'><div id='loginblurb'><h2>Password Reset</h2></div><div id='login'><strong>A password reset confirmation link has been sent to ".$user['email'].". Please see the email for more information.</strong></div></div>";
+        echo "<div id='loginform'><div id='login'><h1>Password Reset</h1><strong>A password reset confirmation link has been sent to ".$user['email'].". Please see the email for more information.</strong></div></div>";
 
         print_prod_footer($link, $production);
 
@@ -78,7 +78,7 @@ if(isset($_GET['reset'])){
             if (mysql_query($q_reset)){
                 print_prod_header($link, $production, $htmlheaders);
 
-                echo "<div id='loginform'><div id='loginblurb'><h2>Password Reset Successful</h2></div><div id='login'><strong>Your password has been successfully reset. You may now login by <a href='login.php?production=$prodid#main'>clicking here</a>.</strong></div></div>";
+                echo "<div id='loginform'><div id='login'><h1>Password Reset Successful</h1><strong>Your password has been successfully reset. You may now login by <a href='login.php?production=$prodid#main'>clicking here</a>.</strong></div></div>";
 
                 print_prod_footer($link, $production);
                 die();
@@ -94,20 +94,18 @@ if(isset($_GET['reset'])){
 ?>
 
 <div id='loginform'>
-<div id='loginblurb'>
-<h2>Password Reset</h2>
-<p>Please enter your new password below.</p>
-</div>
 
 <div id='login'>
+<h1>Password Reset</h1>
+<p>Please enter your new password below.</p>
 <p class="error"><?=$message?></p>
 <form method="post" action="logintest.php?uid=<?=$user['id']?>&amp;$resettoken=<?=$_GET['resettoken']?>#main">
-<p>Password: <input type="password" name="pass"></p>
-<p>Password again: <input type="password" name="passcheck"></p>
+<div class='loginfield'><div class='loginlabel'>Password:</div><input type="password" autofocus="autofocus" name="pass"></div>
+<div class='loginfield'><div class='loginlabel'>Password again:</div><input type="password" name="passcheck"></div>
 <input type="hidden" name="production" value="<?=$prodid?>">
 <input type="hidden" name="uid" value="<?=$_REQUEST['uid']?>">
 <input type="hidden" name="resettoken" value="<?=$_REQUEST['resettoken']?>">
-<input type="submit">
+<div class="loginsubmit"><input type="submit" value="Reset password"></div>
 </form>
 
 </div>
@@ -171,7 +169,7 @@ print_prod_header($link, $production, $htmlheaders);
 <h1>Login</h1>
 <p class="error"><?=$message?></p>
 <form method="post" action="logintest.php#main">
-<div class='loginfield'><div class='loginlabel'>Email Address:</div><input type="text" name="email"<? if(isset($user) && $user != -3) echo(" value='" . $_POST['email'] . "'")?>></div>
+<div class='loginfield'><div class='loginlabel'>Email Address:</div><input type="text" autofocus="autofocus" name="email"<? if(isset($user) && $user != -3) echo(" value='" . $_POST['email'] . "'")?>></div>
 <div class='loginfield'><div class='loginlabel'>Password:</div><input type="password" name="pass"></div>
 <input type="hidden" name="production" value="<?=$prodid?>">
 <div class="loginsubmit"><input type="submit" value="Login"></div>
