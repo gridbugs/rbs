@@ -56,8 +56,12 @@ section {
   margin: 4%;
 }
 
+#navbar a {
+    color: #247BCD;
+}
+
 a {
-  color: #247BCD;
+  color: #449BED;
   text-decoration: none;
 }
 
@@ -93,4 +97,48 @@ footer a {
 .map {
   float: right;
   padding-left: 20px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Override default RBS CSS
+ * --------------------------------------------------------------------------*/
+
+#loginform input {
+    background-color: #111;
+    border: 1px solid #247B65;
+    color: #ccc;
+    padding: 5px 2px;
+    width: 15em;
+}
+#loginform input[type="submit"], #loginform input[type="button"] {
+    padding: 5px 0px;
+    width: 15em;
+    margin-left: 10em;
+    color: #fff;
+    background-color: #045B45;
+}
+#loginform input[type="submit"]:hover, #loginform input[type="button"]:hover {
+    background-color: #247B65;
+    cursor: hand;
+}
+
+td.paymentseats, td.booking, td.bookedstatus {
+    background-color: #045B45;
+}
+
+td.paymentseats {
+    width: 75%;
+}
+
+div.paymentexpiry {
+    color: #a00;
+    font-weight: bold;
+}
+
+div.bookingsummaryperf {
+    width: auto;
+}
+
+td.price {
+    background-color: #333;
 }
