@@ -78,7 +78,7 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 
 ?>
 
-<form id="seatform" action="bookingsummary.php" method="post">
+<form id="seatform" action="bookingsummary.php#main" method="post">
 <span id="seatsubmit"></span>
 <input type="hidden" name="submitseats" value="true">
 </form>
@@ -125,6 +125,7 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 
 <div id="theatre_render">
 
+<a name='target' id='target'></a>
 <h1>Select Your Seats</h1>
 
 <div id="buttonpanel">
@@ -143,7 +144,7 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 </div>
 </div>
 
-<a name='target' id='target'>target</a>
+<a name='target' id='target'></a>
 <div id="theatre_zoom">
 <?
 

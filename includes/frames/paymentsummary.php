@@ -9,6 +9,7 @@ function print_payment_summary($link, $perfsummary) {
 	// Print the booked seats
 	if(isset($perfsummary[1])) {
 		echo('<h3 class="paymentbooked">Seats that have been booked but are awaiting payment:</h3>');
+		echo('<div class="paymentexpiry">These tickets expire on ' . prettydate($perfsummary[1][0]['tsdeadline']) . ' at ' . prettytime($perfsummary[1][0]['tsdeadline']) . '</div>'); 
 		echo('<table class="paymentsummary">');
 		echo('<tr><th class="paymentseatshead">Seats Booked</th><th class="paymentpricehead">Amount to Pay</th></tr>');
 		$nexpired = 0;
@@ -21,7 +22,6 @@ function print_payment_summary($link, $perfsummary) {
 			echo('</td><td class="paymentprice">$' . $row['price'] * $row['num'] . '</td></tr>');
 		}
 		echo('</table>');
-		echo('<div class="paymentexpiry">These tickets expire on ' . prettydate($perfsummary[1][0]['tsdeadline']) . ' at ' . prettytime($perfsummary[1][0]['tsdeadline']) . '</div>'); 
 	}
 
 	// Print the paid for seats

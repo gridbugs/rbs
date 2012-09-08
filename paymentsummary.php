@@ -46,7 +46,7 @@ print_prod_header($link, $production, $htmlheaders);
 
 <h1>Payment Summary</h1>
 
-<p id="booktickets"><a href="booking.php">Click here to modify your bookings.</a></p>
+<!--p id="booktickets"><a href="booking.php">Click here to modify your bookings.</a></p-->
 
 <?
 ob_start();
@@ -77,20 +77,25 @@ foreach($ps as $perfid => $summary) {
 	echo("</div>");
 }
 ?>
+<a name='total'></a>
 
-<h2>Total</h2>
-<div class="paymenttotal">Total Amount Due: $<?=$total?></div>
+<div id='totals'>
+<h2 class="paymenttotal">Total Amount Due: <strong>$<?=$total?></strong></h2>
 <?php
 $paymentsummary = ob_get_contents();
 ob_end_flush();
 ?>
 
+<a href="booking.php#main" class="bigbutton">Modify Booking</a>
+
+<?php if ($total > 0): ?>
+<a name='options'></a>
 <h2>How would you like to pay?</h2>
 <div id="paymentoptions">
 <?
-if($production['acceptsales'] == 1) echo('<a class="paymentoption bigbutton" id="paybysales" href="#sales" onClick="togglePay(\'sales\');">Sales Desk</a>');
-if($production['acceptdd'] == 1) echo('<a class="paymentoption bigbutton" id="paybydd" href="#dd" onClick="togglePay(\'dd\');">Bank Transfer</a>');
-if($production['acceptpaypal'] == 1) echo('<a href="#paypal" class="paymentoption bigbutton" onClick="togglePay(\'paypal\');">Paypal or Credit Card</a>');
+if($production['acceptsales'] == 1) echo('<a class="paymentoption bigbutton" id="paybysales" href="#total" onClick="togglePay(\'sales\');">Sales Desk</a>');
+if($production['acceptdd'] == 1) echo('<a class="paymentoption bigbutton" id="paybydd" href="#total" onClick="togglePay(\'dd\');">Bank Transfer</a>');
+if($production['acceptpaypal'] == 1) echo('<a href="#total" class="paymentoption bigbutton" onClick="togglePay(\'paypal\');">Paypal or Credit Card</a>');
 ?>
 </div>
 <a name="anchor" id="anchor"></a>
@@ -106,7 +111,7 @@ if($production['acceptdd']) {
 	echo('<div class="pay" id="ddinfo"><a name="dd"></a><h4>Direct Debit</h4>' . $ddinfo . '</div>');
 }
 if($production['acceptpaypal']) {
-	echo('<div class="pay" id="paypalinfo"><a name="paypal"></a><h4>Paypal</h4><center>Click the Paypal button below to purchase your tickets now!<br/>');
+	echo('<div class="pay" id="paypalinfo"><a name="paypal"></a><center><h4>Paypal</h4>Click the Paypal button below to purchase your tickets now!<br/><br/>');
 	if($total > 0) {
 		$userRow = get_user($link, $user);
 		generate_paypal_button($production, $userRow['paymentid'], $total);
@@ -115,7 +120,11 @@ if($production['acceptpaypal']) {
 }
 ?>
 
+</div>
+
 <?php
+
+endif;
 
 print_prod_footer($link, $production);
 
@@ -129,6 +138,6 @@ if(isset($_POST['price'])) {
     $email .= "Please visit ".$production['sitelocation']." to view your payment options.<br/><strong style='color:red'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
     $email .= "<br/><br/>If you have any queries, please feel free to respond to this email.<br/><br/>";
     // FIXME: Add a contact email to productions. Currently relying on paypalaccount.
-    send_email($userinfo['email'], "Your booking for ".$production['name'], $email, "Content-Type: text/html; charset=ISO-8859-1\r\nFrom: ".$production['paypalaccount']."\r\n");
+    send_email($userinfo['email'], "Your booking for ".$production['name']." [booked at ".date('g:ia')."]", $email, "Content-Type: text/html; charset=ISO-8859-1\r\nFrom: ".$production['paypalaccount']."\r\n");
 }
 ?>

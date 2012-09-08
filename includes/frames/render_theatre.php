@@ -23,7 +23,7 @@ function print_theatre_segment($segment, $divid, $divwidth, $theatre) {
 <div id="navu<?=$divid?>" class="segmentnavup">
 <?
 	if($segment['id'] != 0)
-		echo("<a name='navup' href='javascript:toSegment(" . ($segment['id'] - 1) . ")'>" . $theatre[$segment['id'] - 1]['name'] . "</a>");
+		echo("<a name='navup' href='javascript:toSegment(" . ($segment['id'] - 1) . ")'>&uarr; Go to " . $theatre[$segment['id'] - 1]['name'] . " &uarr;</a>");
 ?>
 </div>
 <?
@@ -36,8 +36,9 @@ function print_theatre_segment($segment, $divid, $divwidth, $theatre) {
 ?>
 <div id="navd<?=$divid?>" class="segmentnavdown">
 <?
-	if($segment['id'] != count($theatre))
-		echo("<a href='javascript:toSegment(" . ($segment['id'] + 1) . ")'>" . $theatre[$segment['id'] + 1]['name'] . "</a>");
+	if($segment['id'] != count($theatre) && $theatre[$segment['id'] + 1]['name'] != ""){
+		echo("<a href='javascript:toSegment(" . ($segment['id'] + 1) . ")'>&darr; Go to " . $theatre[$segment['id'] + 1]['name'] . " &darr; </a>");
+    }
 ?>
 </div>
 </div>

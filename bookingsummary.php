@@ -46,21 +46,21 @@ print_prod_header($link, $production, $htmlheaders);
 
 <h1>Booking Summary</h1>
 
-<p id="booktickets"><a href="booking.php">Click here to modify your bookings.</a></p>
+<!--p id="booktickets"><a href="booking.php#main">Click here to modify your bookings.</a></p-->
 
 
 <?
 
 // If there are no bookings atm give the user an error message and return the user to the bookings page.
 if(!$bookings || count($bookings) == 0) {
-	echo('<p class="booking_error">You have not made any bookings yet.  <a href="booking.php">Click here to go back to the booking page.</a></p>');
+	echo('<p class="booking_error">You have not made any bookings yet.  <a href="booking.php#main">Click here to go back to the booking page.</a></p>');
 	print_prod_footer($link, $production['id']);
 	exit;	
 }
 
 ?>
 
-<form method="post" action="paymentsummary.php">
+<form method="post" action="paymentsummary.php#main">
 <input type="hidden" name="submitprices" value="true">
 <?
 foreach($bookings as $booking) {
@@ -70,7 +70,10 @@ foreach($bookings as $booking) {
 }
 ?>
 
-<p id="payforbooking"><input type="submit" value="Pay for your Booking" class="bigbutton"></p>
+<div class='payforbooking' id='bigformbuttons'>
+<a href="booking.php#main" class="bigbutton">Modify Booking</a>
+<input type="submit" value="Pay for Booking" class="bigbutton continue">
+</div>
 </form>
 
 <?
