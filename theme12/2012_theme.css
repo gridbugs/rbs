@@ -218,11 +218,14 @@ div.segment {
     position:relative;
     left:-12.734375em;
     padding: 10px 0px;
+    border:3px solid #247B65;
 }
 
 div.segmentnavup a, div.segmentnavdown a {
     background-color:#247B65;
     color:#fff;
+    font-weight:bold;
+    font-size:15px;
 }
 
 div.segmentnavup {
