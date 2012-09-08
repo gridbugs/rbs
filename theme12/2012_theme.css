@@ -142,3 +142,7 @@ div.bookingsummaryperf {
 td.price {
     background-color: #333;
 }
+
+#loginblurb {
+	margin-top: 1em;
+}
