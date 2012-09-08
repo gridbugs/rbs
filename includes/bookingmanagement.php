@@ -99,14 +99,16 @@ function get_ticket_totals($link, $prodid) {
 	$basesql = "select count(bs.id) from booking b, bookedseat bs where bs.booking = b.id and b.performance = perf.id";
 	$endsql = "group by b.performance";
 	$sql = "SELECT ";
+	$sql .= "($basesql and bs.status = 1) bookedseats,";
 	$sql .= "($basesql and bs.status = 3) confirmedseats,";
 	$sql .= "($basesql and bs.status < 8 and bs.status > 3) paidseats,";
 	$sql .= "($basesql and bs.status = 8) ppseats,";
 	$sql .= "($basesql and bs.status = 10) vipseats,";
 	$sql .= "perf.id, perf.title from performance perf where perf.production = $prodid";
 	$tt = sql_get_array($link, $sql);
-	$tt["Total"] = array("confirmedseats" => 0, "paidseats" => 0, "vipseats" => 0, "ppseats" => 0, "title" => "Total");
+	$tt["Total"] = array("confirmedseats" => 0, "paidseats" => 0, "vipseats" => 0, "ppseats" => 0, "bookedseats" => 0, "title" => "Total");
 	foreach ($tt as $t) {
+		$tt["Total"]["bookedseats"] += $t["bookedseats"];
 		$tt["Total"]["confirmedseats"] += $t["confirmedseats"];
 		$tt["Total"]["paidseats"] += $t["paidseats"];
 		$tt["Total"]["vipseats"] += $t["vipseats"];
