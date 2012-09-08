@@ -16,7 +16,11 @@ function print_prod_header($link, $production, $htmlheaders = "", $bodyattrs = "
 
 <?=$htmlheaders?>
 
+<?php if  (substr($production['css'], 0, 1) == "/"){ ?>
+<link rel="stylesheet" type="text/css" href="<?=$production['css']?>">
+<?php } else { ?>
 <link rel="stylesheet" type="text/css" href="show_data/<?=$production['css']?>">
+<?php } ?>
 </head>
 <body <?=$bodyattrs?>>
 <?=$production['header']?>
