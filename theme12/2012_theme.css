@@ -70,7 +70,7 @@ a:hover, #navbar a:hover {
 }
 
 h1, h2, h2 a {
-  color: #247B65;
+  color: #449B85;
   text-decoration: none;
   margin-top: 25px;
 }
@@ -97,6 +97,13 @@ footer a {
 .map {
   float: right;
   padding-left: 20px;
+}
+
+h1#title_of_show {
+    text-align: center;
+    color: #fff;
+    margin-top: -100px;
+    margin-bottom: 100px;
 }
 
 /* ----------------------------------------------------------------------------
@@ -223,6 +230,11 @@ div.loginlabel {
     text-align: right;
     width: 11em;
     padding-right: 1em;
+}
+
+div#loading {
+    text-align: center;
+    font-size: 18px;
 }
 
 /* ----------------------------------------------------------------------------

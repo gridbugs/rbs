@@ -121,7 +121,7 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 	</div>
 </div>
 
-<div id="loading">Loading</div>
+<div id="loading">Loading theatre booking system, please wait...</div>
 
 <div id="theatre_render">
 
