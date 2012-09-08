@@ -49,7 +49,7 @@ Please note, group bookings (fifteen or more seats) are eligible for a group dis
 <div id="register">
 <h1>Register</h1>
 <p class="loginblurb">To order tickets we would like you to enter in your contact details.  We will use these if we need to contact you about a change to the tickets or if you're running late to pick up the tickets.  We won't use these to send out spam or marketing messages.</p>
-<form method="post" action="register.php">
+<form method="post" action="register.php#main">
 <div class="loginfield"><div class="loginlabel">Email Address:</div><input type="text" name="email"></div>
 <div class="loginfield"><div class="loginlabel">Password:</div><input type="password" name="pass"></div>
 <div class="loginfield"><div class="loginlabel">Repeat Password:</div><input type="password" name="pass_repeat"></div>

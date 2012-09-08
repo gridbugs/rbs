@@ -30,7 +30,7 @@ if(isset($_GET['reset'])){
         // This is the token sent to the user's email which they provide to the
         // system in order to reset their password.
         $reset_token = md5($user['id'] . $user['email'] . $user['password'] . "passwordtoken");
-        $link = "logintest.php?production=$prodid&amp;uid=".$user['id']."&amp;resettoken=$reset_token";
+        $link = "logintest.php?production=$prodid&amp;uid=".$user['id']."&amp;resettoken=$reset_token#main";
         // Create the multipart email
         $to = $user['email'];
         $subject = "Password Reset for ".$production['name'];
@@ -78,7 +78,7 @@ if(isset($_GET['reset'])){
             if (mysql_query($q_reset)){
                 print_prod_header($link, $production, $htmlheaders);
 
-                echo "<div id='loginform'><div id='loginblurb'><h2>Password Reset Successful</h2></div><div id='login'><strong>Your password has been successfully reset. You may now login by <a href='login.php?production=$prodid'>clicking here</a>.</strong></div></div>";
+                echo "<div id='loginform'><div id='loginblurb'><h2>Password Reset Successful</h2></div><div id='login'><strong>Your password has been successfully reset. You may now login by <a href='login.php?production=$prodid#main'>clicking here</a>.</strong></div></div>";
 
                 print_prod_footer($link, $production);
                 die();
@@ -101,7 +101,7 @@ if(isset($_GET['reset'])){
 
 <div id='login'>
 <p class="error"><?=$message?></p>
-<form method="post" action="logintest.php?uid=<?=$user['id']?>&amp;$resettoken=<?=$_GET['resettoken']?>">
+<form method="post" action="logintest.php?uid=<?=$user['id']?>&amp;$resettoken=<?=$_GET['resettoken']?>#main">
 <p>Password: <input type="password" name="pass"></p>
 <p>Password again: <input type="password" name="passcheck"></p>
 <input type="hidden" name="production" value="<?=$prodid?>">
@@ -139,7 +139,7 @@ else {
         // First, production and email, so we can use it to identify the user 
         // without allowing people to easily reset anyone's password.
         $uid = strtoupper(md5($prodid . strtoupper($_POST['email']) . "passwordreset"));
-        $message .= "<br/><a href='logintest.php?production=$prodid&amp;reset=$uid'>Click here to reset the password for ".$_POST['email'].".</a>";
+        $message .= "<br/><a href='logintest.php?production=$prodid&amp;reset=$uid#main'>Click here to reset the password for ".$_POST['email'].".</a>";
 		break;
 	case -2:
 		$message = "The password you have entered is incorrect, however this email has not yet been registered for this show.  Please either press Back and reregister for this show, or reenter your password below.";
@@ -155,7 +155,7 @@ else {
 		break;
 	default:
 		if(isset($_SESSION['user_id'])){
-			header('Location: paymentsummary.php');
+			header('Location: paymentsummary.php#main');
 		} else {
 			$message = "An error occurred ($user).  Please try again.";
 		}
@@ -166,17 +166,15 @@ print_prod_header($link, $production, $htmlheaders);
 ?>
 
 <div id='loginform'>
-<div id='loginblurb'>
-<h2>Login</h2>
-</div>
 
 <div id='login'>
+<h1>Login</h1>
 <p class="error"><?=$message?></p>
-<form method="post" action="logintest.php">
-<p>Email Address: <input type="text" name="email"<? if(isset($user) && $user != -3) echo(" value='" . $_POST['email'] . "'")?>></p>
-<p>Password: <input type="password" name="pass"></p>
+<form method="post" action="logintest.php#main">
+<div class='loginfield'><div class='loginlabel'>Email Address:</div><input type="text" name="email"<? if(isset($user) && $user != -3) echo(" value='" . $_POST['email'] . "'")?>></div>
+<div class='loginfield'><div class='loginlabel'>Password:</div><input type="password" name="pass"></div>
 <input type="hidden" name="production" value="<?=$prodid?>">
-<input type="submit">
+<div class="loginsubmit"><input type="submit" value="Login"></div>
 </form>
 
 </div>

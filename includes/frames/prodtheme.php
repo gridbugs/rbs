@@ -9,6 +9,8 @@ function print_prod_header($link, $production, $htmlheaders = "", $bodyattrs = "
 <html>
 <head>
 <title><?=$production['name']?></title>
+<link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="css/global.css" />
 <link rel="shortcut icon" type="image/ico" href="../images/favicon32.ico" />
 <script type="text/javascript" src="js/global.js" ></script>
