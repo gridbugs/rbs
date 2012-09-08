@@ -29,13 +29,14 @@ foreach ( $tickettotals as $tt ) {
 ?>
 <h2><?=$tt['title']?></h2>
 <ul>
+<li>Booked seats: <?=$tt['bookedseats']?></li>
 <li>Paid seats: <?=$tt['paidseats']?></li>
 <li>Confirmed seats: <?=$tt['confirmedseats']?></li>
 <li>Payment Pending seats: <?=$tt['ppseats']?></li>
 <li>VIP seats: <?=$tt['vipseats']?></li>
 <li>ARC seats: <?=$tt['arcseats']?></li>
 </ul></p>
-<p>Total: <?=$tt['paidseats'] + $tt['confirmedseats'] + $tt['ppseats'] + $tt['vipseats']?></p>
+<p>Total non-booked: <?=$tt['paidseats'] + $tt['confirmedseats'] + $tt['ppseats'] + $tt['vipseats']?></p>
 <?
 }
 ?>
