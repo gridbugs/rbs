@@ -46,11 +46,11 @@ rbslog("Generating paypal button", 1);
 <input type="hidden" name="no_note" value="1">
 <input type="hidden" name="no_shipping" value="1">
 <input type="hidden" name="rm" value="1">
-<input type="hidden" name="return" value="http://cserevue.org.au/rms/rbs/paymentsummary.php">
-<input type="hidden" name="cancel_return" value="http://cserevue.org.au/rms/rbs/paymentsummary.php">
+<input type="hidden" name="return" value="<?=$production['bookingslocation']?>/paymentsummary.php">
+<input type="hidden" name="cancel_return" value="<?=$production['bookingslocation']?>/paymentsummary.php">
 <input type="hidden" name="tax_rate" value="0.000">
 <input type="hidden" name="shipping" value="0.00">
-<input type="hidden" name="notify_url" value="http://teletran2.cse.unsw.edu.au/~cserevue/rms/rbs/paypal.php?production=<?php echo $production['id']; ?>">
+<input type="hidden" name="notify_url" value="<?=$production['bookingslocation']?>/paypal.php?production=<?php echo $production['id']; ?>">
 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
 <input type="image" src="https://www.paypal.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
 <img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1">

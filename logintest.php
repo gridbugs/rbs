@@ -41,10 +41,10 @@ if(isset($_GET['reset'])){
         $headers .= "To: ".$user['name']." <".$user['email']."> \r\n";
         $headers .= "Content-Type: multipart/alternative;boundary=$boundary\r\n";
 
-        $message = "Hello,\nYou have requested a password reset for ".$user['email'].". Please follow the link below in order to reset your password:\n\nhttp://www.cserevue.org.au/rms/rbs/$link\n\nIf there are any issues, please feel free to respond to this email or contact webmin.head@cserevue.org.au.\n\nThanks,\nCSE Revue Webmin Head";
+        $message = "Hello,\nYou have requested a password reset for ".$user['email'].". Please follow the link below in order to reset your password:\n\n".$production['bookingslocation']."/$link\n\nIf there are any issues, please feel free to respond to this email or contact webmin.head@cserevue.org.au.\n\nThanks,\nCSE Revue Webmin Head";
         $message .= "\r\n\r\n--$boundary\r\n";
         $message .= "Content-type: text/html;charset=utf-8\r\n\r\n";
-        $message .= "Hello,<br/>You have requested a password reset for ".$user['email'].". Please follow the link below in order to reset your password:<br/><br/><a href='http://www.cserevue.org.au/rms/rbs/$link'>http://www.cserevue.org.au/rms/rbs/$link</a><br/><br/>If there are any issues, please feel free to respond to this email, or contact <a href='mailto:webmin.head@cserevue.org.au'>webmin.head@cserevue.org.au</a>.<br/><br/>Thanks,<br/>CSE Revue Webmin Head";
+        $message .= "Hello,<br/>You have requested a password reset for ".$user['email'].". Please follow the link below in order to reset your password:<br/><br/><a href='".$production['bookingslocation']."/$link'>".$production['bookingslocation']."/$link</a><br/><br/>If there are any issues, please feel free to respond to this email, or contact <a href='mailto:webmin.head@cserevue.org.au'>webmin.head@cserevue.org.au</a>.<br/><br/>Thanks,<br/>CSE Revue Webmin Head";
 
         // Send out the email.
         mail($user['email'], $subject, $message, $headers);

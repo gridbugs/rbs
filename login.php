@@ -3,6 +3,8 @@
  * The login page.
  */
 
+// TODO: Need to make the webmaster and producers emails be generic 
+
 include_once('includes/utilities.php');
 include_once('includes/prodmanagement.php');
 include_once('includes/frames/prodtheme.php');
@@ -24,7 +26,6 @@ print_prod_header($link, $production, $htmlheaders);
 
 <div id="loginform">
 <div id="loginblurb">Having trouble with the ticketing system?
-
 <? if($production['faqlocation'] == '') { ?>
 Please <a href="mailto:webmin.head@cserevue.org.au">Email the Webmaster</a> and we'll help as soon as we can!
 <? } else { ?>

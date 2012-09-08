@@ -115,9 +115,6 @@ if($production['acceptpaypal']) {
 }
 ?>
 
-</div>
-</div>
-
 <?php
 
 print_prod_footer($link, $production);
