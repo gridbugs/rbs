@@ -108,7 +108,7 @@ if(!isset($_POST['printing'])) {
 foreach($performances as $performance) {
 	echo("<option value='" . $performance['id'] . "'");
 	if(isset($_POST['restrictperf']) && $_POST['restrictperf'] == $performance['id'])
-		echo(" SELECTED");
+		echo(" selected='selected'");
 	echo(">" . prettydate($performance['tsdate']) . "</option>");
 }
 ?>
@@ -117,58 +117,80 @@ foreach($performances as $performance) {
 </div>
 
 <div class="formentry">Select only bookings with this payment status:<br>
-	<input type="checkbox" name="restrictstatus[1]"<?if(isset($rs[1])) echo(" CHECKED")?>>Booked
-	<input type="checkbox" name="restrictstatus[3]"<?if(isset($rs[3])) echo(" CHECKED")?>>Confirmed
-	<input type="checkbox" name="restrictstatus[4]"<?if(isset($rs[4])) echo(" CHECKED")?>>Paid
-	<input type="checkbox" name="restrictstatus[5]"<?if(isset($rs[5])) echo(" CHECKED")?>>Paid Sales Desk
-	<input type="checkbox" name="restrictstatus[6]"<?if(isset($rs[6])) echo(" CHECKED")?>>Paid DD
-	<input type="checkbox" name="restrictstatus[7]"<?if(isset($rs[7])) echo(" CHECKED")?>>Paid Paypal
-	<input type="checkbox" name="restrictstatus[8]"<?if(isset($rs[8])) echo(" CHECKED")?>>Payment Pending
-	<input type="checkbox" name="restrictstatus[9]"<?if(isset($rs[9])) echo(" CHECKED")?>>Unavailable
-	<input type="checkbox" name="restrictstatus[10]"<?if(isset($rs[10])) echo(" CHECKED")?>>VIP
-	<input type="checkbox" name="restrictstatus[11]"<?if(isset($rs[11])) echo(" CHECKED")?>>All Paid Tickets
-	<input type="checkbox" name="restrictstatus[12]"<?if(isset($rs[12])) echo(" CHECKED")?>>All Tickets
+<?php
+if (!isset($rs) || count($rs) == 0){
+    $rs[1] = true;
+    $rs[3] = true;
+    $rs[4] = true;
+    $rs[5] = true;
+    $rs[6] = true;
+    $rs[7] = true;
+}
+?>
+	<input type="checkbox" name="restrictstatus[1]"<?if(isset($rs[1])) echo(" checked='checked'")?>>Booked
+	<input type="checkbox" name="restrictstatus[3]"<?if(isset($rs[3])) echo(" checked='checked'")?>>Confirmed
+	<input type="checkbox" name="restrictstatus[4]"<?if(isset($rs[4])) echo(" checked='checked'")?>>Paid
+	<input type="checkbox" name="restrictstatus[5]"<?if(isset($rs[5])) echo(" checked='checked'")?>>Paid Sales Desk
+	<input type="checkbox" name="restrictstatus[6]"<?if(isset($rs[6])) echo(" checked='checked'")?>>Paid DD
+	<input type="checkbox" name="restrictstatus[7]"<?if(isset($rs[7])) echo(" checked='checked'")?>>Paid Paypal
+	<input type="checkbox" name="restrictstatus[8]"<?if(isset($rs[8])) echo(" checked='checked'")?>>Payment Pending
+	<input type="checkbox" name="restrictstatus[9]"<?if(isset($rs[9])) echo(" checked='checked'")?>>Unavailable
+	<input type="checkbox" name="restrictstatus[10]"<?if(isset($rs[10])) echo(" checked='checked'")?>>VIP
+	<input type="checkbox" name="restrictstatus[11]"<?if(isset($rs[11])) echo(" checked='checked'")?>>All Paid Tickets
+	<input type="checkbox" name="restrictstatus[12]"<?if(isset($rs[12])) echo(" checked='checked'")?>>All Tickets
 </div>
 
 <div class="formentry">
-<input type="checkbox" name="includeadmin"<?if($ia) echo(" CHECKED")?>>Include tickets that have been booked by an admin
+<input type="checkbox" name="includeadmin"<?if($ia) echo(" checked='checked'")?>>Include tickets that have been booked by an admin
 </div>
 
 <div class="formentry">Show only bookings with the following picked up status:
 <select name="restrictpickedup">
-	<option value="-1"<?if($rpu == -1) echo(" SELECTED")?>>All Bookings</option>
-	<option value="0"<?if($rpu == 0) echo(" SELECTED")?>>Not Picked Up</option>
-	<option value="1"<?if($rpu == 1) echo(" SELECTED")?>>Picked Up</option>
+	<option value="-1"<?if($rpu == -1) echo(" selected='selected'")?>>All Bookings</option>
+	<option value="0"<?if($rpu == 0) echo(" selected='selected'")?>>Not Picked Up</option>
+	<option value="1"<?if($rpu == 1) echo(" selected='selected'")?>>Picked Up</option>
 </select>
 </div>
 
 <div class="formentry">Sort By
 <select name="sortby">
-	<option value="id"<?if($sb == 'id') echo(" SELECTED")?>>ID Number</option>
-	<option value="name"<?if($sb == 'name') echo(" SELECTED")?>>Name</option>
-	<option value="deadline"<?if($sb == 'deadline') echo(" SELECTED")?>>Payment Deadline</option>
-	<option value="bookedtime"<?if($sb == 'bookedtime') echo(" SELECTED")?>>Booked Time</option>
+	<option value="id"<?if($sb == 'id') echo(" selected='selected'")?>>ID Number</option>
+	<option value="name"<?if($sb == 'name') echo(" selected='selected'")?>>Name</option>
+	<option value="deadline"<?if($sb == 'deadline') echo(" selected='selected'")?>>Payment Deadline</option>
+	<option value="bookedtime"<?if($sb == 'bookedtime') echo(" selected='selected'")?>>Booked Time</option>
 </select>
 <select name="order">
-	<option value="asc"<?if($order == 'asc') echo(" SELECTED")?>>Ascending</option>
-	<option value="desc"<?if($order == 'desc') echo(" SELECTED")?>>Descending</option>
+	<option value="asc"<?if($order == 'asc') echo(" selected='selected'")?>>Ascending</option>
+	<option value="desc"<?if($order == 'desc') echo(" selected='selected'")?>>Descending</option>
 </select>
 </div>
 
 <div class="formentry">Show the following columns:<br>
-	<input type="checkbox" name="showcolumn[bookingid]"<?if(isset($sc['bookingid'])) echo(" CHECKED")?>>Booking ID
-	<input type="checkbox" name="showcolumn[performance]"<?if(isset($sc['performance'])) echo(" CHECKED")?>>Performance
-	<input type="checkbox" name="showcolumn[name]"<?if(isset($sc['name'])) echo(" CHECKED")?>>Name
-	<input type="checkbox" name="showcolumn[email]"<?if(isset($sc['email'])) echo(" CHECKED")?>>Email
-	<input type="checkbox" name="showcolumn[seats]"<?if(isset($sc['seats'])) echo(" CHECKED")?>>Seats
-	<input type="checkbox" name="showcolumn[desc]"<?if(isset($sc['desc'])) echo(" CHECKED")?>>Description
-	<input type="checkbox" name="showcolumn[phoneno]"<?if(isset($sc['phone'])) echo(" CHECKED")?>>Phone Number
-	<input type="checkbox" name="showcolumn[pickedup]"<?if(isset($sc['pickedup'])) echo(" CHECKED")?>>Picked Up
-	<input type="checkbox" name="showcolumn[amountpaid]"<?if(isset($sc['amountpaid'])) echo(" CHECKED")?>>Amount Paid
-	<input type="checkbox" name="showcolumn[discount]"<?if(isset($sc['discount'])) echo(" CHECKED")?>>Discount
-	<input type="checkbox" name="showcolumn[paymentid]"<?if(isset($sc['paymentid'])) echo(" CHECKED")?>>Payment ID
-	<input type="checkbox" name="showcolumn[deadline]"<?if(isset($sc['deadline'])) echo(" CHECKED")?>>Payment Deadline
-	<input type="checkbox" name="showcolumn[bookedtime]"<?if(isset($sc['bookedtime'])) echo(" CHECKED")?>>Booked Time
+<?php
+if (!isset($sc) || count($sc) == 0){
+    $sc['bookingid'] = true;
+    $sc['performance'] = true;
+    $sc['name'] = true;
+    $sc['email'] = true;
+    $sc['seats'] = true;
+    $sc['phoneno'] = true;
+    $sc['pickedup'] = true;
+    $sc['amountpaid'] = true;
+}
+?>
+	<input type="checkbox" name="showcolumn[bookingid]"<?if(isset($sc['bookingid'])) echo(" checked='checked'")?>>Booking ID
+	<input type="checkbox" name="showcolumn[performance]"<?if(isset($sc['performance'])) echo(" checked='checked'")?>>Performance
+	<input type="checkbox" name="showcolumn[name]"<?if(isset($sc['name'])) echo(" checked='checked'")?>>Name
+	<input type="checkbox" name="showcolumn[email]"<?if(isset($sc['email'])) echo(" checked='checked'")?>>Email
+	<input type="checkbox" name="showcolumn[seats]"<?if(isset($sc['seats'])) echo(" checked='checked'")?>>Seats
+	<input type="checkbox" name="showcolumn[desc]"<?if(isset($sc['desc'])) echo(" checked='checked'")?>>Description
+	<input type="checkbox" name="showcolumn[phoneno]"<?if(isset($sc['phoneno'])) echo(" checked='checked'")?>>Phone Number
+	<input type="checkbox" name="showcolumn[pickedup]"<?if(isset($sc['pickedup'])) echo(" checked='checked'")?>>Picked Up
+	<input type="checkbox" name="showcolumn[amountpaid]"<?if(isset($sc['amountpaid'])) echo(" checked='checked'")?>>Amount Paid
+	<input type="checkbox" name="showcolumn[discount]"<?if(isset($sc['discount'])) echo(" checked='checked'")?>>Discount
+	<input type="checkbox" name="showcolumn[paymentid]"<?if(isset($sc['paymentid'])) echo(" checked='checked'")?>>Payment ID
+	<input type="checkbox" name="showcolumn[deadline]"<?if(isset($sc['deadline'])) echo(" checked='checked'")?>>Payment Deadline
+	<input type="checkbox" name="showcolumn[bookedtime]"<?if(isset($sc['bookedtime'])) echo(" checked='checked'")?>>Booked Time
 </div>
 
 <div class="formentry"><input type="checkbox" name="printing"> Print Friendly</div>
@@ -283,7 +305,7 @@ foreach($bookings as $booking) {
 
 echo("</table>");
 
-echo("<p>Total number of bookings: $nbookings</p>");
+echo("<p>Total number of bookings: $nbookings<br/><small>If this says 0, try refreshing the page</small></p>");
 echo("<p>Total number of seats: $nseats</p>");
 
 ?>
