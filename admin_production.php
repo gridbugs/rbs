@@ -36,7 +36,7 @@ foreach ( $tickettotals as $tt ) {
 <li>VIP seats: <?=$tt['vipseats']?></li>
 <li>ARC seats: <?=$tt['arcseats']?></li>
 </ul></p>
-<p>Total non-booked: <?=$tt['paidseats'] + $tt['confirmedseats'] + $tt['ppseats'] + $tt['vipseats']?></p>
+<p>Total confirmed: <?=$tt['paidseats'] + $tt['confirmedseats'] + $tt['ppseats'] + $tt['vipseats']?></p>
 <?
 }
 ?>
