@@ -1,6 +1,6 @@
 body {
   background-color: black;
-  background-image: url(website-bg.png);
+  background-image: url(website-bg.jpg);
   background-repeat: repeat;
   background-attachment: fixed;
   color: #DDD;
@@ -65,7 +65,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, #navbar a:hover {
   color: white;
 }
 
@@ -124,6 +124,8 @@ footer a {
 
 td.paymentseats, td.booking, td.bookedstatus {
     background-color: #045B45;
+    border-bottom: 0px;
+    border-top: 4px #444 solid;
 }
 
 td.paymentseats {
@@ -135,14 +137,100 @@ div.paymentexpiry {
     font-weight: bold;
 }
 
-div.bookingsummaryperf {
+div.bookingsummaryperf, div.paymentsummaryperf {
     width: auto;
+    padding-top: 0px;
 }
 
-td.price {
-    background-color: #333;
+div.bookingsummaryperf div, div.paymentsummaryperf div {
+    margin-left: 2.4em;
+}
+
+td.price, td.paymentprice {
+    background-color: #222;
+    border-left: 0px;
+    border-right: 0px;
 }
 
 #loginblurb {
 	margin-top: 1em;
+}
+
+td.booking {
+    border-left: 0px;
+}
+
+table.paymentsummary, table.bookingtable {
+    margin: 20px 2em;
+}
+
+th.paymentpricehead {
+    background-color: #334;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+input[type="radio"] {
+    width: 2em;
+    height: 2em;
+}
+
+div#bigformbuttons {
+    text-align:center;
+}
+
+.continue {
+    background-color:#045B45;
+}
+
+.continue:hover {
+    background-color:#247B65;
+}
+
+.paymenttotal {
+    color: #64bBa5;
+    margin: 0px 0px 20px 0px;
+}
+.paymenttotal strong {
+    color: #fff;
+}
+
+div#totals {
+    padding: 40px 0px;
+    width: 100%;
+    text-align:center;
+}
+
+div#totals .pay {
+    padding: 0px;
+    text-align:justify;
+    font-size: 15px;
+    margin: 0px auto;
+    border: 0px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Fixing the theatre display.
+ * --------------------------------------------------------------------------*/
+
+div.segment {
+    background-color: #000;
+    position:relative;
+    left:-12.734375em;
+    padding: 10px 0px;
+}
+
+div.segmentnavup a, div.segmentnavdown a {
+    background-color:#247B65;
+    color:#fff;
+}
+
+div.segmentnavup {
+    position:absolute;
+    top: 0px;
+}
+
+div.segmentnavup a:hover, div.segmentnavdown a:hover {
+    background-color:#449B85;
+    color:#fff;
 }
