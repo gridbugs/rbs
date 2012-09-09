@@ -37,6 +37,9 @@ function get_all_bookings($link, $prodid, $sortby = 'id', $sortdir = 'asc', $res
 	$prodid = (int)$prodid;
 	$sortsql = '';
 	switch($sortby) {
+    case 'paymentid':
+        $sortsql = ' order by UPPER(paymentid)';
+        break;
 	case 'id':
 		$sortsql = ' order by b.id';
 		break;
