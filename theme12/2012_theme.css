@@ -57,11 +57,11 @@ section {
 }
 
 #navbar a {
-    color: #247BCD;
+    color: #449BeD;
 }
 
 a {
-  color: #449BED;
+  color: #54aBfD;
   text-decoration: none;
 }
 
@@ -140,7 +140,7 @@ td.paymentseats {
 }
 
 div.paymentexpiry {
-    color: #a00;
+    color: #f00;
     font-weight: bold;
 }
 
@@ -235,6 +235,8 @@ div.loginlabel {
 div#loading {
     text-align: center;
     font-size: 18px;
+    color: #f00;
+    font-weight: bold;
 }
 
 /* ----------------------------------------------------------------------------
