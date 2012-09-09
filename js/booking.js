@@ -17,10 +17,12 @@ function toShow() {
 
 	performance = null;
 
-	document.getElementById('segments').style.display = 'none';
+	segmentsElem = document.getElementById('segments');
+    if (segmentsElem) { segmentsElem.style.display = 'none'; }
 	document.getElementById('loading').style.display = 'none';
 	document.getElementById('theatre_render').style.display = 'none';
-	document.getElementById('performances').style.display = 'block';
+	performancesElem = document.getElementById('performances');
+    if (performancesElem) { performancesElem.style.display = 'block'; }
 
 	toShowSpec();
 }
@@ -32,10 +34,12 @@ function toPerformance(perf) {
 		segment = null;
 	}
 
-	document.getElementById('performances').style.display = 'none';
+	performancesElem = document.getElementById('performances');
+	if (performancesElem) { performancesElem.style.display = 'none'; }
 	document.getElementById('loading').style.display = 'none';
 	document.getElementById('theatre_render').style.display = 'none';
-	document.getElementById('segments').style.display = 'block';
+	segmentsElem = document.getElementById('segments');
+    if (segmentsElem){ segmentsElem.style.display = 'block'; }
 
 	if(performance == perf)
 		return;
@@ -79,8 +83,10 @@ function toSegment(seg) {
 	}
 
 	segment = seg;
-	document.getElementById('performances').style.display = 'none';
-	document.getElementById('segments').style.display = 'none';
+    performancesElem = document.getElementById('performances');
+    if (performancesElem) { performancesElem.style.display = 'none'; }
+	segmentsElem = document.getElementById('segments');
+    if (segmentsElem) { segmentsElem.style.display = 'none'; }
 	document.getElementById('theatre_render').style.display = 'block';
 
 	if(loading[performance]) {

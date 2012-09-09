@@ -165,10 +165,6 @@
 	text-align: center;
 }
 
-#startnewbooking { display: none; }
-#savebooking { display: none; }
-#resetchanges { display: none; }
-
 #buttonpanel { display: none; text-align: center; }
 #payfortickets {
 	font-size: 1.2em;
@@ -180,4 +176,3 @@
 }
 
 #bookinginfo { display: none; }
-

@@ -29,10 +29,20 @@ $performances = get_performances($link, $prodid);
 $production = get_production($link, $prodid);
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
+// Open and close segments
+if (isset($_POST['segment_perfid'])){
+    if(isset($_POST['openSegment'])){
+        echo open_segment($link, $_POST['segment_perfid'], $_POST['openSegment']);
+    } else if (isset($_POST['closeSegment'])){
+        echo close_segment($link, $_POST['segment_perfid'], $_POST['closeSegment']);
+    }
+}
+
 ?>
 <html><head><title>Bookings for <?=$production['name']?></title>
 <p><a href="admin_production.php">Back to production page</a></p>
 <link rel="stylesheet" type="text/css" href="css/booking.css" />
+<link rel="stylesheet" type="text/css" href="css/admin_booking.css" />
 
 <script type="text/javascript">
 var performances = [];
@@ -54,6 +64,15 @@ foreach($theatre as $segment) {
 	echo("segments['" . $segment['id'] . "'] = '" . $segment['name'] . "';\n");
 }
 
+echo "window.onload = function() {\n";
+
+if (isset($_POST['segment_perfid'])){
+    $segment_perfid = (int)$_POST['segment_perfid'];
+    echo "toPerformance(".$segment_perfid.");\n";
+}
+
+echo "}\n";
+
 ?>
 </script>
 
@@ -70,7 +89,7 @@ foreach($theatre as $segment) {
 <div id="status"></div>
 
 <div id="adminbuttons">
-<div class="button"><a href="logout.php">Cancel Changes and Logout</a></div>
+<div class="button" id='cancelbooking'><a href="admin_booking.php">Cancel booking</a></div>
 <div class="button" id="savebooking"><a href="javascript: saveThisBooking()">Save This Booking</a></div>
 <div id="startnewbooking" class="button"><a href="javascript: startNewBooking()">Start New Booking</a></div>
 <div id="modifybooking" class="button"><a href="javascript: modifyBooking()">Modify Booking</a></div>
@@ -106,13 +125,27 @@ foreach($theatre as $segment) {
 ?>
 </div>
 
-<div id="segments">
-<?
-	foreach($theatre as $segment) {
-		echo("<a href='javascript:toSegment(" . $segment['id'] . ")'>" . $segment['name'] . "</a><br>\n");
-	}
+<?php
+    foreach($performances as $performance){
+        echo "<div id='segments_".$performance['id']."' style='display:none;'>";
+        $closedsegments = get_closed_segments($link, $performance['id']);
+        echo "<table border='1' class='segmentlist_admin' ><tr>";
+        foreach($theatre as $segment) {
+            echo("<th><a class='segmentlink_admin' href='javascript:toSegment(" . $segment['id'] . ")'>" . $segment['name'] . "</a></th>\n");
+        }
+        echo "</tr><tr>";
+        foreach($theatre as $segment) {
+            echo "<td><form method='post' class='closedsegmentform' action='admin_booking.php' ><input type='hidden' name='segment_perfid' value='".$performance['id']."'/>";
+            if (in_array($segment['id'], $closedsegments)){
+                echo "<input type='hidden' name='openSegment' value='".$segment['id']."'/><input type='button' class='closed on' disabled='disabled'  value='Closed'/><input type='submit' class='opened off'  value='Open'/>";
+            } else {
+                echo "<input type='hidden' name='closeSegment' value='".$segment['id']."'/><input type='submit' class='closed off'  value='Closed'/><input type='button' class='opened on' disabled='disabled'  value='Open'/>";
+            }
+            echo "</form></td>";
+        }
+        echo "</tr></table></div>";
+    }
 ?>
-</div>
 
 <div id="loading">Loading</div>
 

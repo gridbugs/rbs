@@ -49,4 +49,30 @@ function get_closed_segments($link, $perfid) {
 	return $closedsegments;
 }
 
+function open_segment($link, $perfid, $segid) {
+	$perfid = (int)$perfid;
+    $segid  = (int)$segid;
+	// Get the closed segments for a performance
+	$sql = "DELETE FROM closedsegment WHERE performance = $perfid AND segment = $segid";
+	$results = sql_get_array($link, $sql);
+    if($results) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function close_segment($link, $perfid, $segid) {
+	$perfid = (int)$perfid;
+    $segid  = (int)$segid;
+	// Get the closed segments for a performance
+	$sql = "INSERT INTO closedsegment (performance, segment) VALUES ($perfid, $segid)";
+	$results = sql_get_array($link, $sql);
+    if($results) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 ?>

@@ -54,6 +54,7 @@ function resetChanges() {
 	showButton('startnewbooking');
 	hideButton('resetchanges');
 	hideButton('savebooking');
+	hideButton('cancelbooking');
 	document.getElementById('navigation').style.display = 'block';
 	document.getElementById('targetseats').style.display = 'none';
 }
@@ -107,6 +108,7 @@ function modifyBooking() {
 	hideButton('startnewbooking');
 	showButton('resetchanges');
 	showButton('savebooking');
+	showButton('cancelbooking');
 
 	document.getElementById('navigation').style.display = 'none';
 	document.getElementById('targetseats').style.display = 'block';
@@ -172,6 +174,7 @@ function startNewBooking() {
 	hideButton('startnewbooking');
 	showButton('resetchanges');
 	showButton('savebooking');
+	showButton('cancelbooking');
 	document.getElementById('navigation').style.display = 'none';
 	document.getElementById('targetseats').style.display = 'block';
 }
@@ -459,9 +462,11 @@ function toShowPre() {
 	unSelectBooking();
 }
 
+current_performance = null;
 function toShowSpec() {
 	hideButton('startnewbooking');
 	document.getElementById('navigation').innerHTML = '';
+    document.getElementById('segments_'+current_performance).style.display = 'none';
 }
 
 function toPerformanceSpec() {
@@ -469,6 +474,8 @@ function toPerformanceSpec() {
 	var nav = '<a href="javascript:toShow()">Main Menu</a> >> ';
 	nav += performances[performance];
 	document.getElementById('navigation').innerHTML = nav;
+	document.getElementById('segments_'+performance).style.display = 'block';
+    current_performance = performance;
 }
 
 function toSegmentSpec() {
