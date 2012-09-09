@@ -183,6 +183,7 @@ if (!isset($sc) || count($sc) == 0){
 }
 ?>
 	<input type="checkbox" name="showcolumn[bookingid]"<?if(isset($sc['bookingid'])) echo(" checked='checked'")?>>Booking ID
+	<input type="checkbox" name="showcolumn[paymentid]"<?if(isset($sc['paymentid'])) echo(" checked='checked'")?>>Payment ID
 	<input type="checkbox" name="showcolumn[performance]"<?if(isset($sc['performance'])) echo(" checked='checked'")?>>Performance
 	<input type="checkbox" name="showcolumn[name]"<?if(isset($sc['name'])) echo(" checked='checked'")?>>Name
 	<input type="checkbox" name="showcolumn[email]"<?if(isset($sc['email'])) echo(" checked='checked'")?>>Email
@@ -193,7 +194,6 @@ if (!isset($sc) || count($sc) == 0){
 	<input type="checkbox" name="showcolumn[totalcost]"<?if(isset($sc['totalcost'])) echo(" checked='checked'")?>>Total Cost
 	<input type="checkbox" name="showcolumn[amountpaid]"<?if(isset($sc['amountpaid'])) echo(" checked='checked'")?>>Amount Paid
 	<input type="checkbox" name="showcolumn[discount]"<?if(isset($sc['discount'])) echo(" checked='checked'")?>>Discount
-	<input type="checkbox" name="showcolumn[paymentid]"<?if(isset($sc['paymentid'])) echo(" checked='checked'")?>>Payment ID
 	<input type="checkbox" name="showcolumn[deadline]"<?if(isset($sc['deadline'])) echo(" checked='checked'")?>>Payment Deadline
 	<input type="checkbox" name="showcolumn[bookedtime]"<?if(isset($sc['bookedtime'])) echo(" checked='checked'")?>>Booked Time
 </div>
@@ -288,7 +288,7 @@ foreach($bookings as $booking) {
 			echo($seat['seat']);
             $price = get_price_by_id($link, $seat['price']);
 			echo(" (" . status_message($seat['status']) . ")");
-            echo " <em>".$price[0]['name']."</em>";
+            echo " <small>".$price[0]['name']."</small>";
             $total_cost += (int)$price[0]['price'];
             echo "</span><br/>";
 		}

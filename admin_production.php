@@ -18,7 +18,7 @@ $tickettotals = get_ticket_totals($link, $_SESSION['admin_production']);
 ?>
 
 <html><head><title>Production Info for <?=$production['name']?></title></head>
-<body>
+<body style='padding-bottom:100px;'>
 <h1>Production Info for <?=$production['name']?></h1>
 <p><a href="admin_booking.php">Administration Booking Screen</a></p>
 <p><a href="admin_bookinglist.php">Booking List</a></p>
