@@ -19,19 +19,21 @@ if(!production_exists($link, $prodid))
 	die('Production does not exist');
 
 $production = get_production($link, $prodid);
+include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
 $htmlheaders='<link rel="stylesheet" type="text/css" href="css/login.css" />';
 print_prod_header($link, $production, $htmlheaders);
 ?>
 
 <div id="loginform">
-<div id="loginblurb">Having trouble with the ticketing system?
+<div id="loginblurb"><p>Having trouble with the ticketing system?
 <? if($production['faqlocation'] == '') { ?>
-Please <a href="mailto:webmin.head@cserevue.org.au">Email the Webmaster</a> and we'll help as soon as we can!
+Please <a href="mailto:tickets@cserevue.org.au">email the Sales Team</a> and we'll help as soon as we can!
 <? } else { ?>
-Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or, if that doesn't answer your question, <a href="mailto:webmin.head@cserevue.org.au">Email the Webmaster</a> and we'll help as soon as we can!
-<br>
-Please note, group bookings (fifteen or more seats) are eligible for a group discount. Please email <a href="mailto:producers@cserevue.org.au">producers@cserevue.org.au</a> if you'd like to make a group booking.
+Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or <a href="mailto:tickets@cserevue.org.au">email the Sales Team</a> and we'll help as soon as we can!
+</p><p>
+Please note, <strong>group bookings (<?=$max_booked_seats?> or more seats)</strong> are eligible for a group discount.<br/><em>Group bookings cannot be made online</em> &mdash; please see the <a href='<?=$production['faqlocation']?>#group_bookings'>FAQ</a> for more information or <a href='malto:tickets@cserevue.org.au'>contact the Sales Team</a>.
+</p>
 <? } ?>
 </div>
 

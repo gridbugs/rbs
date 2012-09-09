@@ -1,5 +1,10 @@
 <?php
 
+// XXX: Set the maximum number of seats that can be booked by users
+// They will be informed that they must contact producers for group bookings.
+// TODO: Get this value from production table.
+$max_booked_seats = 15;
+
 $theatre_seats_segment1 = array(
 	"AA10"=>array( "x"=>1040 , "y"=>240 ) ,
 	"AA11"=>array( "x"=>953 , "y"=>240 ) ,
