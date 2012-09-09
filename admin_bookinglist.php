@@ -178,6 +178,7 @@ if (!isset($sc) || count($sc) == 0){
     $sc['seats'] = true;
     $sc['phoneno'] = true;
     $sc['pickedup'] = true;
+    $sc['totalcost'] = true;
     $sc['amountpaid'] = true;
 }
 ?>
@@ -189,6 +190,7 @@ if (!isset($sc) || count($sc) == 0){
 	<input type="checkbox" name="showcolumn[desc]"<?if(isset($sc['desc'])) echo(" checked='checked'")?>>Description
 	<input type="checkbox" name="showcolumn[phoneno]"<?if(isset($sc['phoneno'])) echo(" checked='checked'")?>>Phone Number
 	<input type="checkbox" name="showcolumn[pickedup]"<?if(isset($sc['pickedup'])) echo(" checked='checked'")?>>Picked Up
+	<input type="checkbox" name="showcolumn[totalcost]"<?if(isset($sc['totalcost'])) echo(" checked='checked'")?>>Total Cost
 	<input type="checkbox" name="showcolumn[amountpaid]"<?if(isset($sc['amountpaid'])) echo(" checked='checked'")?>>Amount Paid
 	<input type="checkbox" name="showcolumn[discount]"<?if(isset($sc['discount'])) echo(" checked='checked'")?>>Discount
 	<input type="checkbox" name="showcolumn[paymentid]"<?if(isset($sc['paymentid'])) echo(" checked='checked'")?>>Payment ID
@@ -242,6 +244,8 @@ if(isset($showcolumn['email']))
 	echo('<th>Email</th>');
 if(isset($showcolumn['seats']))
 	echo('<th>Seats Booked</th>');
+if(isset($showcolumn['totalcost']))
+	echo('<th>Total Price</th>');
 if(isset($showcolumn['desc']))
 	echo('<th>Description</th>');
 if(isset($showcolumn['phoneno']))
@@ -274,6 +278,7 @@ foreach($bookings as $booking) {
 	if(isset($showcolumn['seats'])) {
 		echo("<td>");
 		$nseats += count($booking['seats']);
+        $total_cost = 0;
 		foreach($booking['seats'] as $seat) {
             if ($seat['status'] > 1){
                 echo "<span style='color:green; font-weight:bold;'>";
@@ -284,10 +289,13 @@ foreach($bookings as $booking) {
             $price = get_price_by_id($link, $seat['price']);
 			echo(" (" . status_message($seat['status']) . ")");
             echo " <em>".$price[0]['name']."</em>";
+            $total_cost += (int)$price[0]['price'];
             echo "</span><br/>";
 		}
 		echo("</td>");
 	}
+    if(isset($showcolumn['totalcost']))
+        echo "<td>\$$total_cost</td>";
 	if(isset($showcolumn['desc']))
 		echo("<td>" . htmlspecialchars($booking['description']) . "&nbsp;</td>");
 	if(isset($showcolumn['phoneno'])) {
