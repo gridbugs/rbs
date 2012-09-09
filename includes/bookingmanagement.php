@@ -175,7 +175,7 @@ function get_booking($link, $bookingid) {
 function get_perf_bookings($link, $performance) {
 	$performance = (int)$performance;
 
-	$usertable = "(select id, production, name, email, phone, paymentid, 0 isadmin from user UNION select id, -1 production, name, email, phone, \"\" paymentid, 1 isadmin from admin)";
+	$usertable = "(select id, production, name, email, phone, UPPER(paymentid) AS paymentid, 0 isadmin from user UNION select id, -1 production, name, email, phone, \"\" paymentid, 1 isadmin from admin)";
 
 	$sql = "SELECT b.*, u.email, u.name username, u.phone FROM booking b, $usertable u WHERE b.user = u.id AND b.performance = $performance AND u.isadmin = b.bookedbyadmin";
 	$bookings = sql_get_array($link, $sql);

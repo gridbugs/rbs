@@ -264,7 +264,7 @@ foreach($bookings as $booking) {
 	if(isset($showcolumn['bookingid']))
 		echo("<td>" . $booking['id'] . "</td>");
 	if(isset($showcolumn['paymentid']))
-		echo("<td>" . htmlspecialchars($booking['paymentid']) . "&nbsp;</td>");
+		echo("<td>" . htmlspecialchars(strtoupper($booking['paymentid'])) . "&nbsp;</td>");
 	if(isset($showcolumn['performance']))
 		echo("<td>" . prettydate($booking['tsdate']) . "</td>");
 	if(isset($showcolumn['name']))
@@ -275,9 +275,14 @@ foreach($bookings as $booking) {
 		echo("<td>");
 		$nseats += count($booking['seats']);
 		foreach($booking['seats'] as $seat) {
+            if ($seat['status'] > 1){
+                echo "<span style='color:green; font-weight:bold;'>";
+            } else {
+                echo "<span style='color:red'>";
+            }
 			echo($seat['seat']);
 			echo(" (" . status_message($seat['status']) . ")");
-			echo("<br>");
+            echo "</span><br/>";
 		}
 		echo("</td>");
 	}
