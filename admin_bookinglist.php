@@ -125,6 +125,8 @@ if (!isset($rs) || count($rs) == 0){
     $rs[5] = true;
     $rs[6] = true;
     $rs[7] = true;
+    $rs[8] = true;
+    $rs[10] = true;
 }
 ?>
 	<input type="checkbox" name="restrictstatus[1]"<?if(isset($rs[1])) echo(" checked='checked'")?>>Booked
@@ -306,7 +308,7 @@ foreach($bookings as $booking) {
 
 echo("</table>");
 
-echo("<p>Total number of bookings: $nbookings<br/><small>If this says 0, try refreshing the page</small></p>");
+echo("<p>Total number of bookings: $nbookings</p>");
 echo("<p>Total number of seats: $nseats</p>");
 
 ?>
