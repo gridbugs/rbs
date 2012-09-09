@@ -34,6 +34,8 @@ if(isset($_POST['submitseats']))
         }
         if ($total_seats_changed > $max_booked_seats){
             $message .= "<p class='error'>Error: Cannot book more than $max_booked_seats. Please see the <a href='".$production['faqlocation']."'>FAQ</a> for more information on booking for groups.</p>";
+            print_prod_header($link, $production);
+            echo $message;
             print_prod_footer($link, $production);
             die();
         }
