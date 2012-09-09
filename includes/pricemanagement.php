@@ -8,10 +8,20 @@ include_once('utilities.php');
 /**
  * Get the prices for a specific performance.
  */
-function get_prices($link, $performance) {
+function get_prices($link, $performance, $isadmin=false) {
 	$performance = (int)$performance;
-	$sql = "SELECT * FROM price WHERE performance = $performance ORDER BY id ASC";
+    $sql = "SELECT * FROM price WHERE performance = $performance";
+    if (!$isadmin){
+        $sql .= " AND NOT admin_only";
+    }
+    $sql .= " ORDER BY id ASC";
 	return sql_get_array($link, $sql);
+}
+
+
+function get_price_by_id($link, $id){
+    $sql = "SELECT * FROM price WHERE id=$id";
+    return sql_get_array($link, $sql);
 }
 
 

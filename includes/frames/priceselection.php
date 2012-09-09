@@ -42,7 +42,7 @@ function status_message($status) {
  */
 function print_price_selection($link, $booking, $isadmin = false) {
 	// The prices of the booking
-	$prices = get_prices($link, $booking['performance']);
+	$prices = get_prices($link, $booking['performance'], $isadmin);
 
 	if($booking['title'] !== '') {
 ?>

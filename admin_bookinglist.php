@@ -281,7 +281,9 @@ foreach($bookings as $booking) {
                 echo "<span style='color:red'>";
             }
 			echo($seat['seat']);
+            $price = get_price_by_id($link, $seat['price']);
 			echo(" (" . status_message($seat['status']) . ")");
+            echo " <em>".$price[0]['name']."</em>";
             echo "</span><br/>";
 		}
 		echo("</td>");
