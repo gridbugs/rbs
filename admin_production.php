@@ -35,10 +35,16 @@ foreach ( $tickettotals as $tt ) {
 <li>Confirmed seats: <?=$tt['confirmedseats']?></li>
 <li>Payment Pending seats: <?=$tt['ppseats']?></li>
 <li>VIP seats: <?=$tt['vipseats']?></li>
-<li>ARC seats: <?=$tt['arcseats']?></li>
 </ul></p>
-<p>Total confirmed: <?=$tt['paidseats'] + $tt['confirmedseats'] + $tt['ppseats'] + $tt['vipseats']?></p>
-<?
+<p><strong>Total confirmed or paid:</strong> <?=$tt['paidseats'] + $tt['confirmedseats'] + $tt['ppseats'] + $tt['vipseats']?></p>
+<?php
+    if (isset($tt['confirmed']) and count($tt['confirmed']) > 0){
+        echo "<strong>Total confirmed/paid by price class:</strong><ul>";
+        foreach ($tt['confirmed'] as $price){
+            echo "<li class='margin-left: 5em;'>".$price['name'].": ".$price['count']."</li>";
+        }
+        echo "</ul>";
+    }
 }
 ?>
 </body>
