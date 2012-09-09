@@ -23,6 +23,7 @@ $tickettotals = get_ticket_totals($link, $_SESSION['admin_production']);
 <p><a href="admin_booking.php">Administration Booking Screen</a></p>
 <p><a href="admin_bookinglist.php">Booking List</a></p>
 <p><a href="admin_editproduction.php">Edit Production Details</a></p>
+<p><a href="logout.php">Logout</a></p>
 <h2>Ticket Totals:</h2>
 <?
 foreach ( $tickettotals as $tt ) {

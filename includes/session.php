@@ -58,7 +58,7 @@ function sess_write($id, $sess_data)
 function sess_destroy($id)
 {
 	$id = mysql_real_escape_string($id);
-	mysql_query("DELETE FROM session WHERE id = '$id'");
+	mysql_query("DELETE FROM session WHERE id = '$id'") or die(mysql_error());
 }
 
 function sess_gc($maxlifetime) {

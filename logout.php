@@ -1,8 +1,10 @@
 <?
-session_start();
+require_once('includes/utilities.php');
+$link = db_connect();
+require_once('includes/session.php');
+require_once('includes/usermanagement.php');
 if(isset($_SESSION['production'])) {
 	$url = "login.php?production=" . $_SESSION['production'];
-	include_once('includes/utilities.php');
 	include_once('includes/prodmanagement.php');
 	include_once('includes/frames/prodtheme.php');
 	$footer = true;
@@ -17,7 +19,6 @@ if(isset($_SESSION['production'])) {
 
 $_SESSION = array();
 session_destroy();
-
 ?>
 
 <html>

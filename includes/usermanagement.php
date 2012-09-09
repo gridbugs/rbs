@@ -157,6 +157,18 @@ function get_prodadmin_shows($link, $userid) {
 	$sql = "select * from prodadmin where user = $userid";
 	return sql_get_array($link, $sql);
 }
+function admin_pass($link, $id) {
+    $sql = "select password from admin where id = $id";
+    $results = mysql_query($sql, $link);
+
+	if($results && mysql_num_rows($results) >= 1) {
+		// Lets test the password
+		$row = mysql_fetch_array($results, MYSQL_ASSOC);
+        return $row['password'];
+    } else {
+        return false;
+    }
+}
 
 /**
  * This function logs an admin user into the application.
@@ -179,6 +191,7 @@ function admin_login($link, $email, $pass) {
 		$passwordhash = md5($row['salt'] . $pass);
 		if($passwordhash === $row['password']) { // Log the user in!
 			$_SESSION['admin_id'] = $row['id'];
+            $_SESSION['admin_pass'] = $row['password'];
 			$_SESSION['admin_name'] = $row['name'];
 			$_SESSION['admin_email'] = $row['email'];
 			$_SESSION['admin_phone'] = $row['phone'];
