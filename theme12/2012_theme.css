@@ -94,9 +94,13 @@ footer a {
   color: white;
 }
 
-.map {
+#map {
   float: right;
-  padding-left: 20px;
+  margin-left: 50px;
+  -moz-box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
+  -webkit-box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
+  box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
+  border: 2px solid #247B65;
 }
 
 h1#title_of_show {
@@ -104,6 +108,18 @@ h1#title_of_show {
     color: #fff;
     margin-top: -100px;
     margin-bottom: 100px;
+}
+
+#poster {
+    display:block;
+    float: right;
+    margin: 20px;
+    width:199px;
+    height:250px;
+    background:url('/poster_small.jpg') 0 0 ;
+}
+#poster:hover {
+    background-position: right;
 }
 
 /* ----------------------------------------------------------------------------
