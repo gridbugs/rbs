@@ -98,7 +98,7 @@ function toggleSeat(seat) {
     }
     if(booked_seat_count >= max_booked_seats){
         disableNonBookedSeats();
-        alert("Group bookings ("+(max_booked_seats+1)+" or more seats) are eligible for a discount! Please see the FAQ for more information.\n\nNote that you cannot have more than "+max_booked_seats+" unpaid seats online.");
+        alert("Group bookings ("+(max_booked_seats+1)+" or more seats) are eligible for a discount! Please see the FAQ for more information.\n\nNote that you cannot have more than "+max_booked_seats+" unpaid seats online.\n(You can pay for your seats and book more.)");
     }
     /*if (seats[performance][1][seat] != null){
         if (booked_seat_count >= max_booked_seats-1){
