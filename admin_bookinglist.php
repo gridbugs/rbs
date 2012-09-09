@@ -154,6 +154,7 @@ if (!isset($rs) || count($rs) == 0){
 
 <div class="formentry">Sort By
 <select name="sortby">
+	<option value="paymentid"<?if($sb == 'paymentid') echo(" selected='selected'")?>>Payment ID Number</option>
 	<option value="id"<?if($sb == 'id') echo(" selected='selected'")?>>ID Number</option>
 	<option value="name"<?if($sb == 'name') echo(" selected='selected'")?>>Name</option>
 	<option value="deadline"<?if($sb == 'deadline') echo(" selected='selected'")?>>Payment Deadline</option>
@@ -168,7 +169,7 @@ if (!isset($rs) || count($rs) == 0){
 <div class="formentry">Show the following columns:<br>
 <?php
 if (!isset($sc) || count($sc) == 0){
-    $sc['bookingid'] = true;
+    $sc['paymentid'] = true;
     $sc['performance'] = true;
     $sc['name'] = true;
     $sc['email'] = true;
@@ -229,6 +230,8 @@ $nseats = 0;
 <?
 if(isset($showcolumn['bookingid']))
 	echo('<th>Booking ID</th>');
+if(isset($showcolumn['paymentid']))
+	echo('<th>Payment ID</th>');
 if(isset($showcolumn['performance']))
 	echo('<th>Performance</th>');
 if(isset($showcolumn['name']))
@@ -247,8 +250,6 @@ if(isset($showcolumn['amountpaid']))
 	echo('<th>Amount Paid</th>');
 if(isset($showcolumn['discount']))
 	echo('<th>Discount</th>');
-if(isset($showcolumn['paymentid']))
-	echo('<th>Payment ID</th>');
 if(isset($showcolumn['deadline']))
 	echo('<th>Payment Deadline</th>');
 if(isset($showcolumn['bookedtime']))
@@ -260,6 +261,8 @@ foreach($bookings as $booking) {
 	echo("<tr>");
 	if(isset($showcolumn['bookingid']))
 		echo("<td>" . $booking['id'] . "</td>");
+	if(isset($showcolumn['paymentid']))
+		echo("<td>" . htmlspecialchars($booking['paymentid']) . "&nbsp;</td>");
 	if(isset($showcolumn['performance']))
 		echo("<td>" . prettydate($booking['tsdate']) . "</td>");
 	if(isset($showcolumn['name']))
@@ -294,8 +297,6 @@ foreach($bookings as $booking) {
 		echo("<td>$" . htmlspecialchars($booking['amountpaid']) . "</td>");
 	if(isset($showcolumn['discount']))
 		echo("<td>$" . htmlspecialchars($booking['discount']) . "</td>");
-	if(isset($showcolumn['paymentid']))
-		echo("<td>" . htmlspecialchars($booking['paymentid']) . "&nbsp;</td>");
 	if(isset($showcolumn['deadline']))
 		echo("<td>" . htmlspecialchars($booking['deadline']) . "</td>");
 	if(isset($showcolumn['bookedtime']))
