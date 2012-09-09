@@ -65,6 +65,8 @@ foreach($theatre as $segment) {
 	$htmlheaders .= "segseats['" . $segment['id'] . "'] = 0;\n";
 }
 
+$htmlheaders .= "var max_booked_seats = ".$max_booked_seats.";\n";
+
 $htmlheaders .= <<<HEADER
 </script>
 
@@ -130,7 +132,7 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 
 <div id="buttonpanel">
 <div id="anotherday" onClick="javascript: toShow()" class="bigbutton">See Another Day</div>
-<div id="payfortickets" onClick="javascript: payForTickets()" class="bigbutton">Save and Pay</div>
+<div id="payfortickets" onClick="javascript: payForTickets()" class="bigbutton continue">Save Booking</div>
 </div>
 
 <div id="legend">

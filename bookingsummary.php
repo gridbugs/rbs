@@ -16,6 +16,7 @@ $link = db_connect();
 include_once('includes/userauth.php');
 
 $production = get_production($link, $_SESSION['production']);
+
 $user = $_SESSION['user_id'];
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
@@ -27,6 +28,15 @@ $message = "";
 if(isset($_POST['submitseats']))
 {	
 	if(isset($_POST['changeseat'])) {
+        $total_seats_changed = 0;
+        foreach ($_POST['changeseat'] as $performance_seats){
+            $total_seats_changed += count($performance_seats);
+        }
+        if ($total_seats_changed > $max_booked_seats){
+            $message .= "<p class='error'>Error: Cannot book more than $max_booked_seats. Please see the <a href='".$production['faqlocation']."'>FAQ</a> for more information on booking for groups.</p>";
+            print_prod_footer($link, $production);
+            die();
+        }
 		$results = user_save_changes($link, $production['id'], $_SESSION['user_id'], $_POST['changeseat'], $theatre);
 		if(count($results) != 0) {
 			$message .= "<p class='error'>Error: Unfortunately the following seats have been taken:</p>";

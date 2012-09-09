@@ -1,7 +1,67 @@
+function getBookedSeatsCount() {
+    var total_count = 0;
+    var performance;
+    for (performance in perfseats){
+        if (performance != null){
+            total_count += perfseats[performance];
+        }
+    }
+    return total_count;
+}
+
+var original_state = [];
+var disabled_state = false;
+function disableNonBookedSeats(){
+    var perf;
+    for (perf in seats){
+        var write_original_state = false;
+        // If we're not already in a disabled state, or we are but we haven't
+        // saved this performance's original state yet, do so.
+        if (!disabled_state || original_state[perf] == null){
+            original_state[perf] = {};
+            write_original_state = true;
+        }
+        for (seat in seats[perf][0]){
+            if (write_original_state) {
+                original_state[perf][seat] = seats[perf][0][seat];
+            }
+            if ((seats[perf][0][seat] <= 0 && 
+                    seats[perf][1][seat] == null) || seats[perf][1][seat] <= 0){
+                // The seat is free, so we disable it.
+                if (seats[perf][1][seat] <= 0){
+                    delete seats[perf][1][seat];
+                    original_state[perf][seat] = 0;
+                }
+                seats[perf][0][seat] = 9;
+            }
+        }
+        // If we're in the current performance, update the seats on the screen
+        if(perf == performance)
+            loadPerformance(perf);
+    }
+    disabled_state = true;
+}
+function restoreNonBookedSeats(){
+    var perf;
+    for (perf in seats){
+        for (seat in seats[perf][0]){
+            seats[perf][0][seat] = original_state[perf][seat];
+        }
+        // If we're in the current performance, update the seats on the screen
+        if(perf == performance)
+            loadPerformance(perf);
+    }
+    disabled_state = false;
+}
+
 function toggleSeat(seat) {
+    var seats_booked_initially = perfseats[performance];
+
 	// Is it still the original value?
 	if(seats[performance][1][seat] == null)
 	{
+        // The seat has not been changed by the user...
+        
 		if(seats[performance][0][seat] > 1)
 			return;  // you can't unbook other people's seats or paid seats
 		else if(seats[performance][0][seat] == 1) {
@@ -14,16 +74,33 @@ function toggleSeat(seat) {
 			setSeat(seat, 1, true);
 		}
 	} else {
+        // The seat has been changed by the user...
+
 		if(seats[performance][1][seat] == 1) {
-			delete seats[performance][1][seat]; // restore it's original value
+			delete seats[performance][1][seat]; // restore its original value
 			setSeat(seat, 0, true);
 			perfseats[performance] -= 1;
 		} else if(seats[performance][1][seat] == 0) {
-			delete seats[performance][1][seat]; // restore it's original value
+			delete seats[performance][1][seat]; // restore its original value
 			perfseats[performance] += 1;
 			setSeat(seat, 1, true);
 		}
 	}
+
+    var booked_seat_count = getBookedSeatsCount();
+
+    // If they've now booked the maximum number of seats, disable all other seats.
+    if (disabled_state && booked_seat_count < max_booked_seats){
+        restoreNonBookedSeats();
+    }
+    if(booked_seat_count >= max_booked_seats){
+        disableNonBookedSeats();
+    }
+    /*if (seats[performance][1][seat] != null){
+        if (booked_seat_count >= max_booked_seats-1){
+            alert("Please note: Group discounts are available for "+max_booked_seats+" or more seats.");
+        }
+    }*/
 	setSeatsMessage('perfseats' + performance, perfseats[performance]);
 }
 
@@ -83,6 +160,15 @@ function loadingCompleteStateChange(perf) {
 				// Now if we're on the same performance still, load the performance
 				if(perf == performance)
 					loadPerformance(perf);
+
+                // If we're already above the booking limit, disable everything.
+                // XXX: Have to do this below loadPerformance so that the original
+                // state is preserved.
+                var booked_seat_count = getBookedSeatsCount();
+                if(booked_seat_count >= max_booked_seats){
+                    disableNonBookedSeats();
+                }
+
 				if(displaysegment[perf] != null) {
 					seg = displaysegment[perf];
 					displaysegment[perf] = null;
