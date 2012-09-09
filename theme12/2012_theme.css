@@ -17,10 +17,10 @@ body {
   min-width: 500px;
   background-color: black;
   padding: 20px;
-  -moz-box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
+  /*-moz-box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
   -webkit-box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
-  box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;
-  border: 1px solid #247B65;
+  box-shadow: 0 0 10px 4px #247B65, inset 0 0 10px 3px #247B65;*/
+  border: 2px solid #247B65;
 }
 
 .banner {
@@ -58,6 +58,9 @@ section {
 
 #navbar a {
     color: #449BeD;
+}
+#navbar li.active a {
+    color: #fff;
 }
 
 a {
