@@ -32,7 +32,7 @@ Please <a href="mailto:tickets@cserevue.org.au">email the Sales Team</a> and we'
 <? } else { ?>
 Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or <a href="mailto:tickets@cserevue.org.au">email the Sales Team</a> and we'll help as soon as we can!
 </p><p>
-Please note, <strong>group bookings (<?=$max_booked_seats?> or more seats)</strong> are eligible for a group discount.<br/><em>Group bookings cannot be made online</em> &mdash; please see the <a href='<?=$production['faqlocation']?>#group_bookings'>FAQ</a> for more information or <a href='malto:tickets@cserevue.org.au'>contact the Sales Team</a>.
+Please note, <strong>group bookings (more than <?=$max_booked_seats?> seats)</strong> are eligible for a group discount.<br/><em>Group bookings cannot be made online</em> &mdash; please see the <a href='<?=$production['faqlocation']?>#group_bookings'>FAQ</a> for more information or <a href='malto:tickets@cserevue.org.au'>contact the Sales Team</a>.
 </p>
 <? } ?>
 </div>

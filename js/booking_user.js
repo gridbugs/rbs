@@ -95,6 +95,7 @@ function toggleSeat(seat) {
     }
     if(booked_seat_count >= max_booked_seats){
         disableNonBookedSeats();
+        alert("Group bookings (more than "+max_booked_seats+" seats) are eligible for a discount! Please see the FAQ for more information.\n\nNote that you cannot book more than "+max_booked_seats+" seats online.");
     }
     /*if (seats[performance][1][seat] != null){
         if (booked_seat_count >= max_booked_seats-1){
