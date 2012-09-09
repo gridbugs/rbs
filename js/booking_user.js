@@ -1,9 +1,9 @@
 function getBookedSeatsCount() {
     var total_count = 0;
     var performance;
-    for (performance in perfseats){
+    for (performance in bookedseats){
         if (performance != null){
-            total_count += perfseats[performance];
+            total_count += bookedseats[performance];
         }
     }
     return total_count;
@@ -55,7 +55,6 @@ function restoreNonBookedSeats(){
 }
 
 function toggleSeat(seat) {
-    var seats_booked_initially = perfseats[performance];
 
 	// Is it still the original value?
 	if(seats[performance][1][seat] == null)
@@ -67,10 +66,12 @@ function toggleSeat(seat) {
 		else if(seats[performance][0][seat] == 1) {
 			seats[performance][1][seat] = 0; // unbook your own seat
 			perfseats[performance] -= 1;
+            bookedseats[performance] -= 1;
 			setSeat(seat, 0, true);
 		} else {
 			seats[performance][1][seat] = 1; // book the seat
 			perfseats[performance] += 1;
+            bookedseats[performance] += 1;
 			setSeat(seat, 1, true);
 		}
 	} else {
@@ -80,9 +81,11 @@ function toggleSeat(seat) {
 			delete seats[performance][1][seat]; // restore its original value
 			setSeat(seat, 0, true);
 			perfseats[performance] -= 1;
+			bookedseats[performance] -= 1;
 		} else if(seats[performance][1][seat] == 0) {
 			delete seats[performance][1][seat]; // restore its original value
 			perfseats[performance] += 1;
+			bookedseats[performance] += 1;
 			setSeat(seat, 1, true);
 		}
 	}
@@ -95,7 +98,7 @@ function toggleSeat(seat) {
     }
     if(booked_seat_count >= max_booked_seats){
         disableNonBookedSeats();
-        alert("Group bookings (more than "+max_booked_seats+" seats) are eligible for a discount! Please see the FAQ for more information.\n\nNote that you cannot book more than "+max_booked_seats+" seats online.");
+        alert("Group bookings ("+(max_booked_seats+1)+" or more seats) are eligible for a discount! Please see the FAQ for more information.\n\nNote that you cannot have more than "+max_booked_seats+" unpaid seats online.");
     }
     /*if (seats[performance][1][seat] != null){
         if (booked_seat_count >= max_booked_seats-1){

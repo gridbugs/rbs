@@ -26,6 +26,7 @@ include_once('includes/theatres/' . $production['theatre'] . '.inc');
 $performances = get_performances($link, $_SESSION['production']);
 
 $perfseats = get_seats_selected($link, $_SESSION['user_id']);
+$bookedseats = get_seats_selected($link, $_SESSION['user_id'], 1, true);
 
 $htmlheaders = <<<HEADER
 <link rel="stylesheet" type="text/css" href="css/booking.css" />
@@ -35,6 +36,7 @@ $htmlheaders = <<<HEADER
 var performances = [];
 var segments = [];
 var perfseats = [];
+var bookedseats = [];
 var perfcs = [];
 var segseats = [];
 HEADER;
@@ -58,6 +60,11 @@ foreach($performances as $performance) {
 		$htmlheaders .= "perfseats[" . $performance['id'] . "] = " . $perfseats[$performance['id']] . ";\n";
 	else
 		$htmlheaders .= "perfseats[" . $performance['id'] . "] = 0;\n";
+
+	if(isset($bookedseats[$performance['id']]))
+		$htmlheaders .= "bookedseats[" . $performance['id'] . "] = " . $bookedseats[$performance['id']] . ";\n";
+	else
+		$htmlheaders .= "bookedseats[" . $performance['id'] . "] = 0;\n";
 }
 
 foreach($theatre as $segment) {

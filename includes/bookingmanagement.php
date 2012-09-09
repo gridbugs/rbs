@@ -11,11 +11,16 @@ function get_booking_bookedseats($link, $bookingid) {
 
 /**
  * This function simply returns an array performance -> number of seats booked or paid for for a normal user
+ * $status specifies the level of which to return above (i.e. where status > $status)
+ * - setting this to 0 means seats booked or paid
+ * - setting this to 1 means seats paid
+ * $equal specifies whether to check greater than or equal (i.e. where status = $status)
+ * - setting $status = 1, $equal = true, gives only seats booked but not paid
  */
-function get_seats_selected($link, $user) {
+function get_seats_selected($link, $user, $status = 0, $equal = false) {
 	$prodid = (int)$prodid;
 	$user = (int)$user;
-	$sql = "SELECT b.performance, count(bs.id) numseats FROM booking b, bookedseat bs WHERE bs.booking = b.id AND b.user = $user AND bs.status > 0 GROUP BY b.performance";
+	$sql = "SELECT b.performance, count(bs.id) numseats FROM booking b, bookedseat bs WHERE bs.booking = b.id AND b.user = $user AND bs.status ".($equal?"=":">")." $status GROUP BY b.performance";
 	$results = sql_get_array($link, $sql);
 
 	$perfseats = array();

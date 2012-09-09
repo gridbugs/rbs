@@ -131,13 +131,13 @@ print_prod_footer($link, $production);
 if(isset($_POST['price'])) {
     // Write a confirmation email to the user
     $email = "Hello ".$userinfo['name'].",<br/><br/>";
-    $email .= "Thank you for booking your tickets for <strong>".$production['name']."</strong>!<br/>Below you will find a summary of your booking, as well as information on how to proceed.<br/><br/>Please note the expiry time for your booking!<br/>";
+    $email .= "Thank you for booking your tickets for <strong>".$production['name']."</strong>!<br/>Below you will find a summary of your booking, as well as information on how to proceed.<br/><br/>";
+    $email .= "<strong style='color:red'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
+    $email .= "<br/><em><strong>Booking ID:</strong> ".strtoupper($userRow['paymentid'])."</em><br/>";
     $email .= $paymentsummary;
-    $email .= "<br/><em>Booking number: ".strtoupper($userRow['paymentid'])."</em>";
-    $email .= "<br/><br/><h3>Payment Options</h3>";
-    $email .= "Please visit ".$production['sitelocation']." to view your payment options.<br/><strong style='color:red'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
+    $email .= "<br/><h3>Payment Options</h3>";
+    $email .= "Please visit ".$production['bookingslocation']." to view your payment options.<br/>";
     $email .= "<br/><br/>If you have any queries, please feel free to respond to this email.<br/><br/>";
-    // FIXME: Add a contact email to productions. Currently relying on paypalaccount.
-    send_email($userinfo['email'], "Your booking for ".$production['name']." [booked at ".date('g:ia')."]", $email, "Content-Type: text/html; charset=ISO-8859-1\r\nFrom: ".$production['paypalaccount']."\r\n");
+    send_email($userinfo['email'], "Your booking for ".$production['name']." [booked at ".date('g:ia')."]", $email, "Content-Type: text/html; charset=ISO-8859-1\r\nFrom: ".$production['salesemail']."\r\n");
 }
 ?>
