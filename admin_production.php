@@ -12,6 +12,32 @@ if(!isset($_SESSION['admin_production'])) {
 	exit;
 }
 
+/* check if the user actually has admin access to this show */
+if(!isset($_SESSION['admin_prodlist'])) {
+    exit;
+} elseif ((int)$_SESSION['admin_superadmin'] == 0) {
+    $can_access = false;
+    /* get the show they're trying to access */
+    $current_prod = $_SESSION['admin_production'];
+
+    /* go through each production they can access and stop
+     * when the current production is found
+     */
+    foreach ($_SESSION['admin_prodlist'] as $prod) {
+        if ($prod == $current_prod) {
+            /* found it! */
+            $can_access = true;
+            break;
+        }
+    }
+
+    if (!$can_access) {
+        /* they don't have permission to access this show */
+        die("This hack is no longer supported. Talk to webmin to get admin access to the current production.");
+    }
+
+}
+
 $production = get_production($link, $_SESSION['admin_production']);
 
 $tickettotals = get_ticket_totals($link, $_SESSION['admin_production']);
