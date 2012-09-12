@@ -13,9 +13,7 @@ if(!isset($_SESSION['admin_production'])) {
 }
 
 /* check if the user actually has admin access to this show */
-if(!isset($_SESSION['admin_prodlist'])) {
-    exit;
-} elseif ((int)$_SESSION['admin_superadmin'] == 0) {
+if(isset($_SESSION['admin_prodlist']) && (int)$_SESSION['admin_superadmin'] == 0) {
     $can_access = false;
     /* get the show they're trying to access */
     $current_prod = $_SESSION['admin_production'];
