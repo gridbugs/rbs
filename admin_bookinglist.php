@@ -180,6 +180,7 @@ if (!isset($sc) || count($sc) == 0){
     $sc['pickedup'] = true;
     $sc['totalcost'] = true;
     $sc['amountpaid'] = true;
+    $sc['description'] = true;
 }
 ?>
 	<input type="checkbox" name="showcolumn[bookingid]"<?if(isset($sc['bookingid'])) echo(" checked='checked'")?>>Booking ID

@@ -116,8 +116,8 @@ function get_ticket_totals($link, $prodid) {
 	$tt = sql_get_array($link, $sql);
 	$tt["Total"] = array("confirmedseats" => 0, "paidseats" => 0, "vipseats" => 0, "ppseats" => 0, "bookedseats" => 0, "title" => "Total");
     $priceclass_basesql = "select p.name, count(bs.price) as count from booking b, bookedseat bs, price p, performance perf where bs.booking = b.id AND b.performance = perf.id AND perf.production = $prodid AND p.id = bs.price";
-    $priceclass_confirmed = "$priceclass_basesql AND bs.status > 1 group by bs.price";
-    $priceclass_booked = "$priceclass_basesql AND bs.status = 1 group by bs.price";
+    $priceclass_confirmed = "$priceclass_basesql AND bs.status > 1 group by p.name";
+    $priceclass_booked = "$priceclass_basesql AND bs.status = 1 group by p.name";
     $confirmed = sql_get_array($link, $priceclass_confirmed);
     $booked = sql_get_array($link, $priceclass_booked);
     $tt["Total"]["confirmed"] = $confirmed;

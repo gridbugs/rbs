@@ -84,7 +84,7 @@ foreach($bookings as $booking) {
 
 <div class='payforbooking' id='bigformbuttons'>
 <a href="booking.php#main" class="bigbutton">Modify Booking</a>
-<input type="submit" value="Pay for Booking" class="bigbutton continue">
+<input type="submit" value="Confirm Booking" class="bigbutton continue">
 </div>
 </form>
 
