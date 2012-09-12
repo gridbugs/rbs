@@ -19,6 +19,8 @@ include_once('includes/frames/prodtheme.php');
 
 $production = get_production($link, $_SESSION['admin_production']);
 
+check_access_to_production($_SESSION['admin_production']);
+
 $user = $_SESSION['user_id'];
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
