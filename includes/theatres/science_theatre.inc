@@ -848,4 +848,5 @@ $theatre = array(
 );
 
 $theatre_width = 1619;
+//$theatre_width = 1250;
 ?>

@@ -19,7 +19,7 @@ function print_theatre_segment($segment, $divid, $divwidth, $theatre) {
 
 	// Now display the box
 ?>
-<div class="segment" id="<?=$divid?>" style="position:relative; border:1px solid #888;width:<?=$divwidth * $scale?>em;height:<?=($maxy + 80) * $scale?>em">
+<div class="segment" id="<?=$divid?>" style="position:relative; border:1px solid #888;width:100%;height:<?=($maxy + 80) * $scale?>em">
 <div id="navu<?=$divid?>" class="segmentnavup">
 <?
 	if($segment['id'] != 0)
@@ -29,7 +29,7 @@ function print_theatre_segment($segment, $divid, $divwidth, $theatre) {
 <?
 	foreach ($segment['seats'] as $name => $position) {
 		echo("<div class='seatdiv' id='".$name."div' onClick='toggleSeat(\"" . $name . "\");' onMouseOver='highlightSeat(\"" . $name . "\");' onMouseOut='unHighlightSeat(\"" . $name . "\");'");
-		echo(" style='position:absolute;top:" . $position['y'] * $scale . "em;left:" . $position['x'] * $scale . "em'>");
+		echo(" style='position:absolute;top:" . $position['y'] * $scale . "em;left:" . $position['x'] / $divwidth * 100 . "%'>");
 		echo("<img class='seatimg' style='width:" . $scale*35 . "em;height:" . $scale * 30 . "em;' src='images/free.gif' id='" . $name . "'>");
 		echo("<p class='seatname'>$name</div>\n");
 	}
