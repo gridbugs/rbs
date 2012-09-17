@@ -132,7 +132,7 @@ if(isset($_POST['price'])) {
     // Write a confirmation email to the user
     $email = "Hello ".$userinfo['name'].",<br/><br/>";
     $email .= "Thank you for booking your tickets for <strong>".$production['name']."</strong>!<br/>Below you will find a summary of your booking, as well as information on how to proceed.<br/><br/>";
-    $email .= "<strong style='color:red'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
+    $email .= "<strong style='color:blue'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
     $email .= "<br/><em><strong>Booking ID:</strong> ".strtoupper($userRow['paymentid'])."</em><br/>";
     $email .= $paymentsummary;
     $email .= "<br/><h3>Payment Options</h3>";
