@@ -17,8 +17,10 @@ include_once('includes/prodmanagement.php');
 include_once('includes/frames/prodtheme.php');
 
 
-if(isset($_GET['toperformance']))
+if(isset($_GET['toperformance'])) {
 	$toperformance = $_GET['toperformance'];
+    check_access_to_performance($toperformance);
+}
 
 if(isset($_GET['tosegment']))
 	$tosegment = $_GET['tosegment'];

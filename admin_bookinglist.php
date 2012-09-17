@@ -13,9 +13,10 @@ include_once('includes/prodmanagement.php');
 include_once('includes/bookingmanagement.php');
 include_once('includes/frames/priceselection.php');
 
-if(isset($_GET['production']) && production_exists($link, $_GET['production']))
-	$_SESSION['admin_production'] = $_GET['production'];
-
+if(isset($_GET['production']) && production_exists($link, $_GET['production'])) {
+	check_access_to_production($_GET['production']);
+    $_SESSION['admin_production'] = $_GET['production'];
+}
 
 if(!isset($_SESSION['admin_production'])) {
 	echo("production does not exist");

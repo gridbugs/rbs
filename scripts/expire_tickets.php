@@ -49,7 +49,8 @@ foreach($bookings as $production => $bookinglist) {
         $email .= $thisemail;
 
 	}
-    email_prod_admins($link, $production, "Expired Tickets for " . $booking['prodname'], $email);
+    //email_prod_admins($link, $production, "Expired Tickets for " . $booking['prodname'], $email);
+    email_sales_team($link, $production, "Expired Tickets for " . $booking['prodname'], $email);
 }
 
 ?>

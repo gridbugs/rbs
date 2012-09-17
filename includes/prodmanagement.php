@@ -78,6 +78,14 @@ function email_prod_admins($link, $prodid, $subject, $message) {
 	}
 }
 
+function email_sales_team($link, $prodid, $subject, $message){
+	$prodid = (int)$prodid;
+	$sql = "select salesemail from production where id=$prodid";
+	$emails = sql_get_array($link, $sql);
+    $email = $emails[0];
+    send_email($email['salesemail'], $subject, $message, "From: ".$email['salesemail']."\r\n");
+}
+
 /**
  * Adds a new production.  Should be safe to pass the $_POST parameter to it.
  */
