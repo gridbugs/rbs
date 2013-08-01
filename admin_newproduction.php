@@ -44,8 +44,17 @@ if(isset($_POST['name'])) {
 	$production = get_production($link, $prodid);
 ?>
 
-<html>
-<head><title>RBS Admin</title></head>
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!--<![endif]-->
+ <head>
+  	<title>RBS Admin - Add New Production</title>
+  	<?php include ('includes/groundwork-header.php') ?>  
+ </head>
 <body>
 
 <h1>Production Details</h1>
