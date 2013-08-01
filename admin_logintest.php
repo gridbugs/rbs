@@ -39,7 +39,6 @@ if($admin == null || $admin < 0) {
     <?php include ('includes/groundwork-header.php') ?>  
  </head>
 <body>
-<?php include('includes/page-header.php') ?>
 <div class="container">
       <article class="row">
         <section class="padded">
