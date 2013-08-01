@@ -41,7 +41,25 @@ if (isset($_POST['segment_perfid'])){
 }
 
 ?>
-<html><head><title>Bookings for <?=$production['name']?></title>
+
+
+!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!--<![endif]-->
+ <head>
+    <title>RBS Admin - Bookings for <?=$production['name']?></title>
+    <?php include ('includes/groundwork-header.php') ?>  
+ </head>
+<body>
+<?php include('includes/page-header.php') ?>
+<div class="container">
+      <article class="row">
+        <section class="padded">
+
 <p><a href="admin_production.php">Back to production page</a></p>
 <link rel="stylesheet" type="text/css" href="css/booking.css" />
 <link rel="stylesheet" type="text/css" href="css/admin_booking.css" />
@@ -196,4 +214,14 @@ if(isset($toperformance)) {
 ?>
 
 </script>
-</body></html>
+
+
+        </section>
+      </article>
+    </div>
+
+<?php include('includes/page-footer.php') ?>
+
+</body>
+</html>
+
