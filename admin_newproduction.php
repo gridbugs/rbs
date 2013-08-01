@@ -57,6 +57,12 @@ if(isset($_POST['name'])) {
  </head>
 <body>
 
+<?php include('includes/page-header.php') ?>
+
+
+<div class="container">
+      <article class="row">
+        <section class="padded">
 <h1>Production Details</h1>
 
 <?if($message) {?>
@@ -168,6 +174,13 @@ foreach($theatres as $theatre) {
 
 <input type="submit">
 </form>
+
+        </section>
+      </article>
+    </div>
+
+<?php include('includes/page-footer.php') ?>
+
 
 </body>
 </html>
