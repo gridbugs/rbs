@@ -27,6 +27,22 @@ if($admin == null || $admin < 0) {
 	exit;
 }
 ?>
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+  <!--<![endif]-->
+ <head>
+    <title>RBS Admin - Production Info for <?=$production['name']?></title>
+    <?php include ('includes/groundwork-header.php') ?>  
+ </head>
+<body>
+<?php include('includes/page-header.php') ?>
+<div class="container">
+      <article class="row">
+        <section class="padded">
 
 <h2>Login</h2>
 
@@ -36,3 +52,12 @@ if($admin == null || $admin < 0) {
 <p>Password: <input type="password" name="pass"></p>
 <input type="submit">
 </form>
+
+        </section>
+      </article>
+    </div>
+
+<?php include('includes/page-footer.php') ?>
+
+</body>
+</html>
