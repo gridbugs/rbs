@@ -114,7 +114,7 @@ $prodlist = get_admin_prodlist($link);
 			if($_SESSION['admin_superadmin']) {
 			?>
 
-			<p><a href="admin_newproduction.php">Add New Production</a></p>
+			<p><a href="admin_newproduction.php" class="medium button">Add New Production</a></p>
 
 			<?
 			}
