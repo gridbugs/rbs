@@ -42,7 +42,7 @@ function get_payment_summary($link, $user) {
  *  but finds only booked seats based on a user's payment ID.
  */
 function get_payment_total($link, $userPaymentId) {
-	$sql = "SELECT bs.id as seatId, p.price as price, b.discount as discount ";
+	$sql = "SELECT bs.id as seatId, p.price as price, b.discount as discount";
 	$sql .= " FROM bookedseat bs ";
 	$sql .= "  JOIN booking b on bs.booking = b.id ";
 	$sql .= "  JOIN user u on u.id = b.user ";

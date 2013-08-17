@@ -3,8 +3,13 @@ h1 {
 }
 
 #loginblurb {
+	text-align: left;
+	display: inline-block;
+	width: 90%;
+	margin-right: 2em;
 	margin-top: 5em;
-    text-align:justify;
+	vertical-align: top;
+	max-width: 75em;
 }
 
 #loginform {
@@ -40,7 +45,7 @@ h1 {
 }
 
 .loginblurb {
-	margin: 1.5em 0 1.5em 0em;
+	margin: 1em 1em 4em 0em;
 }
 
 .loginlabel {

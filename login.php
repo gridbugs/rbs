@@ -36,6 +36,7 @@ Please note, <strong>group bookings (<?=($max_booked_seats+1)?> or more seats)</
 </p>
 <? } ?>
 </div>
+<br>
 
 <div id="login">
 

@@ -120,6 +120,7 @@ function checkPaymentData($prodData) {
 
 			addLog("Total price matches paypal amount, marking as paid");
 			$result = mark_seats_paid($DB_LINK, $seats);
+            send_confirmation_email($DB_LINK, $seats);
 
 			$numUpdated = mysql_affected_rows($DB_LINK);
 

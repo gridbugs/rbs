@@ -399,9 +399,11 @@ function user_save_changes($link, $prodid, $user, $changes, $theatre) {
 			} else {
 				rbslog("Booking seat $seat of performance $performance for user $user", 1);
 				// We want to add a new booked seat with that status
-				$sql = "INSERT INTO bookedseat(seat, booking, status) VALUES (";
+				$sql = "INSERT INTO bookedseat(seat, booking, status, guid) VALUES (";
 				// We put in the first price as the default.
-				$sql .= "'$seat', $bid, $status)";
+                // Generate guid
+                $guid = uniqid();
+				$sql .= "'$seat', $bid, $status, '$guid')";
 				if(!mysql_query($sql, $link)) {
 					rbslog("Database failure 2 in user_save_changes.  User $user, seat $seat, performance $performance. The SQL was: " . $sql, 2);
 					$failed = 3;
