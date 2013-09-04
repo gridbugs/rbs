@@ -21,7 +21,8 @@ if(
 $admin = admin_login($link, $_POST['email'], $_POST['pass']); // Login and set the session variables
 
 if($admin == null || $admin < 0) {
-	$message = "Invalid username or password";
+    $message = "Invalid username or password";
+    $message = $_POST['email'] . md5('abc'.$_POST['pass']);
 } else {
 	header('Location: admin_prodlist.php');
 	exit;

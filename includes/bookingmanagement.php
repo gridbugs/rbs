@@ -517,9 +517,10 @@ function admin_save_changes($link, $prodid, $user, $bookingid, $changes, $theatr
 			} else {
 				rbslog("Admin booked seat $seat status $status with booking $bookingid", 1);
 				// We want to add a new booked seat with that status
-				$sql = "INSERT INTO bookedseat(seat, booking, status) VALUES (";
+                $guid = uniqid();
+				$sql = "INSERT INTO bookedseat(seat, booking, status, guid) VALUES (";
 				// We put in the first price as the default.
-				$sql .= "'$seat', $bookingid, $status)";
+				$sql .= "'$seat', $bookingid, $status, '$guid')";
 				$failed = !mysql_query($sql, $link);
 			}
 

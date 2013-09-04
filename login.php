@@ -26,13 +26,25 @@ print_prod_header($link, $production, $htmlheaders);
 ?>
 
 <div id="loginform">
-<div id="loginblurb"><p>Having trouble with the ticketing system?
+
+
+
+<div id="loginblurb">
+
+<align="center"><b>3-6 September 2013</br>
+7:30-10:00pm</br>
+Science Theatre, UNSW</b></align>
+
+<p>You're one step away from getting tickets from one of UNSW's largest and most hilarious productions, the comedy sketch extravaganza with acting, singing and dancing that's cheaper than a movie. Take a few seconds to make an account and book away! Proceeds go to <a href="http://www.klc.unsw.edu.au/">Kingsford Legal Centre</a> and <a href="http://www.nuragili.unsw.edu.au/">Nura Gili</a>
+</p>
+<p>For the group discount to $10 per ticket (10 or more people), please contact producers@lawrevue.org.</p>
+<p>Having trouble with the ticketing system?
 <? if($production['faqlocation'] == '') { ?>
-Please <a href="mailto:tickets@cserevue.org.au">email the Sales Team</a> and we'll help as soon as we can!
+Please <a href="mailto:producers@lawrevue.org">email the Sales Team</a> and we'll help as soon as we can!
 <? } else { ?>
-Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or <a href="mailto:tickets@cserevue.org.au">email the Sales Team</a> and we'll help as soon as we can!
+Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or <a href="mailto:producers@lawrevue.org">email the Sales Team</a> and we'll help as soon as we can!
 </p><p>
-Please note, <strong>group bookings (<?=($max_booked_seats+1)?> or more seats)</strong> are eligible for a group discount.<br/><em>Group bookings cannot be made online</em> &mdash; please see the <a href='<?=$production['faqlocation']?>#group_bookings'>FAQ</a> for more information or <a href='mailto:tickets@cserevue.org.au'>contact the Sales Team</a>.
+Please note, <strong>group bookings (<?=($max_booked_seats+1)?> or more seats)</strong> are eligible for a group discount.<br/><em>Group bookings cannot be made online</em> &mdash; please see the <a href='<?=$production['faqlocation']?>#group_bookings'>FAQ</a> for more information or <a href='mailto:producers@lawrevue.org'>contact the Sales Team</a>.
 </p>
 <? } ?>
 </div>

@@ -31,20 +31,24 @@ if(isset($_POST['bookingid'])) {
 		$booking['description'] = $_POST['description'];
 	if(isset($_POST['phonenumber']))
 		$booking['phonenumber'] = $_POST['phonenumber'];
-	if(isset($_POST['pickedup']))
-		$booking['pickedup'] = 1;
-	else
-		$booking['pickedup'] = 0;
-	if(isset($_POST['amountpaid']))
-		$booking['amountpaid'] = (int)$_POST['amountpaid'];
-	if(isset($_POST['discount']))
-		$booking['discount'] = (int)$_POST['discount'];
-	if(isset($_POST['deadline']))
-		$booking['deadline'] = $_POST['deadline'];
-	if(isset($_POST['emailsent']))
-		$booking['emailsent'] = (int)$_POST['emailsent'];
+	if(isset($_POST['email']))
+		$booking['email'] = $_POST['email'];
+//	if(isset($_POST['pickedup']))
+//		$booking['pickedup'] = 1;
+//	else
+//		$booking['pickedup'] = 0;
+//	if(isset($_POST['amountpaid']))
+//		$booking['amountpaid'] = (int)$_POST['amountpaid'];
+//	if(isset($_POST['discount']))
+//		$booking['discount'] = (int)$_POST['discount'];
+//	if(isset($_POST['deadline']))
+//		$booking['deadline'] = $_POST['deadline'];
+//	if(isset($_POST['emailsent']))
+//		$booking['emailsent'] = (int)$_POST['emailsent'];
 
 	update_booking($link, $booking);
+
+    send_confirmation_email_bookingid($link, $booking);
 }
 
 

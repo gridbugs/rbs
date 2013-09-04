@@ -87,6 +87,11 @@ echo("<h4>Booking id: $bookingid</h4>");
 	<div class="bookinginput"><input type="text" name="phonenumber" class="bookingin" value="<?=htmlspecialchars($booking['phonenumber'])?>"></div>
 </div>
 <div class="bookingupdate">
+	<div class="bookinglabel">Email Address:</div>
+	<div class="bookinginput"><input type="email" name="email" class="bookingin" value="<?=htmlspecialchars($booking['email'])?>"></div>
+</div>
+<!--
+<div class="bookingupdate">
 	<div class="bookinglabel">Has it been picked up?:</div>
 	<div class="bookinginput"><input type="checkbox" name="pickedup" class="bookingcb" <? if($booking['phonenumber']) echo("CHECKED");?>></div>
 </div>
@@ -106,6 +111,7 @@ echo("<h4>Booking id: $bookingid</h4>");
 	<div class="bookinglabel">Email Sent:</div>
 	<div class="bookinginput"><input name="emailsent" class="bookingin" value="<?=$booking['emailsent']?>"></div>
 </div>
+--!>
 <input type="hidden" name="bookingid" value="<?=$bookingid?>">
 <?
 if(isset($_POST['tosegment']))
