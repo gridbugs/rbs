@@ -114,10 +114,9 @@ function send_confirmation_email_bookingid($link, $booking){
 
 
     $name = $booking['name'];
-    $message = "<img src=rbs.cserevue.org.au/show_data/2013_law/email_header.png /><p>";
+    $message = "<img src=rbs.cserevue.org.au/show_data/2013_cse/email_header.png /><p>";
     $message .= "Dear $name,<p>";
-    $message .= "Thank you for buying tickets to $result[prod], one of UNSW's largest student-run productions that involves socio-political and legal comedy, singing and dancing.<br>"; 
-    $message .= "We are proud to raise funds for the Kingsford Legal Centre, which provides pro bono legal services to the Randwick Botany area, and Nura Gili, which enhances indigenous access to UNSW's tertiary programs.<p>"; 
+    $message .= "Thank you for buying tickets to $result[prod], one of UNSW's largest student-run productions that involves sketch comedy, singing and dancing.<br>"; 
     $message .= "<b>Venue:</b> Science Theatre<br>";
     $message .= "Anzac Parade<br>";
     $message .= "Kensington NSW 2052<br>";
@@ -137,8 +136,6 @@ function send_confirmation_email_bookingid($link, $booking){
         $message .= "<li><b>Ticket for seat $seat[seat]:</b> http://rbs.cserevue.org.au/eticket.php?ticket_id=$seat[guid]$seat[seat] </li>";
     }
     $message .= "</ul><hr/>";
-    $message .= "<b>Raffle:</b><br>";
-    $message .= "You're also in the running to win an iPad Mini by completing the form at https://docs.google.com/a/lawrevue.org/forms/d/1UdRTAilr622MKiMsKPHeGQ637hRfqrXtAUwnnRRM7M0/viewform<p>";
 
     $message .= "<b>Ticket Info:</b><br>";
     $message .= "<ul>";
@@ -147,7 +144,7 @@ function send_confirmation_email_bookingid($link, $booking){
     $message .= "<li>Group booking ticket holders that enter simultaneously need only present one ticket to validate all seats within the group booking.</li>";
     $message .= "<li>Group members arriving separately must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process</li>";
-    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@lawrevue.org</li>";
+    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to producers@cserevue.org.au</li>";
     $message .= "</ul>";
 
     $message .= "<b> Getting there on foot</b><br>";
@@ -159,7 +156,7 @@ function send_confirmation_email_bookingid($link, $booking){
     $message .= "Enter through Gate 2, High St, turn left at the Io Myers Theatre, then first right, turn left into Union Rd, then first right. Handicapped patrons may park here in designated bays. Other vehicles should return and exit via Gate 2 and proceed to the Barker St Parking Station.<p>";
 
     $headers = "Content-type: text/html; charset=iso-8859-1 \r\n";
-    $headers .= "From: ticketing@lawrevue.org\r\n" ;
+    $headers .= "From: ticketing@cserevue.org.au\r\n" ;
 
     send_email($booking['email'], $result[prod]." eTickets" , $message, $headers);
     print $message;
@@ -183,10 +180,9 @@ function send_confirmation_email($link, $seats){
     $seats = sql_get_array($link, $sql);
 
 
-    $message = "<img src=show_data/2013_law/email_header.png /><p>";
+    $message = "<img src=show_data/2013_cse/email_header.png /><p>";
     $message .= "Dear $result[name],<p>";
-    $message .= "Thank you for buying tickets to $result[prod], one of UNSW's largest student-run productions that involves socio-political and legal comedy, singing and dancing.<br>"; 
-    $message .= "We are proud to raise funds for the Kingsford Legal Centre, which provides pro bono legal services to the Randwick Botany area, and Nura Gili, which enhances indigenous access to UNSW's tertiary programs.<p>"; 
+    $message .= "Thank you for buying tickets to $result[prod], one of UNSW's largest student-run productions that involves sketch comedy, singing and dancing.<br>"; 
     $message .= "<b>Venue:</b> Science Theatre<br>";
     $message .= "Anzac Parade<br>";
     $message .= "Kensington NSW 2052<br>";
@@ -216,7 +212,7 @@ function send_confirmation_email($link, $seats){
     $message .= "<li>Group booking ticket holders that enter simultaneously need only present one ticket to validate all seats within the group booking.</li>";
     $message .= "<li>Group members arriving separately must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process</li>";
-    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing.head@lawrevue.org</li>";
+    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to producers@cserevue.org.au</li>";
     $message .= "</ul>";
 
     $message .= "<b> Getting there on foot</b><br>";
@@ -228,7 +224,7 @@ function send_confirmation_email($link, $seats){
     $message .= "Enter through Gate 2, High St, turn left at the Io Myers Theatre, then first right, turn left into Union Rd, then first right. Handicapped patrons may park here in designated bays. Other vehicles should return and exit via Gate 2 and proceed to the Barker St Parking Station.<p>";
 
     $headers = "Content-type: text/html; charset=iso-8859-1 \r\n";
-    $headers .= "From: tickets@lawrevue.org\r\n" ;
+    $headers .= "From: tickets@cserevue.org.au\r\n" ;
 
     send_email($result[email], $result[prod]." eTickets" , $message, $headers);
     print $message;
