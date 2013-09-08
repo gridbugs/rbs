@@ -35,7 +35,7 @@ print_prod_header($link, $production, $htmlheaders);
 7:30-10:00pm</br>
 Science Theatre, UNSW</b></align>
 
-<p>You're one step away from getting tickets from one of UNSW's largest and most hilarious productions, the comedy sketch extravaganza with acting, singing and dancing that's cheaper than a movie. Take a few seconds to make an account and book away!</a>
+<p>You're one step away from getting tickets from one of UNSW's largest and most hilarious productions, the sketch comedy extravaganza with marvelous acting, singing and dancing that's cheaper than a movie. Take a few seconds to make an account and book away!</a>
 </p>
 <!-- <p>For the group discount to $10 per ticket (10 or more people), please contact <a href="mailto:producers@cserevue.org.au">producers@cserevue.org.au</a></p> -->
 <p>Having trouble with the ticketing system?
