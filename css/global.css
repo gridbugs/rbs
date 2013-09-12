@@ -39,8 +39,3 @@ h3 {
 .bigbutton:hover {
 	background-color: #333;
 }
-
-#fulltheatre a, .closedsegmentform, #startnewbooking a, #cancelbooking a, #savebooking a, #modifybooking a, #resetchanges a, .targetseat, .priceheader
-{
-color: #fff
-}

@@ -49,3 +49,8 @@ table.segmentlist_admin th {
 #savebooking { display: none; }
 #resetchanges { display: none; }
 #cancelbooking {display: none; }
+
+#fulltheatre a, .closedsegmentform, #startnewbooking a, #cancelbooking a, #savebooking a, #modifybooking a, #resetchanges a, .targetseat, .priceheader
+{
+color: #fff
+}
