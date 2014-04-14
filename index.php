@@ -3,7 +3,6 @@ include('includes/utilities.php');
 include('includes/prodmanagement.php');
 
 $link = db_connect();
-
 $prodlist = get_prodlist($link);
 if(count($prodlist) == 1) {
 	if(isset($_GET['timeout']))
@@ -23,7 +22,6 @@ if(count($prodlist) == 1) {
 <?
 if(isset($_GET['timeout']))
 	echo("<p>Your session has timed out.  If you would like to login again, please choose the show you would like to buy tickets for.</p>");
-
 foreach($prodlist as $production) {
 	echo("<p><a href='login.php?production=" . $production['id'] . "'>" . $production['name'] . "</a></p>");
 }

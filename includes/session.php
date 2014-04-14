@@ -1,6 +1,6 @@
 <?php
 
-require_once('utilities.php');
+include_once('includes/utilities.php');
 
 function sess_open($save_path, $session_name)
 {
@@ -14,7 +14,7 @@ function sess_close()
 
 function sess_read($id)
 {
-	global $link;
+    global $link;
 	$id = mysql_real_escape_string($id);
 	$sql = "select * from session where id = '$id'";
 	$data = sql_get_array($link, $sql);

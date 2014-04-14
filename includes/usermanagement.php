@@ -188,8 +188,8 @@ function admin_login($link, $email, $pass) {
 		// Lets test the password
 		$row = mysql_fetch_array($results, MYSQL_ASSOC);
 
-		$passwordhash = md5($row['salt'] . $pass);
-		if($passwordhash === $row['password']) { // Log the user in!
+
+		if(password_verify($row['salt'].$pass, $row['password'])) { // Log the user in!
 			$_SESSION['admin_id'] = $row['id'];
             $_SESSION['admin_pass'] = $row['password'];
 			$_SESSION['admin_name'] = $row['name'];

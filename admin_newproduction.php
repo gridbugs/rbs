@@ -20,6 +20,8 @@ if(isset($_POST['name'])) {
 	// Form has been submitted, lets save
 	if($prodid < 0) {
 		$ret = add_production($link, $_POST);
+        echo $ret;
+        exit();
 		if(is_int($ret)) {
 			// Adding the production was successful
 			$prodid = $ret;
@@ -65,7 +67,7 @@ if(isset($_POST['name'])) {
         <section class="padded">
 <h1>Production Details</h1>
 
-<?if($message) {?>
+<?if(isset($message)) {?>
 	<em><?=$message?></em>
 <?}?>
 
@@ -81,15 +83,17 @@ if($prodid >= 0) {
 }
 ?>
 
-<form method="post" action="admin_editproduction.php">
+<form method="post" action="admin_newproduction.php">
 
 <table>
+<?if($prodid >= 0): ?>
 <tr>
 	<td>Production ID:</td>
-	<td><?if($prodid >= 0) echo($prodid)?></td>
+	<td><?=$prodid?></td>
 </tr>
+<?endif?>
 <tr>
-	<td>Production Name:</td>
+	<td>Production Name *:</td>
 	<td><input type="text" name="name" value="<?if($prodid != -1) echo(htmlspecialchars($production['name']))?>"></td>
 </tr>
 <tr>
@@ -110,7 +114,7 @@ if($prodid >= 0) {
 <?
 foreach($theatres as $theatre) {
 	echo("		<option value='$theatre'");
-	if($theatre == $production['theatre'])
+	if(isset($production) && $theatre == $production['theatre'])
 		echo(" SELECTED");
 	echo(">$theatre</option>");
 }
@@ -123,12 +127,12 @@ foreach($theatres as $theatre) {
 	<td><input type="checkbox" name="isclosed" <?if($prodid != -1 && $production['isclosed'] == 1) echo("CHECKED")?>></td>
 </tr>
 <tr>
-	<td>Closing Date:</td>
+	<td>Closing Date (yyyy-mm-dd) *:</td>
 	<td><input type="text" name="closedate" value="<?if($prodid != -1) echo(htmlspecialchars($production['closedate']))?>"></td>
 </tr>
 <tr>
-	<td>Minimum Group Ticket Size:</td>
-	<td><input type="text" name="groupticketsamount" value="<?if($prodid != -1) echo((int)$production['groupticketsamount'])?>"></td>
+	<td>Minimum Group Ticket Size *:</td>
+	<td><input type="text" name="groupticketsamount" value="<?if($prodid != -1) echo((int)$production['groupticketsamount']); else echo 0?>"></td>
 </tr>
 <tr>
 	<td>Group Tickets Message:</td>

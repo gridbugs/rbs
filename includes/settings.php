@@ -1,8 +1,8 @@
 <?
-define('DB_HOSTNAME', 'CHANGE_TO_DB_HOSTNAME');
-define('DB_USERNAME', 'CHANGE_TO_DB_USERNAME');
-define('DB_PASSWORD', 'CHANGE_TO_DB_PASSWORD');
-define('DB_DATABASE', 'CHANGE_TO_DB_NAME');
+define('DB_HOSTNAME', 'localhost');
+define('DB_USERNAME', 'steve');
+define('DB_PASSWORD', 'password');
+define('DB_DATABASE', 'rbs');
 
 define('DEBUG', false);
 define('EMAIL_LOG', false);

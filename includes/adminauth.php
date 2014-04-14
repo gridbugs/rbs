@@ -10,6 +10,8 @@ if(!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_pass'])) {
 	exit;
 } else {
     if ($_SESSION['admin_pass'] !== admin_pass($link, $_SESSION['admin_id'])){
+    echo "b";
+    exit;
         header('Location: admin_login.php');
         exit;
     }
@@ -25,25 +27,47 @@ function check_access_to_production($current_prod) {
     }
 
 
-    if(isset($_SESSION['admin_prodlist'])) {
-        $can_access = false;
+    
+    $user = $_SESSION['admin_id'];
 
-        /* go through each production they can access and stop
-         * when the current production is found
-         */
-        foreach ($_SESSION['admin_prodlist'] as $prod) {
-            if ($prod == $current_prod) {
-                /* found it! */
-                $can_access = true;
-                break;
-            }
-        }
+    $sql = "select * 
+        from production inner join prodadmin on production.id = prodadmin.production
+        where prodadmin.admin = $user and production.id = $current_prod";
+    
+    $res = mysql_query($sql);
+    
+    if (mysql_num_rows($res) == 0) {
+        die("Access denied to production.");
+    }
 
-        if (!$can_access) {
-            /* they don't have permission to access this show */
-            die("This hack is no longer supported. Talk to webmin to get admin access to the current production.");
-        }
+}
 
+function can_manage_production($prod) {
+    
+    if ((int)$_SESSION['admin_superadmin'] != 0) {
+        return true;
+    }
+    
+    $user = $_SESSION['admin_id'];
+
+    $sql = "select * 
+        from production inner join prodadmin on production.id = prodadmin.production
+        where prodadmin.admin = $user and production.id = $prod";
+    
+    $res = mysql_query($sql);
+    
+    if (mysql_num_rows($res) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+
+
+}
+
+function check_can_manage_production($prod) {
+    if (!can_manage_production($prod)) {
+        die("Permission denied to manage production.");
     }
 }
 
@@ -63,7 +87,7 @@ function check_access_to_performance($performance) {
     $res = mysql_query($sql);
 
     if (mysql_num_rows($res) == 0) {
-        die("This hack is no longer supported. Talk to webmin to get admin access to the current production.");
+        die("Access denied to performance.");
     }
 
 }

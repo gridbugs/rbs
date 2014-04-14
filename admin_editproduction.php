@@ -6,6 +6,7 @@ include_once('includes/utilities.php');
 $link = db_connect();
 include_once('includes/adminauth.php');
 include_once('includes/prodmanagement.php');
+include_once('includes/perfmanagement.php');
 include_once('includes/theatremanagement.php');
 
 $theatres = theatre_list();
@@ -57,11 +58,15 @@ function showContent(contentname) {
 var elem = document.getElementById("scrollUserTable");
 </script>
 </head>
-<body>
+<body 
+<?if (isset($_GET['tab'])):?>
+onload="showContent('<?=$_GET['tab']?>')"
+<?endif?>
+>
 
 <h1>Production Details</h1>
 
-<?if($message) {?>
+<?if(isset($message)) {?>
 	<em><?=$message?></em>
 <?}?>
 
@@ -109,7 +114,7 @@ if($prodid >= 0) {
 <?
 foreach($theatres as $theatre) {
 	echo("		<option value='$theatre'");
-	if($theatre == $production['theatre'])
+	if(isset($production) && $theatre == $production['theatre'])
 		echo(" SELECTED");
 	echo(">$theatre</option>");
 }
@@ -183,10 +188,26 @@ foreach($theatres as $theatre) {
 	<td>Paypal Information:</td>
 	<td><textarea name="paypalinfo"><?if($prodid != -1) echo(htmlspecialchars($production['paypalinfo']))?></textarea></td>
 </tr>
+
 </table>
 </div>
 
 <div id="editprod_performances" class="editprod_content">
+<table border=1>
+<tr>
+<th>Title</th><th>Date</th><th>Start</th><th>End</th><th>Edit</th>
+</tr>
+<?foreach(get_performances($link, $production['id']) as $perf):?>
+<tr>
+<td><?=$perf['title']?></td>
+<td><?=$perf['date']?></td>
+<td><?=$perf['starttime']?></td>
+<td><?=$perf['finishtime']?></td>
+<td><a href="/admin_edit_performance.php?perf=<?=$perf['id']?>">Edit</a></td>
+</tr>
+<?endforeach?>
+</table>
+<a href="admin_add_performance.php">Add Performance</a>
 
 </div>
 
