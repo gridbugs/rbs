@@ -51,8 +51,8 @@ internal_get_post_mplex(function() {
     $db = db_connect_pdo();
     $salt = rand_str();
     $stmt = $db->prepare("INSERT INTO admin(name, email, phone, password, salt) VALUES(:name, :email, :phone, :password, :salt)");
-    $stmt->execute(array(':name' => $name, ':email' => $email, ':phone' => $phone,
-        ':password' => password_hash($salt.$password, PASSWORD_DEFAULT), ':salt' => $salt));
+    assert($stmt->execute(array(':name' => $name, ':email' => $email, ':phone' => $phone,
+        ':password' => password_hash($salt.$password, PASSWORD_DEFAULT), ':salt' => $salt)));
 
     header("Location: /admin_login.php");
 });
