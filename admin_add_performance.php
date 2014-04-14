@@ -4,6 +4,7 @@ $link = db_connect();
 require_once('includes/adminauth.php');
 include_once('includes/newutils.php');
 require_once('includes/prodmanagement.php');
+require_once('includes/pricemanagement.php');
 include_once('includes/frames/internal.php');
 
 
@@ -68,6 +69,10 @@ internal_get_post_mplex_simple(function() {
 <tr>
 	<td>Deadline (yyyy-mm-dd hh:mm:ss):</td>
 	<td><input type="text" name="deadline"></td>
+</tr>
+<tr>
+	<td>Prices (name0=price0, name1=price1, etc, no dollar signs, whitespace ignored):</td>
+    <td><textarea name="price_description">arc=10, student=12, adult=15</textarea></td>
 </tr>
 <tr>
     <td><input type="submit" value="Add Performance"></td>
@@ -137,6 +142,9 @@ EOT
     ))) {
         die ("Failed to add performance.");
     }
+
+    echo "last " . $db->lastInsertId();
+    set_prices_from_string($db->lastInsertId(), $_POST['price_description']);
     
     header('Location: /admin_editproduction.php?tab=performances');
 

@@ -4,6 +4,7 @@
  */
 
 include_once('utilities.php');
+include_once('newutils.php');
 
 /**
  * Get the prices for a specific performance.
@@ -55,3 +56,46 @@ function set_price($link, $bookedseat, $price) {
 	return mysql_query($sql, $link);
 }
 
+function set_prices_from_string($perf_id, $prices_str) {
+    $db = db_connect_pdo();
+    
+    // start by removing all the prices
+    $stmt = $db->prepare(<<<EOF
+DELETE FROM price
+WHERE performance = :perf_id
+EOF
+);
+    $stmt->execute(array(':perf_id' => $perf_id));
+
+    $prices_str = preg_replace('/[\s\n]/', '', $prices_str);
+    $prices = split(',', $prices_str);
+
+    foreach ($prices as $price) {
+        $parts = split('=', $price);
+        $name = $parts[0];
+        $amount = $parts[1];
+
+        echo "inserting ". $name . " -> " . $amount;
+
+        $stmt = $db->prepare(<<<EOF
+INSERT INTO price(performance, name, price)
+VALUES (:perf_id, :name, :price)
+EOF
+);
+    
+        $stmt->execute(array(':perf_id' => $perf_id, ':name' => $name, ':price' => $amount));
+    }
+}
+
+function get_prices_to_string($perf_id) {
+    $db = db_connect_pdo();
+    $stmt = $db->prepare(<<<EOT
+SELECT *
+FROM price
+WHERE performance = :perf_id
+EOT
+);
+    $stmt->execute(array(':perf_id' => $perf_id));
+
+    return join(", ", array_map(function($price){return $price['name'].'='.$price['price'];}, $stmt->fetchAll(PDO::FETCH_ASSOC)));
+}

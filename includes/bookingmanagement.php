@@ -82,7 +82,11 @@ function get_all_bookings($link, $prodid, $sortby = 'id', $sortdir = 'asc', $res
 		$usertable .= " UNION select id, -1 production, name, email, phone, \"\" paymentid, 1 isadmin from admin";
 	$usertable .= ")";
 
-	$sql = "select b.*, UNIX_TIMESTAMP(p.date) tsdate, u.paymentid, u.email, u.phone from booking b, performance p, $usertable u where b.performance = p.id and b.user = u.id and b.bookedbyadmin = u.isadmin and p.production = $prodid";
+	$sql = <<<EOT
+select b.*, UNIX_TIMESTAMP(p.date) tsdate, u.paymentid, b.email, u.phone 
+from booking b, performance p, $usertable u 
+where b.performance = p.id and b.user = u.id and b.bookedbyadmin = u.isadmin and p.production = $prodid
+EOT;
 	$sql .= $conditions;
 	$sql .= $sortsql;
 	$bookings =  sql_get_array($link, $sql);
@@ -243,12 +247,7 @@ function create_user_booking($link, $performance, $user, $bookedbyadmin = 0) {
 	$deadline = get_current_deadline($link, $performance);
 	$now = time();
 
-	if($bookedbyadmin == 1)
-		$usernamesql = "(select name from admin where id = $user)";
-	else
-		$usernamesql = "(select name from user where id = $user)";
-
-	$sql = "INSERT INTO booking(user, name, performance, deadline, modifiedtime, bookedbyadmin) VALUES ($user, $usernamesql, $performance, FROM_UNIXTIME($deadline)";
+	$sql = "INSERT INTO booking(user, performance, deadline, modifiedtime, bookedbyadmin) VALUES ($user, $performance, FROM_UNIXTIME($deadline)";
 	$sql .= ", FROM_UNIXTIME($now), $bookedbyadmin)";
 	$result = mysql_query($sql, $link);
 	if(!$result)
@@ -431,7 +430,7 @@ function admin_save_changes($link, $prodid, $user, $bookingid, $changes, $theatr
 	$prodid = (int)$prodid;
 	$bookingid = (int)$bookingid;
 	$user = (int)$user;
-	$perfid = (int)$perfid;
+//	$perfid = (int)$perfid;
 
 	// Create a booking for the performance if it hasn't already been created.
 	if($bookingid == -1) {
@@ -547,7 +546,9 @@ function update_booking($link, $booking) {
 	if(isset($booking['phonenumber']))
 		$sql .= "phonenumber='".mysql_real_escape_string(stripslashes($booking['phonenumber']))."',";
 	if(isset($booking['pickedup']))
-		$sql .= "pickedup=".mysql_real_escape_string(stripslashes($booking['pickedup'])).",";
+		$sql .= "phonenumber='".mysql_real_escape_string(stripslashes($booking['phonenumber']))."',";
+	if(isset($booking['email']))
+		$sql .= "email='".mysql_real_escape_string(stripslashes($booking['email']))."',";
 	if(isset($booking['amountpaid']))
 		$sql .= "amountpaid=".(int)$booking['amountpaid'].",";
 	if(isset($booking['discount']))
@@ -558,6 +559,7 @@ function update_booking($link, $booking) {
 		$sql .= "emailsent=".(int)$booking['emailsent'].",";
 	$sql = substr($sql,0,-1);
 	$sql .= " WHERE id = " . (int)$booking['id'];
+
 	return mysql_query($sql);	
 }
 

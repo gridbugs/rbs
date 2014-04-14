@@ -21,7 +21,7 @@ $production = get_production($link, $_SESSION['admin_production']);
 
 check_access_to_production($_SESSION['admin_production']);
 
-$user = $_SESSION['user_id'];
+$user = $_SESSION['admin_id'];
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
 $htmlheaders = '<link rel="stylesheet" type="text/css" href="css/bookingsummary.css" />';
@@ -31,6 +31,7 @@ $message = "";
 // Receive a new booking if one's been submitted
 if(isset($_POST['modify']) || isset($_POST['new']))
 {
+
 	$performance = (int)$_POST['performance'];
 	if(isset($_POST['modify']))
 		$bookingid = $_POST['booking'];
@@ -75,7 +76,7 @@ print_price_selection($link, $booking, true);
 echo("<h4>Booking id: $bookingid</h4>");
 ?>
 <div class="bookingupdate">
-	<div class="bookinglabel">Name:</div>
+	<div class="bookinglabel">Name of customer:</div>
 	<div class="bookinginput"><textarea name="name" class="bookingta"><?=htmlspecialchars($booking['name'])?></textarea></div>
 </div>
 <div class="bookingupdate">

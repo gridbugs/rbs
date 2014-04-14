@@ -61,22 +61,21 @@ function resetChanges() {
 
 function showFullTheatre() {
 	fulltheatre = true;
-	document.getElementById('togglefulltheatre').innerHTML = 'Show Theatre Segment';
-	for(var i in segments) {
-		document.getElementById('segment' + i).style.display = 'block';
-		document.getElementById('navusegment' + i).style.display = 'none';
-		document.getElementById('navdsegment' + i).style.display = 'none';
+	$('#theatre_render').show();
+    for(var i in segments) {
+        $('#segment'+i).show();
+        $('#navusegment'+i).hide();
+        $('#navdsegment'+i).hide();
 	}
 }
 
 function showSegTheatre() {
 	fulltheatre = false;
-	document.getElementById('togglefulltheatre').innerHTML = 'Show Full Theatre';
 	for(var i in segments) {
-		document.getElementById('navusegment' + i).style.display = 'block';
-		document.getElementById('navdsegment' + i).style.display = 'block';
+        $('#navusegment'+i).show();
+        $('#navdsegment'+i).show();
 		if(i != segment)
-			document.getElementById('segment' + i).style.display = 'none';
+            $('#segment'+i).hide();
 	}
 }
 
