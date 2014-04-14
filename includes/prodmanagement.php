@@ -4,6 +4,8 @@
  */
 
 include_once('utilities.php');
+include_once('newutils.php');
+
 
 function production_exists($link, $prodid) {
 	$prodid = (int)$prodid;
@@ -277,7 +279,7 @@ function add_production($link, $production) {
 	// groupticketsamount
 	if(isset($production['groupticketsamount'])) {
 		$sql .= ", groupticketsamount";
-		$values .= ", " . (int)$groupticketsamount;
+		$values .= ", " . (int)$production['groupticketsamount'];
 	}
 
 	// theatre
@@ -290,6 +292,8 @@ function add_production($link, $production) {
 
 	// Complete the SQL command:
 	$sql .= ") VALUES (" . $values . ")";
+
+    echo $sql;
 
 	if(mysql_query($sql, $link)) {
 		rbslog("Created production " . $production['name']);
@@ -341,7 +345,7 @@ function modify_production($link, $prodid, $production) {
 
 	// groupticketsamount
 	if(isset($production['groupticketsamount'])) {
-		$sql .= ", groupticketsamount = " . (int)$groupticketsamount;
+		$sql .= ", groupticketsamount = " . (int)$production['groupticketsamount'];
 	}
 
 	// theatre
@@ -382,4 +386,37 @@ function production_dropdown($link, $prodid) {
 	echo "</select>\n";
 
 }
+
+function production_get_ticketers($prod_id) {
+    
+    $db = db_connect_pdo();
+
+    $stmt = $db->prepare(<<<EOT
+SELECT admin.*, prodadmin.can_manage as can_manage
+FROM admin JOIN prodadmin ON admin.id = prodadmin.admin 
+WHERE prodadmin.production = :prod_id OR admin.superadmin = 1
+ORDER BY admin.name
+EOT
+);
+    $stmt->execute(array(':prod_id' => $prod_id));
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/*
+function get_performances($prod_id) {
+    $db = db_connect_pdo();
+
+    $stmt = $db->prepare(<<<EOT
+SELECT performance.*
+FROM performance
+WHERE production = :prod_id
+EOT
+);
+
+    $stmt->execute(array(':prod_id' => $prod_id));
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+*/
 ?>

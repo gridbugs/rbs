@@ -25,10 +25,10 @@ session_destroy();
 <body>
 <h1>Logout</h1>
 
-<p>You have now been logged out.  <a href="<?=$url?>">Click Here</a> to navigate back to the login page.</p>
+<p>You have now been logged out.  <a href="/admin_login.php">Click Here</a> to navigate back to the login page.</p>
 
 <?
-if($footer)
+if(isset($footer))
 	print_prod_footer($link, $production);
 else
 	echo('</body></html>');

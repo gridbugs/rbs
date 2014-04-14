@@ -3,7 +3,7 @@
  * A utilities file which contains common functions that are helpful for general use
  */
 
-include('settings.php');
+include_once('settings.php');
 
 
 function db_connect() {
