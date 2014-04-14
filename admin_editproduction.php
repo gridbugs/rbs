@@ -195,7 +195,7 @@ foreach($theatres as $theatre) {
 <div id="editprod_performances" class="editprod_content">
 <table border=1>
 <tr>
-<th>Title</th><th>Date</th><th>Start</th><th>End</th><th>Edit</th>
+<th>Title</th><th>Date</th><th>Start</th><th>End</th><th>Edit</th><th>Delete</th>
 </tr>
 <?foreach(get_performances($link, $production['id']) as $perf):?>
 <tr>
@@ -204,6 +204,7 @@ foreach($theatres as $theatre) {
 <td><?=$perf['starttime']?></td>
 <td><?=$perf['finishtime']?></td>
 <td><a href="/admin_edit_performance.php?perf=<?=$perf['id']?>">Edit</a></td>
+<td><a href="/admin_delete_performance.php?perf=<?=$perf['id']?>">Delete</a></td>
 </tr>
 <?endforeach?>
 </table>

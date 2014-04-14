@@ -25,6 +25,8 @@ function toShow() {
     if (performancesElem) { performancesElem.style.display = 'block'; }
 
 	toShowSpec();
+
+
 }
 
 // This function shows the performance screen.  It hides all other divs.
@@ -78,6 +80,9 @@ function toPerformance(perf) {
 
 // This function moves the screen to a specific segment.  It hides all other divs and shows the segment screen.
 function toSegment(seg) {
+
+    showSegTheatre();
+
 	if(segment != null) {
 		document.getElementById('segment' + segment).style.display = 'none';
 	}

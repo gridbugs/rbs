@@ -47,7 +47,7 @@ if(isset($_POST['restrictperf'])) {
 <h1>Booking List for <?=$production['name']?></h1>
 <p><a href="admin_production.php">Back to production page</a></p>
 <?
-if($perftitle != '') {
+if(isset($perftitle) && $perftitle != '') {
 	echo("<h2>$perftitle</h2>");
 }
 ?>
@@ -91,10 +91,7 @@ if(isset($_POST['showcolumn']))
 else
 	$showcolumn = array();
 
-if(isset($_POST['includeadmin']))
-	$ia = true;
-else
-	$ia = false;
+$ia = true;
 
 $sc = $showcolumn;
 
@@ -155,6 +152,8 @@ if (!isset($rs) || count($rs) == 0){
 </select>
 </div>
 
+<? if (!isset($sb)) $sb = ''; ?>
+<? if (!isset($order)) $order = ''; ?>
 <div class="formentry">Sort By
 <select name="sortby">
 	<option value="paymentid"<?if($sb == 'paymentid') echo(" selected='selected'")?>>Payment ID Number</option>
@@ -172,15 +171,13 @@ if (!isset($rs) || count($rs) == 0){
 <div class="formentry">Show the following columns:<br>
 <?php
 if (!isset($sc) || count($sc) == 0){
-    $sc['paymentid'] = true;
+    $sc['bookingid'] = true;
     $sc['performance'] = true;
     $sc['name'] = true;
     $sc['email'] = true;
     $sc['seats'] = true;
     $sc['phoneno'] = true;
-    $sc['pickedup'] = true;
     $sc['totalcost'] = true;
-    $sc['amountpaid'] = true;
     $sc['description'] = true;
 }
 ?>
@@ -225,7 +222,6 @@ $sortby = $_POST['sortby'];
 $order = $_POST['order'];
 
 $bookings = get_all_bookings($link, $production['id'], $sortby, $order, $restrictions, $ia);
-
 $nbookings = count($bookings);
 $nseats = 0;
 

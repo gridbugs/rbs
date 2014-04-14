@@ -46,6 +46,19 @@ function get_prodlist($link, $onlyopen=true) {
 	return sql_get_array($link, $sql);
 }
 
+function get_managers($prod_id) {
+    $db = db_connect_pdo();
+    $stmt = $db->prepare(<<<EOT
+SELECT *
+FROM admin JOIN prodadmin ON admin.id = prodadmin.admin
+WHERE can_manage = 1
+EOT
+);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
 /**
  * Get a production list for the admin section
  */
@@ -106,7 +119,7 @@ function send_confirmation_email_bookingid($link, $booking){
         $seatList[] = $seat['seatId'];
     }
     $seatsInQuery = implode(",", $seatList);
-    $sql = "SELECT p.name as prod";
+    $sql = "SELECT p.name as prod, p.id as id";
     $sql .= "FROM production p, booking b, performance ps";
     $sql .= "WHERE b.id = $id and ps.id = b.performance and p.id = ps.production";
     $result = sql_get_array($link, $sql);
@@ -126,14 +139,14 @@ function send_confirmation_email_bookingid($link, $booking){
     $date = "";
 
     foreach($seats as $seat){
-        if(date == "" || $date != $seat[date]){
-            if($date != $seat[date]){
+        if($date == "" || $date != $seat['date']){
+            if($date != $seat['date']){
                 $message .="</ul>";
             }
-            $ppdate = date("l jS F", strtotime($seat[date]));
+            $ppdate = date("l jS F", strtotime($seat['date']));
             $message .= "<b>Tickets for $ppdate</b><p>";
             $message .= "<ul>";
-            $date = $seat[date];
+            $date = $seat['date'];
         }
         $message .= "<li><b>Ticket for seat $seat[seat]:</b> http://rbs.cserevue.org.au/eticket.php?ticket_id=$seat[guid]$seat[seat] </li>";
     }
@@ -160,11 +173,17 @@ function send_confirmation_email_bookingid($link, $booking){
     $headers = "Content-type: text/html; charset=iso-8859-1 \r\n";
     $headers .= "From: ticketing@cserevue.org.au\r\n" ;
 
-    send_email($booking['email'], $result[prod]." eTickets" , $message, $headers);
+    send_email($booking['email'], $result['prod']." eTickets" , $message, $headers);
+    print "Emailing $booking[name] ($booking[email])<br/>";
+    foreach (get_managers($result['id']) as $manager) {
+        print "Emailing $manager[name] ($manager[email])<br/>";
+        send_email($manager['email'], $result['prod']." eTickets (Copy)" , $message, $headers);
+    }
+
     print $message;
 
 	// a an arra of rows, where each row has 'seatId' and 'price'
-    print_r($results);
+    //print_r($results);
 }
 function send_confirmation_email($link, $seats){
     error_reporting(-1);
@@ -403,20 +422,4 @@ EOT
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-/*
-function get_performances($prod_id) {
-    $db = db_connect_pdo();
-
-    $stmt = $db->prepare(<<<EOT
-SELECT performance.*
-FROM performance
-WHERE production = :prod_id
-EOT
-);
-
-    $stmt->execute(array(':prod_id' => $prod_id));
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-*/
 ?>

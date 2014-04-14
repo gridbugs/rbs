@@ -5,6 +5,7 @@ require_once('includes/adminauth.php');
 include_once('includes/newutils.php');
 require_once('includes/prodmanagement.php');
 require_once('includes/perfmanagement.php');
+require_once('includes/pricemanagement.php');
 include_once('includes/frames/internal.php');
 
 
@@ -34,6 +35,10 @@ internal_get_post_mplex_simple(function() {
 <input type="hidden" name="prod" value="<?=$perf['production']?>">
 <input type="hidden" name="perf" value="<?=$perf['id']?>">
 <table>
+<tr>
+    <td>ID:</td>
+    <td><?=$perf['id']?></td>
+</tr>
 <tr>
 	<td>Date (yyyy-mm-dd):</td>
 	<td><input type="text" name="date" value="<?=$perf['date']?>"></td>
@@ -69,6 +74,10 @@ internal_get_post_mplex_simple(function() {
 <tr>
 	<td>Deadline (yyyy-mm-dd hh:mm:ss):</td>
 	<td><input type="text" name="deadline" value="<?=$perf['deadline']?>"></td>
+</tr>
+<tr>
+	<td>Prices (name0=price0, name1=price1, etc, whitespace ignored):</td>
+    <td><textarea name="price_description"><?=get_prices_to_string($perf['id'])?></textarea></td>
 </tr>
 <tr>
     <td><input type="submit" value="Save Performance"></td>
@@ -136,6 +145,8 @@ EOT
         die ("Failed to update performance.");
     }
     
+    set_prices_from_string($perf_id, $_POST['price_description']);
+
     header('Location: /admin_editproduction.php?tab=performances');
 
     

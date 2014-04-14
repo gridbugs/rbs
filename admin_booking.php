@@ -96,6 +96,7 @@ echo "}\n";
 ?>
 </script>
 
+<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
 <script type="text/javascript" src="js/global.js" ></script>
 <script type="text/javascript" src="js/booking.js" ></script>
 <script type="text/javascript" src="js/booking_admin.js" ></script>
@@ -114,7 +115,9 @@ echo "}\n";
 <div id="startnewbooking" class="button"><a href="javascript: startNewBooking()">Start New Booking</a></div>
 <div id="modifybooking" class="button"><a href="javascript: modifyBooking()">Modify Booking</a></div>
 <div id="resetchanges" class="button"><a href="javascript: resetChanges()">Reset</a></div>
+<!--
 <div id="fulltheatre" class="button"><a href="javascript: toggleFullTheatre()" id="togglefulltheatre">Show Full Theatre</a></div>
+-->
 </div>
 <div id="navigation"></div>
 <div id="targetseats">
@@ -153,6 +156,7 @@ echo "}\n";
         foreach($theatre as $segment) {
             echo("<th><a class='segmentlink_admin' href='javascript:toSegment(" . $segment['id'] . ")'>" . $segment['name'] . "</a></th>\n");
         }
+        echo("<th><a class='segmentlink_admin' href='javascript:showFullTheatre()'>Full Theatre</a></th>\n");
         echo "</tr><tr>";
         foreach($theatre as $segment) {
             echo "<td><form method='post' class='closedsegmentform' action='admin_booking.php' ><input type='hidden' name='segment_perfid' value='".$performance['id']."'/>";
@@ -163,7 +167,7 @@ echo "}\n";
             }
             echo "</form></td>";
         }
-        echo "</tr></table></div>";
+        echo "<td></td></tr></table></div>";
     }
 ?>
 
