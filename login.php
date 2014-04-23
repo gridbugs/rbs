@@ -31,7 +31,7 @@ print_prod_header($link, $production, $htmlheaders);
 
 <div id="loginblurb">
 
-<h1>Production Title</h1>
+<h1><?=$production['name']?></h1>
 <p>24-27 September 2013<br />
 7:30-10:00pm<br />
 Science Theatre, UNSW</p>
