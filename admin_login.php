@@ -7,9 +7,7 @@ include_once('includes/prodmanagement.php');
 
 $link = db_connect();
 
-?>
-
-<?php include ('includes/groundwork-header.php') ?>  
+include ('includes/groundwork-header.php') ?>  
 
 <div class="container">
       <article class="row">
