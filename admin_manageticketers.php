@@ -5,23 +5,13 @@ require_once('includes/adminauth.php');
 require_once('includes/prodmanagement.php');
 
 $prod = get_production($link, $_GET['prod']);
+$production = get_production($link, $_SESSION['admin_production']);
 
 check_can_manage_production($prod['id']);
+include ('includes/groundwork-header.php');
+include('includes/page-header.php');
 ?>
-<!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-  <!--<![endif]-->
- <head>
-  	<title>RBS Admin - Manage Ticketers</title>
-  	<?php include ('includes/groundwork-header.php') ?>  
- </head>
-<body>
-<?php include('includes/page-header.php') ?>
-<div class="container">
+
       <article class="row">
         <section class="padded">
             <h2>Manage ticketers for <?=$prod['name']?></h2>
@@ -51,5 +41,3 @@ check_can_manage_production($prod['id']);
         </section>
       </article>
 <?php include('includes/page-footer.php') ?>
-</body>
-</html>

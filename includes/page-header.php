@@ -1,4 +1,4 @@
-<header class="white band padded">
+<header>
         <h1>RBS Admin - <?=$production['name']?></h1>
 		<div class="row">
         <div class="one fifth">Logged in as: <?=$_SESSION['admin_name']?> (<?=$_SESSION['admin_email']?>)</div>

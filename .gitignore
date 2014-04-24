@@ -4,3 +4,4 @@
 *.log
 logs/*
 includes/settings.php
+test_admin_editproduction.php
