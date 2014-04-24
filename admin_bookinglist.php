@@ -2,6 +2,7 @@
 /**
  * TODO: make sure only proper admins have access to each production specific page
  * TODO: Cleanup the printing checkboxes etc.  The code can be a lot cleaner
+ * TODO (Tracey): Merge all headers and call on each page - remember to keep all page specific includes (such as those below) outside of generic header file
  */
 
 include_once('includes/utilities.php');
@@ -42,6 +43,7 @@ if(isset($_POST['restrictperf'])) {
 <head>
 	<title>Booking List for <?=$production['name']?></title>
 	<link rel="stylesheet" type="text/css" href="css/admin_bookinglist.css" />
+	<? include('includes/groundwork-header.php') ?>
 </head>
 <body>
 <h1>Booking List for <?=$production['name']?></h1>
@@ -227,7 +229,7 @@ $nseats = 0;
 
 ?>
 
-<table id="bookinglist">
+<table class="sortable" id="bookinglist">
 	<tr>
 <?
 if(isset($showcolumn['bookingid']))
@@ -324,6 +326,6 @@ echo("</table>");
 echo("<p>Total number of bookings: $nbookings</p>");
 echo("<p>Total number of seats: $nseats</p>");
 
-?>
+include('includes/page-footer.php') ?>
 </body>
 </html>
