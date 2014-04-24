@@ -1,11 +1,16 @@
 <header class="white band padded">
-      <div class="container">
-        <h1>RBS Admin</h2>
-        <div>Logged in as: <?=$_SESSION['admin_name']?> (<?=$_SESSION['admin_email']?>)</div>
-        <nav class="nav inline menu gap-top">
-          <ul>
-            <li><a href="logout.php">Logout</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+        <h1>RBS Admin - <?=$production['name']?></h1>
+		<div class="row">
+        <div class="one fifth">Logged in as: <?=$_SESSION['admin_name']?> (<?=$_SESSION['admin_email']?>)</div>
+
+		<div class="three fifths skip-one">
+<a role="button" href="admin_booking.php">New Booking</a>
+<a role="button" href="admin_bookinglist.php">Booking List</a>
+<a role="button" href="admin_editproduction.php">Edit Production Details</a>
+<?if(can_manage_production($production['id'])):?>
+<a role="button" href="admin_manageticketers.php?prod=<?=$production['id']?>">Manage Ticketers</a>
+<?endif?>
+<a role="button" href="logout.php">Logout</a>
+</div>
+</div>
+</header>

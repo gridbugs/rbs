@@ -9,18 +9,7 @@ $link = db_connect();
 
 ?>
 
-<!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-  <!--<![endif]-->
- <head>
-    <title>RBS Admin></title>
-    <?php include ('includes/groundwork-header.php') ?>  
- </head>
-<body>
+<?php include ('includes/groundwork-header.php') ?>  
 
 <div class="container">
       <article class="row">
@@ -37,6 +26,3 @@ $link = db_connect();
     </div>
 
 <?php include('includes/page-footer.php') ?>
-
-</body>
-</html>

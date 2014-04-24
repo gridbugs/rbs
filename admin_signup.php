@@ -10,9 +10,9 @@ internal_get_post_mplex(function() {
     
     /* Handle GET request */
     internal_print_header("Sign Up");
-?>
+include('includes/groundwork-header.php');
+	?>
 
-<body>
 <h1>Sign Up</h1>
 <form method="post" action="admin_signup.php">
 <div>
@@ -39,7 +39,6 @@ internal_get_post_mplex(function() {
 <input type="submit" name="Sign Up">
 </div>
 </form>
-</body>
 
 <?
     internal_print_footer();
@@ -57,3 +56,4 @@ internal_get_post_mplex(function() {
     header("Location: /admin_login.php");
 });
 ?>
+<? include('includes/page-footer.php');?>

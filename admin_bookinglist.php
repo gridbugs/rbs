@@ -37,17 +37,10 @@ if(isset($_POST['restrictperf'])) {
 	}
 }
 
-?>
 
-<html>
-<head>
-	<title>Booking List for <?=$production['name']?></title>
-	<link rel="stylesheet" type="text/css" href="css/admin_bookinglist.css" />
-	<? include('includes/groundwork-header.php') ?>
-</head>
-<body>
-<h1>Booking List for <?=$production['name']?></h1>
-<p><a href="admin_production.php">Back to production page</a></p>
+include('includes/groundwork-header.php');
+include('includes/page-header.php');
+ ?>
 <?
 if(isset($perftitle) && $perftitle != '') {
 	echo("<h2>$perftitle</h2>");
@@ -323,9 +316,7 @@ foreach($bookings as $booking) {
 
 echo("</table>");
 
-echo("<p>Total number of bookings: $nbookings</p>");
-echo("<p>Total number of seats: $nseats</p>");
+/*echo("<p>Total number of bookings: $nbookings</p>");*/
+/*echo("<p>Total number of seats: $nseats</p>");*/
 
 include('includes/page-footer.php') ?>
-</body>
-</html>
