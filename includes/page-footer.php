@@ -1,6 +1,7 @@
     <footer class="footer align-right">
-      <p>&copy 2013 CSE Revue</p>
+      <p>&copy 2002-<?echo date("Y")?> CSE Revue</p>
     </footer>
+	</div>
     <!-- scripts-->
     <script type="text/javascript" src="js/plugins/jquery.cycle2.js"></script>
     <script type="text/javascript" src="js/groundwork.all.js"></script>
@@ -16,3 +17,6 @@
       })();
       
     </script>
+	
+	</body>
+</html>

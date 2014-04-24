@@ -28,6 +28,8 @@ if(isset($_POST['name'])) {
 	}
 } else if($prodid != -1)
 	$production = get_production($link, $prodid);
+	
+	include('includes/groundwork-header.php');
 ?>
 
 <html>
@@ -214,6 +216,4 @@ foreach($theatres as $theatre) {
 
 <input type="submit">
 </form>
-
-</body>
-</html>
+<? include('includes/page-footer.php')?>
