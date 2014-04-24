@@ -3,3 +3,4 @@
 *.phpr
 *.log
 logs/*
+includes/settings.php

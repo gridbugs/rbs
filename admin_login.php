@@ -28,8 +28,8 @@ $link = db_connect();
 			<h1>RBS Admin Login Page</h1>
 			<h2>Login</h2>
 			<form method="post" action="admin_logintest.php">
-			<p>Email Address or Username: <input type="text" name="email"></p>
-			<p>Password: <input type="password" name="pass"></p>
+			<p>Email Address or Username: <input type="text" name="email" /></p>
+			<p>Password: <input type="password" name="pass" /></p>
 			<input type="submit">
 			</form>
  		</section>

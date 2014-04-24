@@ -50,5 +50,5 @@
           'js/libs/placeholder_polyfill.jquery.js'
         ]
       });
-      
-    </script>
+      </script>
+	  <script type="text/javascript" src="js/sorttable.js"></script>
