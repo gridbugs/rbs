@@ -46,7 +46,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 
 	if($booking['title'] !== '') {
 ?>
-<h2>Bookings for <?=$booking['title']?>: <? echo(prettydate($booking['tsdate']))?></h2>
+<h2>Enter ticket details for <? echo(prettydate($booking['tsdate']))?></h2>
 <?
 	} else {
 ?>
@@ -70,7 +70,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 ?>
 <table class="bookingtable"><tr><th></th><th></th>
 <?
-	if(count($prices) > 1) {
+	if(count($prices) > 0) {
 		foreach($prices as $price) {
 			echo("<th class='priceheader'>" . $price['name'] . " ($" . $price['price'] . ")</th>");
 		}
@@ -97,7 +97,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 			$curprice = $seat['price'];
 		
 		if($seat['status'] == 1 || ($isadmin && ($seat['status'] >= 1 && $seat['status'] <= 8))) {
-			if(count($prices) > 1) {
+			if(count($prices) > 0) {
 				foreach($prices as $price) {
 ?>
 <td class="price"><input type="radio" name="price[<?=$seat['id']?>]" value="<?=$price['id']?>"<?if($curprice == $price['id']) echo(' checked'); ?>></td>
@@ -106,7 +106,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 			} else {
 				echo("<input type='hidden' name='price[" . $seat['id'] . "]' value='" . $prices[0]['id'] . "'>");
 			}
-		} else if(count($prices) > 1) {
+		} else if(count($prices) > 0) {
 			foreach($prices as $price) {
 ?>
 <td></td>

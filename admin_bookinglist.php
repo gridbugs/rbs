@@ -139,13 +139,13 @@ if (!isset($rs) || count($rs) == 0){
 <input type="checkbox" name="includeadmin"<?if($ia) echo(" checked='checked'")?>>Include tickets that have been booked by an admin
 </div>
 
-<div class="formentry">Show only bookings with the following picked up status:
+<!--<div class="formentry">Show only bookings with the following picked up status:
 <select name="restrictpickedup">
 	<option value="-1"<?if($rpu == -1) echo(" selected='selected'")?>>All Bookings</option>
 	<option value="0"<?if($rpu == 0) echo(" selected='selected'")?>>Not Picked Up</option>
 	<option value="1"<?if($rpu == 1) echo(" selected='selected'")?>>Picked Up</option>
 </select>
-</div>
+</div>-->
 
 <? if (!isset($sb)) $sb = ''; ?>
 <? if (!isset($order)) $order = ''; ?>
@@ -211,7 +211,7 @@ if(!isset($_POST['restrictperf'])) { // If the user hasn't clicked "Get Bookings
 $restrictions = array();
 $restrictions['performance'] = $_POST['restrictperf'];
 $restrictions['status'] = $_POST['restrictstatus'];
-$restrictions['pickedup'] = $_POST['restrictpickedup'];
+//$restrictions['pickedup'] = $_POST['restrictpickedup'];
 
 $sortby = $_POST['sortby'];
 $order = $_POST['order'];
