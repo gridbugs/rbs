@@ -312,8 +312,6 @@ function add_production($link, $production) {
 	// Complete the SQL command:
 	$sql .= ") VALUES (" . $values . ")";
 
-    echo $sql;
-
 	if(mysql_query($sql, $link)) {
 		rbslog("Created production " . $production['name']);
 		return mysql_insert_id($link);
@@ -413,7 +411,11 @@ function production_get_ticketers($prod_id) {
     $stmt = $db->prepare(<<<EOT
 SELECT admin.*, prodadmin.can_manage as can_manage
 FROM admin JOIN prodadmin ON admin.id = prodadmin.admin 
-WHERE prodadmin.production = :prod_id OR admin.superadmin = 1
+FROM admin AND prodadmin
+WHERE (
+    admin.id = prodadmin.id AND
+    prodadmin.production = :prod_id
+) OR admin.superadmin = 1
 ORDER BY admin.name
 EOT
 );
