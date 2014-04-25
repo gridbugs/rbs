@@ -167,7 +167,7 @@ function startNewBooking() {
 
 	s = document.getElementById('status');
 	s.style.display = 'block';
-	s.innerHTML = "Creating a Booking";
+	s.innerHTML = "<h2>Select seats</h2>";
 
 	hideButton('modifybooking');
 	hideButton('startnewbooking');
@@ -470,8 +470,7 @@ function toShowSpec() {
 
 function toPerformanceSpec() {
 	hideButton('startnewbooking');
-	var nav = '<a href="javascript:toShow()">Main Menu</a> >> ';
-	nav += performances[performance];
+	var nav = '<h2>' + performances[performance] + ' &raquo; Select a theatre section</h2>';
 	document.getElementById('navigation').innerHTML = nav;
 	document.getElementById('segments_'+performance).style.display = 'block';
     current_performance = performance;
@@ -479,9 +478,9 @@ function toPerformanceSpec() {
 
 function toSegmentSpec() {
 	showButton('startnewbooking');
-	var nav = '<a href="javascript:toShow()">Main Menu</a> >> ';
-	nav += '<a href="javascript:toPerformance(' + performance + ')">' + performances[performance] + '</a> >> ';
-	nav += segments[segment];
+	var nav = '<h2>' + performances[performance] + ' &raquo; ' + segments[segment] + '</h2>';
+	//nav += '<h3><a href="javascript:toPerformance(' + performance + ')">' + performances[performance] + '</a> >> </h3>';
+	//nav += segments[segment];
 	document.getElementById('navigation').innerHTML = nav;
 	if(fulltheatre)
 		showFullTheatre();
