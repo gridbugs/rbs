@@ -312,8 +312,6 @@ function add_production($link, $production) {
 	// Complete the SQL command:
 	$sql .= ") VALUES (" . $values . ")";
 
-    echo $sql;
-
 	if(mysql_query($sql, $link)) {
 		rbslog("Created production " . $production['name']);
 		return mysql_insert_id($link);
@@ -407,14 +405,57 @@ function production_dropdown($link, $prodid) {
 }
 
 function production_get_ticketers($prod_id) {
+
+    $db = db_connect_pdo();
+
+    $stmt = $db->prepare(<<<EOT
+(
+    SELECT admin.*, prodadmin.can_manage as can_manage
+    FROM admin, prodadmin
+    WHERE (
+        admin.id = prodadmin.admin AND
+        prodadmin.production = :prod_id AND
+        admin.superadmin = 0
+    )
+)
+UNION
+(
+    SELECT admin.*, 1 as can_manage
+    FROM admin
+    WHERE superadmin = 1
+)
+EOT
+);
+    $stmt->execute(array(':prod_id' => $prod_id));
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function production_get_non_ticketers($prod_id) {
     
     $db = db_connect_pdo();
 
     $stmt = $db->prepare(<<<EOT
-SELECT admin.*, prodadmin.can_manage as can_manage
-FROM admin JOIN prodadmin ON admin.id = prodadmin.admin 
-WHERE prodadmin.production = :prod_id OR admin.superadmin = 1
+
+SELECT admin.*
+FROM admin
+WHERE admin.id NOT IN
+(
+    SELECT admin.id
+    FROM admin, prodadmin
+    WHERE (
+        admin.id = prodadmin.admin AND
+        prodadmin.production = :prod_id
+    )
+
+    UNION (
+    SELECT admin.id
+    FROM admin
+    WHERE admin.superadmin = 1
+    )
+)
 ORDER BY admin.name
+
 EOT
 );
     $stmt->execute(array(':prod_id' => $prod_id));
