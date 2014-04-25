@@ -1,5 +1,5 @@
 <header>
-        <h1>RBS Admin - <?=$production['name']?></h1>
+        <h1><a href="admin_production.php">RBS Admin - <?=$production['name']?></a></h1>
 		<div class="row">
         <div class="one fifth">Logged in as: <?=$_SESSION['admin_name']?> (<?=$_SESSION['admin_email']?>)</div>
 

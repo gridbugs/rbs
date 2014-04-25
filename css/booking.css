@@ -160,11 +160,6 @@
 	padding: 0.25em;
 }
 
-#status {
-	font-size: +2em;
-	text-align: center;
-}
-
 #buttonpanel { display: none; text-align: center; }
 #payfortickets {
 	font-size: 1.2em;
