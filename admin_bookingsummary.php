@@ -15,8 +15,6 @@ include_once('includes/bookingmanagement.php');
 include_once('includes/pricemanagement.php');
 include_once('includes/frames/priceselection.php');
 
-include_once('includes/frames/prodtheme.php');
-
 $production = get_production($link, $_SESSION['admin_production']);
 
 check_access_to_production($_SESSION['admin_production']);
@@ -38,7 +36,7 @@ if(isset($_POST['modify']) || isset($_POST['new']))
 	else {
 		$bookingid = create_user_booking($link, $performance, $_SESSION['admin_id'], 1);
 		if($bookingid === null) {
-			echo('Creating the booking failed!');
+			echo('<p class="error message red">Creating the booking failed!</p>');
 			exit;
 		}
 	}
@@ -50,46 +48,41 @@ if(isset($_POST['modify']) || isset($_POST['new']))
 		
 
 		if(count($results) != 0) {
-			$message .= "<p class='error'>Error: Unfortunately the following seats have been taken:</p>";
+		
+		$message .= "<p class='error message red'>Unfortunately there is a problem with this booking</p>";
 		}
 		foreach($results as $performance => $seats) {
 			foreach($seats as $seat => $reason) {
-				$message .= "<p class='seattaken'>$seat:  $reason</p>";
+				$message .= "<p class='seattaken'><strong>$seat:</strong>  $reason</p>";
 			}
 		}
+			
 	}
 }
 
-print_prod_header($link, $production, $htmlheaders);
+include('includes/groundwork-header.php');
+include('includes/page-header.php');
 ?>
 
-<?=$message?>
-
-<h1>Booking Summary</h1>
+<? if (count($results) != 0) {
+    echo "<div class='error box'>$message</div>";
+	}?>
 
 <form method="post" action="admin_savebooking.php">
 <input type="hidden" name="submitprices" value="true">
 <?
 $booking = get_booking($link, $bookingid);
-
 print_price_selection($link, $booking, true);
-echo("<h4>Booking id: $bookingid</h4>");
 ?>
-<div class="bookingupdate">
-	<div class="bookinglabel">Name of customer:</div>
-	<div class="bookinginput"><textarea name="name" class="bookingta"><?=htmlspecialchars($booking['name'])?></textarea></div>
-</div>
-<div class="bookingupdate">
-	<div class="bookinglabel">Description:</div>
-	<div class="bookinginput"><textarea name="description" class="bookingta"><?=htmlspecialchars($booking['description'])?></textarea></div>
-</div>
-<div class="bookingupdate">
-	<div class="bookinglabel">Phone Number:</div>
-	<div class="bookinginput"><input type="text" name="phonenumber" class="bookingin" value="<?=htmlspecialchars($booking['phonenumber'])?>"></div>
-</div>
-<div class="bookingupdate">
-	<div class="bookinglabel">Email Address:</div>
-	<div class="bookinginput"><input type="email" name="email" class="bookingin" value="<?=htmlspecialchars($booking['email'])?>"></div>
+<div class="bookingupdate row">
+	<div class="bookinglabel one sixth padded">Name:</div>
+	<div class="bookinginput two sixths padded"><input name="name" class="bookingta"><?=htmlspecialchars($booking['name'])?></textarea></div>
+	<div class="bookinglabel one sixth padded clear">Description:</div>
+	<div class="bookinginput two sixths padded"><textarea name="description" class="bookingta"><?=htmlspecialchars($booking['description'])?></textarea></div>
+	<div class="bookinglabel one sixth padded clear">Phone Number:</div>
+	<div class="bookinginput two sixths padded"><input type="text" name="phonenumber" class="bookingin" value="<?=htmlspecialchars($booking['phonenumber'])?>"></div>
+	<div class="bookinglabel one sixth padded clear">Email Address:</div>
+	<div class="bookinginput two sixths padded"><input type="email" name="email" class="bookingin" value="<?=htmlspecialchars($booking['email'])?>"></div>
 </div>
 <!--
 <div class="bookingupdate">
@@ -124,6 +117,4 @@ if(isset($_POST['fulltheatre']))
 ?>
 <p class="savebooking"><input type="submit" value="Save The Booking"></p>
 </form>
-<?
-print_prod_footer($link, $production);
-?>
+<? include('includes/page-footer.php');?>

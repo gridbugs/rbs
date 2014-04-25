@@ -27,6 +27,12 @@
     <link type="text/css" rel="stylesheet" href="css/groundwork-ie.css"><![endif]--><!--[if lt IE 9]>
     <script type="text/javascript" src="js/libs/html5shiv.min.js"></script><![endif]--><!--[if IE 7]>
     <link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
+	<link type="text/css" rel="stylesheet" href="css/modifications.css">
+	<?php if  (substr($production['css'], 0, 1) == "/"){ ?>
+		<link rel="stylesheet" type="text/css" href="<?=$production['css']?>">
+	<?php } else { ?>
+		<link rel="stylesheet" type="text/css" href="show_data/<?=$production['css']?>">
+	<?php } ?>
     <script type="text/javascript">
       // extend Modernizr to have datauri test
       (function(){

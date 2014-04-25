@@ -40,29 +40,14 @@ if (isset($_POST['segment_perfid'])){
     }
 }
 
+include ('includes/groundwork-header.php');
+include ('includes/page-header.php');
 ?>
-
-
-<!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-  <!--<![endif]-->
- <head>
-    <title>RBS Admin - Bookings for <?=$production['name']?></title>
-    <?php include ('includes/groundwork-header.php') ?>  
- </head>
-<body>
-<?php include('includes/page-header.php') ?>
-<div class="container">
-      <article class="row">
-        <section class="padded">
-
-<p><a href="admin_production.php">Back to production page</a></p>
 <link rel="stylesheet" type="text/css" href="css/booking.css" />
 <link rel="stylesheet" type="text/css" href="css/admin_booking.css" />
+
+      <article class="row">
+        <section class="padded">
 
 <script type="text/javascript">
 var performances = [];
@@ -109,25 +94,22 @@ echo "}\n";
 <div id="topbuttons">
 <div id="status"></div>
 
+
+<div id="navigation"></div>
 <div id="adminbuttons">
 <div class="button" id='cancelbooking'><a href="admin_booking.php">Cancel booking</a></div>
-<div class="button" id="savebooking"><a href="javascript: saveThisBooking()">Save This Booking</a></div>
-<div id="startnewbooking" class="button"><a href="javascript: startNewBooking()">Start New Booking</a></div>
+<div class="button" id="savebooking"><a href="javascript: saveThisBooking()">Save Booking</a></div>
+<div id="startnewbooking" class="button"><a href="javascript: startNewBooking()">New Booking</a></div>
 <div id="modifybooking" class="button"><a href="javascript: modifyBooking()">Modify Booking</a></div>
 <div id="resetchanges" class="button"><a href="javascript: resetChanges()">Reset</a></div>
 <!--
 <div id="fulltheatre" class="button"><a href="javascript: toggleFullTheatre()" id="togglefulltheatre">Show Full Theatre</a></div>
 -->
 </div>
-<div id="navigation"></div>
 <div id="targetseats">
 <div id="targetseats_0" class="button targetseat" onClick="targetSeat(0);" style="background-color:#acf"><img src="images/free.gif"><br>Free</div>
-<div id="targetseats_1" class="button targetseat" onClick="targetSeat(1);"><img src="images/booked.gif"><br>Booked</div>
 <div id="targetseats_3" class="button targetseat" onClick="targetSeat(3);"><img src="images/red.gif"><br>Confirmed</div>
 <div id="targetseats_4" class="button targetseat" onClick="targetSeat(4);"><img src="images/paid.gif"><br>Paid</div>
-<div id="targetseats_5" class="button targetseat" onClick="targetSeat(5);"><img src="images/paid.gif"><br>Paid Sales</div>
-<div id="targetseats_6" class="button targetseat" onClick="targetSeat(6);"><img src="images/paid_dd.gif"><br>Paid DD</div>
-<div id="targetseats_7" class="button targetseat" onClick="targetSeat(7);"><img src="images/paid_paypal.gif"><br>Paid Paypal</div>
 <div id="targetseats_8" class="button targetseat" onClick="targetSeat(8);"><img src="images/red.gif"><br>Payment Pending</div>
 <div id="targetseats_9" class="button targetseat" onClick="targetSeat(9);"><img src="images/unavailable.gif"><br>Unavailable</div>
 <div id="targetseats_10" class="button targetseat" onClick="targetSeat(10);"><img src="images/vip.gif"><br>VIP</div>
@@ -138,10 +120,11 @@ echo "}\n";
 </form>
 
 <div id="performances">
+<h2>Select performance night</h2>
 <?
 	foreach($performances as $performance) {
 		if($performance['title'] && $performance['title'] != '')
-			echo("<a href='javascript:toPerformance(" . $performance['id'] . ")'>" . $performance['title'] . " (" . prettydate($performance['tsdate']) . ")</a><br>\n");
+			echo("<p class='align-center'><a role='button' class='large' href='javascript:toPerformance(" . $performance['id'] . ")'>" . $performance['title'] . " (" . prettydate($performance['tsdate']) . ")</a></p>\n");
 		else
 			echo("<a href='javascript:toPerformance(" . $performance['id'] . ")'>" . prettydate($performance['tsdate']) . "</a><br>\n");
 	}
@@ -150,7 +133,7 @@ echo "}\n";
 
 <?php
     foreach($performances as $performance){
-        echo "<div id='segments_".$performance['id']."' style='display:none;'>";
+	        echo "<div id='segments_".$performance['id']."' style='display:none;'>";
         $closedsegments = get_closed_segments($link, $performance['id']);
         echo "<table border='1' class='segmentlist_admin' ><tr>";
         foreach($theatre as $segment) {
@@ -186,9 +169,7 @@ echo "}\n";
 </div>
 </div>
 
-<?
-// The booking information
-?>
+<!-- The booking information -->
 <div id="bookinginfo">
 <h2>Booking Information</h2>
 <p id="bookingid">Booking ID: </p>
@@ -200,6 +181,7 @@ echo "}\n";
 <p id="bookingamountpaid">Amount Paid: </p>
 <p id="bookingdeadline">Deadline: </p>
 <p id="bookingpickedup">Has it been picked up? </p>
+<p><a role="button" href="javascript: modifyBooking()">Modify Booking</a></p>
 </div>
 
 <script type="text/javascript">
@@ -222,10 +204,5 @@ if(isset($toperformance)) {
 
         </section>
       </article>
-    </div>
 
 <?php include('includes/page-footer.php') ?>
-
-</body>
-</html>
-
