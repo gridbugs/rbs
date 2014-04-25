@@ -410,10 +410,9 @@ function production_get_ticketers($prod_id) {
 
     $stmt = $db->prepare(<<<EOT
 SELECT admin.*, prodadmin.can_manage as can_manage
-FROM admin JOIN prodadmin ON admin.id = prodadmin.admin 
-FROM admin AND prodadmin
+FROM admin, prodadmin
 WHERE (
-    admin.id = prodadmin.id AND
+    admin.id = prodadmin.admin AND
     prodadmin.production = :prod_id
 ) OR admin.superadmin = 1
 ORDER BY admin.name
@@ -421,7 +420,8 @@ EOT
 );
     $stmt->execute(array(':prod_id' => $prod_id));
     
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $matchs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $matchs;
 }
 
 ?>
