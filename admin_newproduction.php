@@ -20,13 +20,13 @@ if(isset($_POST['name'])) {
 	// Form has been submitted, lets save
 	if($prodid < 0) {
 		$ret = add_production($link, $_POST);
-        echo $ret;
-        exit();
 		if(is_int($ret)) {
 			// Adding the production was successful
 			$prodid = $ret;
 			$production = get_production($link, $prodid);
 			$message = "The production has been successfully added.";
+            header("Location: /admin_editproduction.php");
+            exit;
 		} else {
 			// The function returned an error
 			$message = $ret;
@@ -65,8 +65,11 @@ if(isset($_POST['name'])) {
 <div class="container">
       <article class="row">
         <section class="padded">
-<h1>Production Details</h1>
-
+<? if ($prodid >= 0): ?>
+<h1>Modify Production Details for Existing Production</h1>
+<? else: ?>
+<h1>Set Production Details for New Production</h1>
+<? endif ?>
 <?if(isset($message)) {?>
 	<em><?=$message?></em>
 <?}?>
