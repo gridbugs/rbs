@@ -1,13 +1,10 @@
 <header>
-<<<<<<< HEAD
         <h1><a href="admin_production.php">RBS Admin - <?=$production['name']?></a></h1>
-=======
     <? if (isset($production['name'])): ?>
         <h1>RBS Admin - <?=$production['name']?></h1>
     <? else: ?>
         <h1>RBS Admin</h1>
     <?endif?>
->>>>>>> 6e173fb6d876d86551786b0864a14d10289ee9bd
 		<div class="row">
         <div class="one fifth">Logged in as: <?=$_SESSION['admin_name']?> (<?=$_SESSION['admin_email']?>)</div>
 
