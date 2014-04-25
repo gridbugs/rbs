@@ -38,6 +38,17 @@ include('includes/page-header.php');
             <input type="hidden" name="prod" value="<?=$prod['id']?>">
             <input type="submit" value="Add">
             </form>
+            
+            <br/>
+
+            <h3>Other Admins</h3>
+            <ul>
+            <?foreach(production_get_non_ticketers($prod['id']) as $user):?>
+                <li><?=$user['name']?> (<?=$user['email']?>)
+                <a href='/admin_add_ticketer.php?prod=<?=$prod['id']?>&email=<?=$user['email']?>'>Add</a>
+                </li>
+            <?endforeach?>
+            </ul>
         </section>
       </article>
 <?php include('includes/page-footer.php') ?>
