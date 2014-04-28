@@ -2,7 +2,6 @@
 /**
  * TODO: make sure only proper admins have access to each production specific page
  * TODO: Cleanup the printing checkboxes etc.  The code can be a lot cleaner
- * TODO (Tracey): Merge all headers and call on each page - remember to keep all page specific includes (such as those below) outside of generic header file
  */
 
 include_once('includes/utilities.php');
@@ -20,7 +19,7 @@ if(isset($_GET['production']) && production_exists($link, $_GET['production'])) 
 }
 
 if(!isset($_SESSION['admin_production'])) {
-	echo("production does not exist");
+	echo("<div class=\"error\"><p>Production does not exist</p></div>");
 	exit;
 }
 
@@ -43,8 +42,9 @@ include('includes/page-header.php');
  ?>
 <?
 if(isset($perftitle) && $perftitle != '') {
-	echo("<h2>$perftitle</h2>");
-}
+	echo("<h2>Booking list for $perftitle</h2>");
+} else {
+	echo ("<h2>Booking list</h2>"); }
 ?>
 
 <?
@@ -93,8 +93,9 @@ $sc = $showcolumn;
 if(!isset($_POST['printing'])) {
 ?>
 
-<form method="post" action="admin_bookinglist.php">
-<div class="formentry">Select bookings from the following performance:
+<form method="post" class="bookinglist" action="admin_bookinglist.php">
+<div class="row">
+<div class="one third padded"><strong>Select bookings from the following performance:</strong><br />
 <select name="restrictperf">
 	<option value="-1">All Performances</option>
 <?
@@ -109,36 +110,6 @@ foreach($performances as $performance) {
 </select>
 </div>
 
-<div class="formentry">Select only bookings with this payment status:<br>
-<?php
-if (!isset($rs) || count($rs) == 0){
-    $rs[1] = true;
-    $rs[3] = true;
-    $rs[4] = true;
-    $rs[5] = true;
-    $rs[6] = true;
-    $rs[7] = true;
-    $rs[8] = true;
-    $rs[10] = true;
-}
-?>
-	<input type="checkbox" name="restrictstatus[1]"<?if(isset($rs[1])) echo(" checked='checked'")?>>Booked
-	<input type="checkbox" name="restrictstatus[3]"<?if(isset($rs[3])) echo(" checked='checked'")?>>Confirmed
-	<input type="checkbox" name="restrictstatus[4]"<?if(isset($rs[4])) echo(" checked='checked'")?>>Paid
-	<input type="checkbox" name="restrictstatus[5]"<?if(isset($rs[5])) echo(" checked='checked'")?>>Paid Sales Desk
-	<input type="checkbox" name="restrictstatus[6]"<?if(isset($rs[6])) echo(" checked='checked'")?>>Paid DD
-	<input type="checkbox" name="restrictstatus[7]"<?if(isset($rs[7])) echo(" checked='checked'")?>>Paid Paypal
-	<input type="checkbox" name="restrictstatus[8]"<?if(isset($rs[8])) echo(" checked='checked'")?>>Payment Pending
-	<input type="checkbox" name="restrictstatus[9]"<?if(isset($rs[9])) echo(" checked='checked'")?>>Unavailable
-	<input type="checkbox" name="restrictstatus[10]"<?if(isset($rs[10])) echo(" checked='checked'")?>>VIP
-	<input type="checkbox" name="restrictstatus[11]"<?if(isset($rs[11])) echo(" checked='checked'")?>>All Paid Tickets
-	<input type="checkbox" name="restrictstatus[12]"<?if(isset($rs[12])) echo(" checked='checked'")?>>All Tickets
-</div>
-
-<div class="formentry">
-<input type="checkbox" name="includeadmin"<?if($ia) echo(" checked='checked'")?>>Include tickets that have been booked by an admin
-</div>
-
 <!--<div class="formentry">Show only bookings with the following picked up status:
 <select name="restrictpickedup">
 	<option value="-1"<?if($rpu == -1) echo(" selected='selected'")?>>All Bookings</option>
@@ -149,7 +120,7 @@ if (!isset($rs) || count($rs) == 0){
 
 <? if (!isset($sb)) $sb = ''; ?>
 <? if (!isset($order)) $order = ''; ?>
-<div class="formentry">Sort By
+<div class="one third padded"><strong>Sort by:</strong><br />
 <select name="sortby">
 	<option value="paymentid"<?if($sb == 'paymentid') echo(" selected='selected'")?>>Payment ID Number</option>
 	<option value="id"<?if($sb == 'id') echo(" selected='selected'")?>>ID Number</option>
@@ -163,7 +134,27 @@ if (!isset($rs) || count($rs) == 0){
 </select>
 </div>
 
-<div class="formentry">Show the following columns:<br>
+<div class="one third padded"><strong>Other options</strong><br />
+<input type="checkbox" name="includeadmin" checked="checked" />Include tickets that have been booked by an admin<br />
+<input type="checkbox" name="printing" />Print friendly booking list
+</div>
+
+<div class="three thirds padded"><strong>Select only bookings with this payment status:</strong>
+<?php
+if (!isset($rs) || count($rs) == 0){
+    $rs[12] = true;
+}
+?>
+	<input type="checkbox" name="restrictstatus[1]"<?if(isset($rs[1])) echo(" checked='checked'")?>>Booked
+	<input type="checkbox" name="restrictstatus[3]"<?if(isset($rs[3])) echo(" checked='checked'")?>>Confirmed
+	<input type="checkbox" name="restrictstatus[4]"<?if(isset($rs[4])) echo(" checked='checked'")?>>Paid
+	<input type="checkbox" name="restrictstatus[5]"<?if(isset($rs[5])) echo(" checked='checked'")?>>Paid Sales Desk
+	<input type="checkbox" name="restrictstatus[9]"<?if(isset($rs[9])) echo(" checked='checked'")?>>Unavailable
+	<input type="checkbox" name="restrictstatus[10]"<?if(isset($rs[10])) echo(" checked='checked'")?>>VIP
+	<input type="checkbox" name="restrictstatus[12]"<?if(isset($rs[12])) echo(" checked='checked'")?>>All Tickets
+</div>
+
+<div class="three thirds padded"><strong>Show the following columns:</strong>
 <?php
 if (!isset($sc) || count($sc) == 0){
     $sc['bookingid'] = true;
@@ -177,35 +168,28 @@ if (!isset($sc) || count($sc) == 0){
 }
 ?>
 	<input type="checkbox" name="showcolumn[bookingid]"<?if(isset($sc['bookingid'])) echo(" checked='checked'")?>>Booking ID
-	<input type="checkbox" name="showcolumn[paymentid]"<?if(isset($sc['paymentid'])) echo(" checked='checked'")?>>Payment ID
 	<input type="checkbox" name="showcolumn[performance]"<?if(isset($sc['performance'])) echo(" checked='checked'")?>>Performance
 	<input type="checkbox" name="showcolumn[name]"<?if(isset($sc['name'])) echo(" checked='checked'")?>>Name
 	<input type="checkbox" name="showcolumn[email]"<?if(isset($sc['email'])) echo(" checked='checked'")?>>Email
 	<input type="checkbox" name="showcolumn[seats]"<?if(isset($sc['seats'])) echo(" checked='checked'")?>>Seats
 	<input type="checkbox" name="showcolumn[desc]"<?if(isset($sc['desc'])) echo(" checked='checked'")?>>Description
 	<input type="checkbox" name="showcolumn[phoneno]"<?if(isset($sc['phoneno'])) echo(" checked='checked'")?>>Phone Number
-	<input type="checkbox" name="showcolumn[pickedup]"<?if(isset($sc['pickedup'])) echo(" checked='checked'")?>>Picked Up
 	<input type="checkbox" name="showcolumn[totalcost]"<?if(isset($sc['totalcost'])) echo(" checked='checked'")?>>Total Cost
 	<input type="checkbox" name="showcolumn[amountpaid]"<?if(isset($sc['amountpaid'])) echo(" checked='checked'")?>>Amount Paid
-	<input type="checkbox" name="showcolumn[discount]"<?if(isset($sc['discount'])) echo(" checked='checked'")?>>Discount
-	<input type="checkbox" name="showcolumn[deadline]"<?if(isset($sc['deadline'])) echo(" checked='checked'")?>>Payment Deadline
 	<input type="checkbox" name="showcolumn[bookedtime]"<?if(isset($sc['bookedtime'])) echo(" checked='checked'")?>>Booked Time
 </div>
 
-<div class="formentry"><input type="checkbox" name="printing"> Print Friendly</div>
-
-<div><input type="submit" value="Get Bookings"></div>
-
+<div class="one third"><input type="submit" value="Get Bookings"></div>
+</div>
 </form>
 
 <?
 } // Printing
 
-
 if(!isset($_POST['restrictperf'])) { // If the user hasn't clicked "Get Bookings"
-	echo("</body></html>");
+	include('includes/page-footer.php');
 	exit;
-}
+} 
 
 // Get the bookings
 $restrictions = array();
