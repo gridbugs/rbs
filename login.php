@@ -21,13 +21,11 @@ if(!production_exists($link, $prodid))
 $production = get_production($link, $prodid);
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
-$htmlheaders='<link rel="stylesheet" type="text/css" href="css/login.css" />';
-print_prod_header($link, $production, $htmlheaders);
+include('includes/groundwork-header.php');
 ?>
+<div class="container">
 
 <div id="loginform">
-
-
 
 <div id="loginblurb">
 
@@ -87,6 +85,4 @@ Please note, <strong>group bookings (<?=($max_booked_seats+1)?> or more seats)</
 
 </div>
 
-<?
-print_prod_footer($link, $production);
-?>
+<? include('includes/page-footer.php');

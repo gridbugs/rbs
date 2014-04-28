@@ -8,12 +8,12 @@
 	<div class="row">
         <div class="one third">Logged in as: <?=$_SESSION['admin_name']?> (<?=$_SESSION['admin_email']?>)</div>
 		<div class="two thirds align-right">
-			<a role="button" href="admin_booking.php">New Booking</a>
-			<a role="button" href="admin_bookinglist.php">Booking List</a>
-			<a role="button" href="admin_editproduction.php">Edit Production Details</a>
-			<?if(isset($production['id']) && can_manage_production($production['id'])):?>
-			<a role="button" href="admin_manageticketers.php?prod=<?=$production['id']?>">Manage Ticketers</a>
-			<?endif?>
+			<? if($prodid >= 0) { ?>
+			<a role="button" href="admin_production.php?production=<?=$prodid?>">Production Page</a>
+			<? } else { ?>
+			<a role="button" href="admin_prodlist.php">Production list</a>
+			<? } ?>
+			<? if($_SESSION['admin_superadmin']) { ?><a role="button" href="admin_newproduction.php" class="medium button">Add production</a> <? } ?>
 			<a role="button" href="logout.php">Logout</a>
 		</div>
 	</div>
