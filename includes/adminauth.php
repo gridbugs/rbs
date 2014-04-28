@@ -37,7 +37,7 @@ function check_access_to_production($current_prod) {
     $res = mysql_query($sql);
     
     if (mysql_num_rows($res) == 0) {
-        die("Access denied to production.");
+        die("<div class=\"error\"><p>Access denied to production.</p></div>");
     }
 
 }
@@ -67,7 +67,7 @@ function can_manage_production($prod) {
 
 function check_can_manage_production($prod) {
     if (!can_manage_production($prod)) {
-        die("Permission denied to manage production.");
+        die("<div class=\"error\"><p>Permission denied to manage production.</p></div>");
     }
 }
 
@@ -87,7 +87,7 @@ function check_access_to_performance($performance) {
     $res = mysql_query($sql);
 
     if (mysql_num_rows($res) == 0) {
-        die("Access denied to performance.");
+        die("<div class=\"error\"><p>Access denied to performance.</p></div>");
     }
 
 }

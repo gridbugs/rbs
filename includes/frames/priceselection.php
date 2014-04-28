@@ -63,7 +63,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 		}
 	}
 	if(!$seatsbooked) {
-		echo('<div class="bookingnoseats">There are no seats currently booked for this performance.</div>');
+		echo('<div class="bookingnoseats warning message"><p>There are no seats currently booked for this performance.</p></div>');
 		return;
 	}
 
