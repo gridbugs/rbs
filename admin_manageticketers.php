@@ -17,38 +17,54 @@ include('includes/page-header.php');
             <h2>Manage ticketers for <?=$prod['name']?></h2>
         
             <h3>Current Ticketers</h3>
-            <ul>
+            <table class="sortable">
+			<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Remove</th>
+			</tr>
             <?foreach(production_get_ticketers($prod['id']) as $user):?>
-                <li><?=$user['name']?> (<?=$user['email']?>)
-                <?if($user['can_manage']):?>
+			<tr>
+                <td><?=$user['name']?> <?if($user['can_manage']):?>
                 (manager)
                 <?elseif($user['superadmin']):?>
                 (superadmin)
-                <?else:?>
-                <a href='/admin_remove_ticketer.php?prod=<?=$prod['id']?>&admin=<?=$user['id']?>'>Delete</a>
+                <?endif?></td>
+				<td><?=$user['email']?></td>
+				<td>
+				<?if($user['can_manage']):?>
+                N/A
+				<?else:?>
+				<a class="red button" href='/admin_remove_ticketer.php?prod=<?=$prod['id']?>&admin=<?=$user['id']?>'><i class="icon-remove-sign"></i> Delete</a>
                 <?endif?>
-                </li>
+                </td>
+				</tr>
             <?endforeach?>
-            </ul>
+            </table>
             
             <h3>Add Ticketer</h3>
-            <form method="post" action="admin_add_ticketer.php">
+            <form method="post" action="admin_add_ticketer.php" class="one third">
             <label>Email:</label>
             <input type="text" name="email">
             <input type="hidden" name="prod" value="<?=$prod['id']?>">
             <input type="submit" value="Add">
             </form>
             
-            <br/>
-
-            <h3>Other Admins</h3>
-            <ul>
+            <h3 class="clear">Other Admins</h3>
+            <table class="sortable">
+			<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Add</th>
+			</tr>
             <?foreach(production_get_non_ticketers($prod['id']) as $user):?>
-                <li><?=$user['name']?> (<?=$user['email']?>)
-                <a href='/admin_add_ticketer.php?prod=<?=$prod['id']?>&email=<?=$user['email']?>'>Add</a>
-                </li>
+                <tr>
+				<td><?=$user['name']?></td>
+				<td><?=$user['email']?></td>
+                <td><a class="button green" href='/admin_add_ticketer.php?prod=<?=$prod['id']?>&email=<?=$user['email']?>'><i class="icon-plus"></i> Add</a></td>
+                </tr>
             <?endforeach?>
-            </ul>
+            </table>
         </section>
       </article>
 <?php include('includes/page-footer.php') ?>

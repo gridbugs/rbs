@@ -36,15 +36,15 @@ internal_get_post_mplex_simple(function() {
 <table>
 <tr>
 	<td>Date (yyyy-mm-dd):</td>
-	<td><input type="text" name="date"></td>
+	<td><input type="text" name="date" /></td>
 </tr>
 <tr>
     <td>Start Time:</td>
-    <td><input type="text" name="starttime" value="8pm"></td>
+    <td><input type="text" name="starttime" value="8pm" /></td>
 </tr>
 <tr>
     <td>Finish Time:</td>
-    <td><input type="text" name="finishtime" value="10pm"></td>
+    <td><input type="text" name="finishtime" value="10pm" /></td>
 </tr>
 <tr>
     <td>Description:</td>
@@ -52,11 +52,11 @@ internal_get_post_mplex_simple(function() {
 </tr>
 <tr>
     <td>Title:</td>
-    <td><input type="text" name="title"></td>
+    <td><input type="text" name="title" /></td>
 </tr>
 <tr>
     <td>Closed:</td>
-    <td><input type="checkbox" name="isclosed"></td>
+    <td><input type="checkbox" name="isclosed" /></td>
 </tr>
 <tr>
     <td>Closed Message:</td>
@@ -64,18 +64,18 @@ internal_get_post_mplex_simple(function() {
 </tr>
 <tr>
     <td>Auto Expire:</td>
-    <td><input type="checkbox" name="autoexpire" checked></td>
+    <td><input type="checkbox" name="autoexpire" /></td>
 </tr>
 <tr>
 	<td>Deadline (yyyy-mm-dd hh:mm:ss):</td>
-	<td><input type="text" name="deadline"></td>
+	<td><input type="text" name="deadline" /></td>
 </tr>
 <tr>
 	<td>Prices (name0=price0, name1=price1, etc, no dollar signs, whitespace ignored):</td>
     <td><textarea name="price_description">arc=10, student=12, adult=15</textarea></td>
 </tr>
 <tr>
-    <td><input type="submit" value="Add Performance"></td>
+    <td><input type="submit" value="Add Performance" /></td>
     <td></td>
 </tr>
 

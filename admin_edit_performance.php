@@ -12,25 +12,14 @@ include_once('includes/frames/internal.php');
 internal_get_post_mplex_simple(function() {
     global $link;
     $perf = get_performance($link, $_GET['perf']);
+
+include('includes/groundwork-header.php');
+include('includes/page-header.php');
 ?>
-<!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]>   <html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]>   <html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" class="no-js">
-  <!--<![endif]-->
- <head>
-  	<title>RBS Admin - Manage Ticketers</title>
-  	<?php include ('includes/groundwork-header.php') ?>  
- </head>
-<body>
-<?php include('includes/page-header.php') ?>
-<div class="container">
       <article class="row">
         <section class="padded">
 <h2>Edit Performance "<?=$perf['title']?>"</h2>
-<a href="/admin_editproduction.php?tab=performances">Back to Edit Production</a>
+<a rel="prev" class="button" href="/admin_editproduction.php#performances">Back to Edit Production</a>
 <form method="post" action="/admin_edit_performance.php">
 <input type="hidden" name="prod" value="<?=$perf['production']?>">
 <input type="hidden" name="perf" value="<?=$perf['id']?>">
@@ -90,8 +79,6 @@ internal_get_post_mplex_simple(function() {
         </section>
       </article>
 <?php include('includes/page-footer.php') ?>
-</body>
-</html>
 
 <?
 

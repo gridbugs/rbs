@@ -12,9 +12,23 @@ internal_get_post_mplex(function() {
     internal_print_header("Sign Up");
 include('includes/groundwork-header.php');
 	?>
+	
+	<header>
+<div class="header-container row">
+	<div class="one third">
+        <h1><a href="admin_login.php">RBS Admin</a></h1>
+	</div>
+	<div class="two thirds align-right">
+	<a role="button" href="/admin_login.php">Login</a>
+	</div>
+</div>
+</header>
 
-<h1>Sign Up</h1>
+<div class="container">
+
+<h2>Sign up</h2>
 <form method="post" action="admin_signup.php">
+<div class="one third">
 <div>
 <label>Full Name:</label>
 <input type="text" name="name">
@@ -38,10 +52,11 @@ include('includes/groundwork-header.php');
 <div>
 <input type="submit" name="Sign Up">
 </div>
+</div>
 </form>
 
 <?
-    internal_print_footer();
+    /*internal_print_footer();*/
 }, function($name, $email, $phone, $password, $repeat_password) {
 
     /* Handle POST request */
