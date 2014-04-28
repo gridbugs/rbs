@@ -1,4 +1,4 @@
-    <footer class="footer">
+    <footer class="footer clear">
       <p>&copy 2002-<?echo date("Y")?> Revue Booking Sytem by CSE Revue</p>
     </footer>
 	</div>

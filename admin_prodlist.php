@@ -20,10 +20,6 @@ include ('includes/superadmin-header.php'); ?>
 
       <article class="row">
         <section class="padded">
-<<<<<<< HEAD
-=======
-		<h1>RBS Admin</h1>
->>>>>>> 7c88913439696cc491075c2d77076f44556efc87
           <h2>Production List</h2>
 		  <p>Select the production you wish to make a booking for:</p>
 		  <ul>

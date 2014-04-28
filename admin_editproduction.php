@@ -138,7 +138,7 @@ foreach($theatres as $theatre) {
 </div>
 
 <div id="performances" role="tabpanel">
-<table>
+<table class="sortable">
 <tr>
 <th>Title</th>
 <th>Date</th>
@@ -153,12 +153,12 @@ foreach($theatres as $theatre) {
 <td><?=$perf['date']?></td>
 <td><?=$perf['starttime']?></td>
 <td><?=$perf['finishtime']?></td>
-<td><a href="/admin_edit_performance.php?perf=<?=$perf['id']?>">Edit</a></td>
-<td><a href="/admin_delete_performance.php?perf=<?=$perf['id']?>">Delete</a></td>
+<td><a class="button blue" href="/admin_edit_performance.php?perf=<?=$perf['id']?>"><i class="icon-pencil"></i> Edit</a></td>
+<td><a class="button red" href="/admin_delete_performance.php?perf=<?=$perf['id']?>"><i class="icon-remove-sign"></i> Delete</a></td>
 </tr>
 <?endforeach?>
 </table>
-<a role="button" href="admin_add_performance.php">Add a new performance</a>
+<a class="button green" href="admin_add_performance.php"><i class="icon-plus"></i> Add a new performance</a>
 
 </div>
 
