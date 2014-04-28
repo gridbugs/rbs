@@ -6,8 +6,11 @@
 <html lang="en" class="no-js">
   <!--<![endif]-->
  <head>
-    <title>RBS Admin for <?=$production['name']?></title>
-
+    <? if (isset($production['name'])): ?>
+        <title>RBS Admin - <?=$production['name']?></title>
+    <? else: ?>
+        <title>RBS Admin</title>
+    <?endif?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -28,11 +31,10 @@
     <script type="text/javascript" src="js/libs/html5shiv.min.js"></script><![endif]--><!--[if IE 7]>
     <link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
 	<link type="text/css" rel="stylesheet" href="css/modifications.css">
-	<?php if  (substr($production['css'], 0, 1) == "/"){ ?>
-		<link rel="stylesheet" type="text/css" href="<?=$production['css']?>">
-	<?php } else { ?>
-		<link rel="stylesheet" type="text/css" href="show_data/<?=$production['css']?>">
-	<?php } ?>
+	
+	<? if (isset($production['css'])): ?>
+	<link rel=\"stylesheet\" type=\"text/css\" href=\"<?=$production['css']?>\" />
+	<?endif?>
     <script type="text/javascript">
       // extend Modernizr to have datauri test
       (function(){
