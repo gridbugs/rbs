@@ -8,19 +8,18 @@ include_once('includes/prodmanagement.php');
 $link = db_connect();
 
 include ('includes/groundwork-header.php') ?>  
-
 <div class="container">
+
       <article class="row">
         <section class="padded">
-			<h1>RBS Admin Login Page</h1>
+			<h1>RBS Admin</h1>
 			<h2>Login</h2>
-			<form method="post" action="admin_logintest.php">
+			<form method="post" action="admin_logintest.php" class="one third">
 			<p>Email Address or Username: <input type="text" name="email" /></p>
 			<p>Password: <input type="password" name="pass" /></p>
 			<input type="submit">
 			</form>
  		</section>
       </article>
-    </div>
-
+    
 <?php include('includes/page-footer.php') ?>

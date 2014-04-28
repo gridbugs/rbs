@@ -15,29 +15,22 @@ if($_SESSION['admin_superadmin'] == 0 && count($_SESSION['admin_prodlist']) == 1
 
 // Grab the production list.
 $prodlist = get_admin_prodlist($link);
-?>
-  	<?php include ('includes/groundwork-header.php') ?>  
+include ('includes/groundwork-header.php');
+include ('includes/superadmin-header.php'); ?>
+
       <article class="row">
         <section class="padded">
-          <h1>Production List</h1>
+          <h2>Production List</h2>
+		  <p>Select the production you wish to make a booking for:</p>
+		  <ul>
 			<?
 			foreach($prodlist as $prod) {
-				echo("<p>Production " . $prod['id'] . ": ");
-				echo("<a href='admin_production.php?production=" . $prod['id'] . "'>" . $prod['name'] . "</a></p>");
-			}
+				echo("<li>Production " . $prod['id'] . ": ");
+				echo("<a href='admin_production.php?production=" . $prod['id'] . "'>" . $prod['name'] . "</a></li>");
+			}?>
+			
+			</ul>
 
-			if($_SESSION['admin_superadmin']) {
-			?>
-
-			<p><a href="admin_newproduction.php" class="medium button">Add New Production</a></p>
-
-			<?
-			}
-			?>
-
-        </section>
+			</section>
       </article>
 <?php include('includes/page-footer.php') ?>
-
-</body>
-</html>
