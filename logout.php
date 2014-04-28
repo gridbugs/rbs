@@ -24,8 +24,13 @@ include('includes/groundwork-header.php');
 ?>
 
 <header>
-<div class="container">
+<div class="header-container row">
+	<div class="one third">
         <h1><a href="admin_login.php">RBS Admin</a></h1>
+	</div>
+	<div class="two thirds align-right">
+	<a role="button" href="/admin_login.php">Login</a>
+	</div>
 </div>
 </header>
 
@@ -33,7 +38,7 @@ include('includes/groundwork-header.php');
 
 <h2>You have been logged out</h2>
 
-<p><a href="/admin_login.php">Return to the login screen.</a></p>
+<p>Thanks for being an awesome revue ticketing volunteer! <a href="/admin_login.php">Return to the login screen</a>.</p>
 
 <? include('includes/page-footer.php'); ?>
 
