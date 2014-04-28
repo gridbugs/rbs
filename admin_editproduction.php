@@ -66,6 +66,8 @@ onload="showContent('<?=$_GET['tab']?>')"
 
 <h1>Production Details</h1>-->
 
+<h2>Edit production details</h2>
+
 <?if(isset($message)) {?>
 	 <p class="success message"><?=$message?></p>
 <?}?>
@@ -156,7 +158,7 @@ foreach($theatres as $theatre) {
 </tr>
 <?endforeach?>
 </table>
-<a href="admin_add_performance.php">Add Performance</a>
+<a role="button" href="admin_add_performance.php">Add a new performance</a>
 
 </div>
 

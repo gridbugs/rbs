@@ -19,18 +19,21 @@ if(isset($_SESSION['production'])) {
 
 $_SESSION = array();
 session_destroy();
+
+include('includes/groundwork-header.php');
 ?>
 
-<html>
-<body>
-<h1>Logout</h1>
+<header>
+<div class="container">
+        <h1><a href="admin_login.php">RBS Admin</a></h1>
+</div>
+</header>
 
-<p>You have now been logged out.  <a href="/admin_login.php">Click Here</a> to navigate back to the login page.</p>
+<div class="container">
 
-<?
-if(isset($footer))
-	print_prod_footer($link, $production);
-else
-	echo('</body></html>');
-?>
+<h2>You have been logged out</h2>
+
+<p><a href="/admin_login.php">Return to the login screen.</a></p>
+
+<? include('includes/page-footer.php'); ?>
 

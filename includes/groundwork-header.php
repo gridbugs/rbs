@@ -35,6 +35,7 @@
 	<? if (isset($production['css'])): ?>
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"<?=$production['css']?>\" />
 	<?endif?>
+	<link rel="stylesheet" type="text/css" href="css/login.css" />
     <script type="text/javascript">
       // extend Modernizr to have datauri test
       (function(){
@@ -71,5 +72,3 @@
 	  
 </head>
 <body>
-
-<div class="container">

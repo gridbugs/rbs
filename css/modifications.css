@@ -10,3 +10,19 @@ margin: 15px;
 .bookinglist input {
 margin: 0 5px;
 }
+
+header {
+padding: 15px;
+background: #eee;
+}
+
+.container .button, .container input[type=submit], .container a[role=button] {
+margin: 15px 0;
+}
+
+#addnewproduction {
+width: 70%;
+margin: 0 auto;
+}
+
+.header-container{max-width:1200px;margin:0 auto}

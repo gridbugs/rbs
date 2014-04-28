@@ -1,7 +1,8 @@
-    <footer class="footer align-right">
-      <p>&copy 2002-<?echo date("Y")?> CSE Revue</p>
+    <footer class="footer">
+      <p>&copy 2002-<?echo date("Y")?> Revue Booking Sytem by CSE Revue</p>
     </footer>
 	</div>
+	
     <!-- scripts-->
     <script type="text/javascript" src="js/plugins/jquery.cycle2.js"></script>
     <script type="text/javascript" src="js/groundwork.all.js"></script>
