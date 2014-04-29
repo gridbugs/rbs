@@ -1,4 +1,5 @@
 <?
+include_once('password_compat/lib/password.php');
 include_once('includes/utilities.php');
 $link = db_connect();
 include_once('includes/session.php');
@@ -61,12 +62,13 @@ include('includes/groundwork-header.php');
 
     /* Handle POST request */
 
-
     $db = db_connect_pdo();
     $salt = rand_str();
     $stmt = $db->prepare("INSERT INTO admin(name, email, phone, password, salt) VALUES(:name, :email, :phone, :password, :salt)");
-    assert($stmt->execute(array(':name' => $name, ':email' => $email, ':phone' => $phone,
-        ':password' => password_hash($salt.$password, PASSWORD_DEFAULT), ':salt' => $salt)));
+    if (!$stmt->execute(array(':name' => $name, ':email' => $email, ':phone' => $phone,
+        ':password' => password_hash($salt.$password, PASSWORD_DEFAULT), ':salt' => $salt))) {
+            echo "could not add user";
+    }
 
     header("Location: /admin_login.php");
 });

@@ -5,7 +5,7 @@
  *
  * This file also sanitises and whitelists all input.
  */
-
+include_once('password_compat/lib/password.php');
 include_once('utilities.php');
 include_once('prodmanagement.php');
 
