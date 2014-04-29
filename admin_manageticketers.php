@@ -22,6 +22,9 @@ include('includes/page-header.php');
 			<th>Name</th>
 			<th>Email</th>
 			<th>Remove</th>
+            <? if ($_SESSION['admin_superadmin']): ?>
+            <th>Manager</th>
+            <? endif ?>
 			</tr>
             <?foreach(production_get_ticketers($prod['id']) as $user):?>
 			<tr>
@@ -38,6 +41,19 @@ include('includes/page-header.php');
 				<a class="red button" href='/admin_remove_ticketer.php?prod=<?=$prod['id']?>&admin=<?=$user['id']?>'><i class="icon-remove-sign"></i> Delete</a>
                 <?endif?>
                 </td>
+
+                <? if ($_SESSION['admin_superadmin']): ?>
+                <td>
+                    <? if ($user['superadmin']): ?>
+                        N/A
+                    <? elseif ($user['can_manage']):?>
+                <a class="red button" href='/admin_demote_to_ticketer.php?prod=<?=$prod['id']?>&admin=<?=$user['id']?>'>Demote to Ticketer</a>
+                    <? else: ?>
+                <a class="blue button" href='/admin_promote_to_manager.php?prod=<?=$prod['id']?>&admin=<?=$user['id']?>'>Promote to Manager</a>
+                    <? endif ?>
+                </td>
+                <? endif ?>
+
 				</tr>
             <?endforeach?>
             </table>

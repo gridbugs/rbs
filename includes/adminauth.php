@@ -42,6 +42,19 @@ function check_access_to_production($current_prod) {
 
 }
 
+function is_superadmin() {
+    if ((int)$_SESSION['admin_superadmin'] != 0) {
+        return true;
+    }
+    return false;
+}
+
+function check_is_superadmin() {
+    if (!is_superadmin()) {
+        die("<div class=\"error\"><p>You must be a superadmin to perform this action.</p></div>");
+    }
+}
+
 function can_manage_production($prod) {
     
     if ((int)$_SESSION['admin_superadmin'] != 0) {
