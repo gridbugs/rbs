@@ -59,9 +59,6 @@ var elem = document.getElementById("scrollUserTable");
 </script>
 </head>
 <body 
-<?if (isset($_GET['tab'])):?>
-onload="showContent('<?=$_GET['tab']?>')"
-<?endif?>
 >
 
 <h1>Production Details</h1>-->
