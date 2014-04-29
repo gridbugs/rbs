@@ -25,7 +25,7 @@ if(isset($_POST['name'])) {
 			$prodid = $ret;
 			$production = get_production($link, $prodid);
 			$message = "<p class=\"success message\">The production has been successfully added.</p>";
-            header("Location: /admin_editproduction.php");
+            header("Location: /admin_prodlist.php");
             exit;
 		} else {
 			// The function returned an error
