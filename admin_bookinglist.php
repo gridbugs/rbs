@@ -25,6 +25,8 @@ if(!isset($_SESSION['admin_production'])) {
 
 $production = get_production($link, $_SESSION['admin_production']);
 
+
+
 $performances = get_performances($link, $production['id']);
 
 if(isset($_POST['restrictperf'])) {
@@ -35,7 +37,6 @@ if(isset($_POST['restrictperf'])) {
 		}
 	}
 }
-
 
 include('includes/groundwork-header.php');
 include('includes/page-header.php');
@@ -237,6 +238,7 @@ if(isset($showcolumn['deadline']))
 	echo('<th>Payment Deadline</th>');
 if(isset($showcolumn['bookedtime']))
 	echo('<th>Booked Time</th>');
+echo('<th>Booked by</th>');
 ?>
 	</tr>
 <?
@@ -295,7 +297,8 @@ foreach($bookings as $booking) {
 		echo("<td>" . htmlspecialchars($booking['deadline']) . "</td>");
 	if(isset($showcolumn['bookedtime']))
 		echo("<td>" . htmlspecialchars($booking['bookedtime']) . "</td>");
-	echo("</tr>");
+	echo ("<td>" . htmlspecialchars($booking['user']) . "</td>");
+ 	echo("</tr>");
 }
 
 echo("</table>");
