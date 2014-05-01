@@ -22,8 +22,6 @@ $production = get_production($link, $prodid);
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
 include('includes/groundwork-header.php');
-
-echo $production['header'];
 ?>
 <div class="container">
 
@@ -87,8 +85,4 @@ Please note, <strong>group bookings (<?=($max_booked_seats+1)?> or more seats)</
 
 </div>
 
-
-
-<? 
-echo $production['footer'];
-include('includes/page-footer.php');
+<? include('includes/page-footer.php');
