@@ -18,7 +18,6 @@ function get_booking_bookedseats($link, $bookingid) {
  * - setting $status = 1, $equal = true, gives only seats booked but not paid
  */
 function get_seats_selected($link, $user, $status = 0, $equal = false) {
-	$prodid = (int)$prodid;
 	$user = (int)$user;
 	$sql = "SELECT b.performance, count(bs.id) numseats FROM booking b, bookedseat bs WHERE bs.booking = b.id AND b.user = $user AND bs.status ".($equal?"=":">")." $status GROUP BY b.performance";
 	$results = sql_get_array($link, $sql);
@@ -247,13 +246,20 @@ function create_user_booking($link, $performance, $user, $bookedbyadmin = 0) {
 	$deadline = get_current_deadline($link, $performance);
 	$now = time();
 
-	$sql = "INSERT INTO booking(user, performance, deadline, modifiedtime, bookedbyadmin) VALUES ($user, $performance, FROM_UNIXTIME($deadline)";
-	$sql .= ", FROM_UNIXTIME($now), $bookedbyadmin)";
-	$result = mysql_query($sql, $link);
-	if(!$result)
-		return null;
-	$retid = mysql_insert_id($link);
-	return $retid;
+    $db = db_connect_pdo();
+    $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+    $stmt = $db->prepare(<<<EOT
+INSERT INTO booking(user, performance, deadline, modifiedtime, bookedbyadmin)
+VALUES ($user, $performance, FROM_UNIXTIME($deadline), FROM_UNIXTIME($now), $bookedbyadmin)
+EOT
+);
+    
+    if (!$stmt->execute(array())) {
+        return null;
+    }
+
+
+    return $db->lastInsertId();
 }
 
 
