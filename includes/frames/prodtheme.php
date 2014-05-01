@@ -12,6 +12,7 @@ function print_prod_header($link, $production, $htmlheaders = "", $bodyattrs = "
 <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Bitter:700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="<?=$production['css']?>" />
 <link rel="shortcut icon" type="image/ico" href="<?=$production['sitelocation']?>/favicon.ico" />
 <!-- framework css -->
     <link type="text/css" rel="stylesheet" href="css/groundwork.css"><!--[if IE]>

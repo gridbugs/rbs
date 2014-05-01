@@ -31,7 +31,6 @@ $bookedseats = get_seats_selected($link, $_SESSION['user_id'], 1, true);
 $htmlheaders = <<<HEADER
 <link rel="stylesheet" type="text/css" href="css/booking.css" />
 <link rel="stylesheet" type="text/css" href="css/booking_user.css" />
-<link rel="stylesheet" type="text/css" href="$production[css]" />
 
 <script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
 <script type="text/javascript">
