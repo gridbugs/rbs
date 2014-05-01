@@ -19,6 +19,7 @@ if(!isset($_REQUEST['production']) || !production_exists($link, $_REQUEST['produ
 $htmlheaders='<link rel="stylesheet" type="text/css" href="css/login.css" />';
 $prodid = (int)$_REQUEST['production'];
 $production = get_production($link, $prodid);
+$htmlheaders .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"$production[css]\" />";
 
 if(isset($_GET['reset'])){
     $q_resetuser = "select * from user where CAST(MD5(CONCAT(production, email, 'passwordreset')) as char) = '".$_GET['reset']."'";

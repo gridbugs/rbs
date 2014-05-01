@@ -32,8 +32,8 @@
     <link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
 	<link type="text/css" rel="stylesheet" href="css/modifications.css">
 	
-	<? if (isset($production['css'])): ?>
-	<link rel=\"stylesheet\" type=\"text/css\" href=\"<?=$production['css']?>\" />
+	<? if (isset($production['css']) && !isset($_SESSION['admin_id']) && !isset($_SESSION['admin_production'])): ?>
+	<link rel="stylesheet" type="text/css" href="<?=$production['css']?>" />
 	<?endif?>
 	<link rel="stylesheet" type="text/css" href="css/login.css" />
     <script type="text/javascript">

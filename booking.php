@@ -19,6 +19,8 @@ include_once('includes/prodmanagement.php');
 include_once('includes/frames/prodtheme.php');
 include_once('includes/bookingmanagement.php');
 
+//include('includes/groundwork-header.php');
+
 $production = get_production($link, $_SESSION['production']);
 
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
@@ -78,6 +80,7 @@ $htmlheaders .= "var max_booked_seats = ".$max_booked_seats.";\n";
 $htmlheaders .= <<<HEADER
 </script>
 
+<link rel="stylesheet" type="text/css" href="$production[css]" />
 <script type="text/javascript" src="js/booking.js" ></script>
 <script type="text/javascript" src="js/booking_user.js" ></script>
 HEADER;
