@@ -218,40 +218,6 @@ foreach($theatres as $theatre) {
 </table>
 </div>
 
-<div id="paymentinfo" role="tabpanel">
-<table>
-<tr>
-	<td>Accept Sales Booth Reservations:</td>
-	<td><input type="checkbox" name="acceptsales" <?if($prodid != -1 && $production['acceptsales'] == 1) echo("CHECKED")?>></td>
-</tr>
-<tr>
-	<td>Sales Desk Information:</td>
-	<td><textarea name="salesinfo"><?if($prodid != -1) echo(htmlspecialchars($production['salesinfo']))?></textarea></td>
-</tr>
-<tr>
-	<td>Accept Direct Debit:</td>
-	<td><input type="checkbox" name="acceptdd" <?if($prodid != -1 && $production['acceptdd'] == 1) echo("CHECKED")?>></td>
-</tr>
-<tr>
-	<td>Direct Debit Information:</td>
-	<td><textarea name="ddinfo"><?if($prodid != -1) echo(htmlspecialchars($production['ddinfo']))?></textarea></td>
-</tr>
-<tr>
-	<td>Accept Paypal:</td>
-	<td><input type="checkbox" name="acceptpaypal" <?if($prodid != -1 && $production['acceptpaypal'] == 1) echo("CHECKED")?>></td>
-</tr>
-<tr>
-	<td>Paypal Account:</td>
-	<td><input type="text" name="paypalaccount" value="<?if($prodid != -1) echo(htmlspecialchars($production['paypalaccount']))?>"></td>
-</tr>
-<tr>
-	<td>Paypal Information:</td>
-	<td><textarea name="paypalinfo"><?if($prodid != -1) echo(htmlspecialchars($production['paypalinfo']))?></textarea></td>
-</tr>
-
-</table>
-</div>
-
 <input type="submit" />
 
 </div>
