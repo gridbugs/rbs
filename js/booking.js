@@ -190,3 +190,16 @@ function widthToWindow() {
 		else
 			setScale(1);
 }
+
+
+function showSegTheatre() {
+	fulltheatre = false;
+	for(var i in segments) {
+        $('#navusegment'+i).show();
+        $('#navdsegment'+i).show();
+		if(i != segment)
+            $('#segment'+i).hide();
+	}
+}
+
+
