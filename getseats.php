@@ -4,7 +4,7 @@ include_once('includes/utilities.php');
 include_once('includes/usermanagement.php');
 $link = db_connect();
 
-if($_GET['admin'] == 'true') {
+if(isset($_GET['admin']) && $_GET['admin'] == 'true') {
 	include('includes/adminauth.php');
 	$isadmin = true;
 	$prodid = (int)$_GET['production'];
@@ -15,6 +15,7 @@ if($_GET['admin'] == 'true') {
 	include('includes/userauth.php');
 	$prodid = $_SESSION['production'];
 	$perfid = (int)$_GET['performance'];
+    $isadmin = false;
 }
 
 include_once('includes/prodmanagement.php');

@@ -69,16 +69,6 @@ function showFullTheatre() {
 	}
 }
 
-function showSegTheatre() {
-	fulltheatre = false;
-	for(var i in segments) {
-        $('#navusegment'+i).show();
-        $('#navdsegment'+i).show();
-		if(i != segment)
-            $('#segment'+i).hide();
-	}
-}
-
 function toggleFullTheatre() {
 	if(fulltheatre)
 		showSegTheatre();

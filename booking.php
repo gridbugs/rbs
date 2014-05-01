@@ -32,6 +32,7 @@ $htmlheaders = <<<HEADER
 <link rel="stylesheet" type="text/css" href="css/booking.css" />
 <link rel="stylesheet" type="text/css" href="css/booking_user.css" />
 
+<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
 <script type="text/javascript">
 var performances = [];
 var segments = [];
