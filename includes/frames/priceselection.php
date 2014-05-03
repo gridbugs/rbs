@@ -46,7 +46,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 
 	if($booking['title'] !== '') {
 ?>
-<h2>Enter ticket details for <? echo(prettydate($booking['tsdate']))?></h2>
+<h2>Select ticket types for <? echo(prettydate($booking['tsdate']))?></h2>
 <?
 	} else {
 ?>
@@ -68,7 +68,9 @@ function print_price_selection($link, $booking, $isadmin = false) {
 	}
 
 ?>
-<table class="bookingtable"><tr><th></th><th></th>
+<table class="bookingtable"><tr>
+<th>Seat</th>
+<th>Status</th>
 <?
 	if(count($prices) > 0) {
 		foreach($prices as $price) {

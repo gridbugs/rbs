@@ -6,8 +6,6 @@ function generate_paypal_button($production, $paymentId, $amount) {
 
 if(DEBUG) {
 ?>
-
-
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_xclick">
 <input type="hidden" name="business" value="<?php echo $production['paypalaccount']; ?>">
@@ -52,7 +50,7 @@ rbslog("Generating paypal button", 1);
 <input type="hidden" name="shipping" value="0.00">
 <input type="hidden" name="notify_url" value="<?=$production['bookingslocation']?>/paypal.php?production=<?php echo $production['id']; ?>">
 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
-<input type="image" src="https://www.paypal.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
+<input type="image" class="paypalsubmit" src="https://www.paypal.com/en_AU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
 <img alt="" border="0" src="https://www.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1">
 </form>
 <?php

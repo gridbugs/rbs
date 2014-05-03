@@ -39,19 +39,23 @@ if(!$ps || count($ps) == 0) {
 }
 
 $htmlheaders = <<<HEADER
-<link rel="stylesheet" type="text/css" href="css/paymentsummary.css" />
 <script type="text/javascript" src="js/paymentsummary.js" ></script>
 <script src="js/jquery.js" type="test/javascript"></script>
 <script src="js/jquery.anchor.js" type="test/javascript"></script>
 <link rel="stylesheet" type="text/css" href="$production[css]" />
 HEADER;
 
+//print_prod_header($link, $production, $htmlheaders);
 
-print_prod_header($link, $production, $htmlheaders);
-
+include('includes/groundwork-header.php');
 ?>
-<center>
-<h1>Payment Summary</h1>
+<div class="container">
+<div class="header">
+<h1 class="invisible"><?=$production['name']?></h1>
+
+<p class="invisible">13-16 May 2014, 7:30pm, UNSW Science Theatre</p>
+</div>
+<h1 class="align-center">Payment Summary</h1>
 
 <!--p id="booktickets"><a href="booking.php">Click here to modify your bookings.</a></p-->
 
@@ -73,7 +77,7 @@ foreach($ps as $perfid => $summary) {
 		continue;
 	$perf = get_performance($link, $perfid);
 	echo("<div class='paymentsummaryperf'>");
-	echo("<h2>" . $perf['title'] . "</h2>");
+//	echo("<h2>" . $perf['title'] . "</h2>");
 	print_payment_summary($link, $summary);
 
 	if(isset($summary[1])) {
@@ -86,49 +90,47 @@ foreach($ps as $perfid => $summary) {
 ?>
 <a name='total'></a>
 
-<div id='totals'>
+<div id="totals">
 <h2 class="paymenttotal">Total Amount Due: <strong>$<?=$total?></strong></h2>
 <?php
 $paymentsummary = ob_get_contents();
 ob_end_flush();
 ?>
 
-<a href="booking.php#main" class="bigbutton">Modify Booking</a>
-
 <?php if ($total > 0): ?>
-<a name='options'></a>
-<h2>How would you like to pay?</h2>
+<!--<a name='options'></a>
 <div id="paymentoptions">
 <?
-if($production['acceptsales'] == 1) echo('<a class="paymentoption bigbutton" id="paybysales" href="#total" onClick="togglePay(\'sales\');">Sales Desk</a>');
-if($production['acceptdd'] == 1) echo('<a class="paymentoption bigbutton" id="paybydd" href="#total" onClick="togglePay(\'dd\');">Bank Transfer</a>');
-if($production['acceptpaypal'] == 1) echo('<a href="#total" class="paymentoption bigbutton" onClick="togglePay(\'paypal\');">Paypal or Credit Card</a>');
-?>
+//if($production['acceptsales'] == 1) echo('<a class="paymentoption button large" id="paybysales" href="#total" onClick="togglePay(\'sales\');">Sales Desk</a>');
+//if($production['acceptdd'] == 1) echo('<a class="paymentoption large button" id="paybydd" href="#total" onClick="togglePay(\'dd\');">Bank Transfer</a>');
+if($production['acceptpaypal'] == 1) echo('<a href="#total" class="paymentoption large button" onClick="togglePay(\'paypal\');">Pay now via Paypal</a>');
+?>-->
 </div>
 <a name="anchor" id="anchor"></a>
 <?
-if($production['acceptsales']) {
-	$salesinfo = $production['salesinfo'];
-	$salesinfo = str_replace('{paymentid}', $userinfo['paymentid'], $salesinfo);
-	echo('<div class="pay" id="salesinfo"><a name="sales"></a><h4>Sales Desk</h4>' . $salesinfo . '</div>');
-}
+//if($production['acceptsales']) {
+//	$salesinfo = $production['salesinfo'];
+//	$salesinfo = str_replace('{paymentid}', $userinfo['paymentid'], $salesinfo);
+//	echo('<div class="pay" id="salesinfo"><a name="sales"></a><h4>Sales Desk</h4>' . $salesinfo . '</div>');
+//}
 if($production['acceptdd']) {
 	$ddinfo = $production['ddinfo'];
 	$ddinfo = str_replace('{paymentid}', $userinfo['paymentid'], $ddinfo);
 	echo('<div class="pay" id="ddinfo"><a name="dd"></a><h4>Direct Debit</h4>' . $ddinfo . '</div>');
 }
 if($production['acceptpaypal']) {
-	echo('<div class="pay" id="paypalinfo"><a name="paypal"></a><center><h4>Paypal</h4>Click the Paypal button below to purchase your tickets now!<br/><br/>');
+	//echo('<div class="pay" id="paypalinfo"><a name="paypal"></a><center><h4>Paypal</h4>Click the Paypal button below to purchase your tickets now!<br/><br/>');
 	if($total > 0) {
 		$userRow = get_user($link, $user);
 		generate_paypal_button($production, $userRow['paymentid'], $total);
 	}
-	echo('</center></div>');
+//	echo('</center></div>');
 }
 ?>
+<a href="booking.php#main" class="button large">Modify Booking</a>
+</div>
 
 </div>
-</center>
 
 <?php
 
@@ -138,7 +140,7 @@ print_prod_footer($link, $production);
 
 if(isset($_POST['price'])) {
     // Write a confirmation email to the user
-    $email = "Hello ".$userinfo['name'].",<br/><br/>";
+    $email = "Dear ".$userinfo['name'].",<br/><br/>";
     $email .= "Thank you for booking your tickets for <strong>".$production['name']."</strong>!<br/>Below you will find a summary of your booking, as well as information on how to proceed.<br/><br/>";
     $email .= "<strong style='color:blue'>Please ensure you have paid before your booking expires, otherwise your seats may not be guaranteed.</strong>";
     $email .= "<br/><em><strong>Booking ID:</strong> ".strtoupper($userRow['paymentid'])."</em><br/>";

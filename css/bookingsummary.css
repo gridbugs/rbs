@@ -1,13 +1,11 @@
 .bookingtable {
     color: black;
 	border-collapse: collapse;
-	margin: 2em 3em;
 }
 
 .bookingsummaryperf {
-	margin: 2em;
-	width: 42em;
-	padding: 2em;
+	margin: 10px auto;
+	width: 50%;
 }
 
 .price {
@@ -48,9 +46,4 @@
 	padding: 0.5em;
 	margin: 0px;
 	width: 6em;
-}
-
-#payforbooking{
-	margin-left: 2em;
-	padding: 0.5em;
 }

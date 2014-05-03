@@ -6,8 +6,6 @@ h1 {
 	text-align: left;
 	display: inline-block;
 	width: 90%;
-	margin-right: 2em;
-	margin-top: 5em;
 	vertical-align: top;
 	max-width: 75em;
 }
@@ -20,23 +18,23 @@ h1 {
 #login {
 	text-align: left;
 	display: inline-block;
-	width: 45%;
+	width: 60%;
 	margin-right: 2em;
 	vertical-align: top;
-	max-width: 35em;
 }
 
 #register {
 	text-align: left;
 	display: inline-block;
-	width: 45%;
+	width: 35%;
 	vertical-align: top;
 	max-width: 40em;
+	float:right;
 }
 
 .loginfield {
 	margin: 0;
-	padding: 0.5em 0 0.5em 0em;
+	padding: 0.5em
 }
 
 .loginfield input {
@@ -44,9 +42,9 @@ h1 {
 	padding: 0;
 }
 
-.loginblurb {
+/*.loginblurb {
 	margin: 1em 1em 4em 0em;
-}
+}*/
 
 .loginlabel {
 	float: left;
@@ -55,5 +53,5 @@ h1 {
 
 .loginsubmit {
 	clear: both;
-	margin: 1em 1em 4em 0em;
+	margin: 0 0.5em;
 }

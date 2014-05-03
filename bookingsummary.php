@@ -21,7 +21,8 @@ $user = $_SESSION['user_id'];
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
 $htmlheaders = <<<HEADER
-<link rel="stylesheet" type="text/css" href="css/bookingsummary.css" />
+<link rel="stylesheet" type="text/css" href="css/booking.css" />
+<link rel="stylesheet" type="text/css" href="css/booking_user.css" />
 <link rel="stylesheet" type="text/css" href="$production[css]" />
 HEADER;
 
@@ -55,11 +56,18 @@ if(isset($_POST['submitseats']))
 }
 $bookings = get_bookings($link, $user, $production['id']);
 print_prod_header($link, $production, $htmlheaders);
+include('includes/groundwork-header.php');
 ?>
+
+<div class="header">
+<h1 class="invisible"><?=$production['name']?></h1>
+
+<p class="invisible">13-16 May 2014, 7:30pm, UNSW Science Theatre</p>
+</div>
 
 <?=$message?>
 <center id="summary">
-<h1>Booking Summary</h1>
+<h1>Pay for your seats</h1>
 
 <!--p id="booktickets"><a href="booking.php#main">Click here to modify your bookings.</a></p-->
 
@@ -86,8 +94,8 @@ foreach($bookings as $booking) {
 ?>
 
 <div class='payforbooking' id='bigformbuttons'>
-<a href="booking.php#main" class="bigbutton">Modify Booking</a>
-<input type="submit" value="Confirm Booking" class="bigbutton continue">
+<a href="booking.php#main" class="large button">Modify Booking</a>
+<input type="submit" value="Confirm Booking" class="button large continue">
 </div>
 </form>
 </center>

@@ -19,8 +19,6 @@ include_once('includes/prodmanagement.php');
 include_once('includes/frames/prodtheme.php');
 include_once('includes/bookingmanagement.php');
 
-//include('includes/groundwork-header.php');
-
 $production = get_production($link, $_SESSION['production']);
 
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
@@ -88,8 +86,13 @@ HEADER;
 $bodyattrs = " onresize='widthToWindow()'";
 
 print_prod_header($link, $production, $htmlheaders, $bodyattrs);
-
+include('includes/groundwork-header.php');
 ?>
+<div class="header">
+<h1 class="invisible"><?=$production['name']?></h1>
+
+<p class="invisible">13-16 May 2014, 7:30pm, UNSW Science Theatre</p>
+</div>
 
 <form id="seatform" action="bookingsummary.php#main" method="post">
 <span id="seatsubmit"></span>
@@ -102,10 +105,10 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 <?
 	foreach($performances as $performance) {
 		if($performance['isclosed'] == 1) {
-			echo("<div class='perfdateclosed bigbutton'>" . prettydate($performance['tsdate']) . "\n");
+			echo("<div class='perfdateclosed button large'>" . prettydate($performance['tsdate']) . "\n");
 			echo("<div class='closedmessage'>" . $performance['closedmessage'] . "</div>\n");
 		} else {
-			echo("<div class='perfdate bigbutton' onClick='javascript:toPerformance(" . $performance['id'] . ")'>" . prettydate($performance['tsdate']) . "\n");
+			echo("<div class='perfdate button large' onClick='javascript:toPerformance(" . $performance['id'] . ")'>" . prettydate($performance['tsdate']) . "\n");
 		}
 
 		echo("<div id='perfseats" . $performance['id'] . "' class='perfseats'>");
@@ -126,11 +129,11 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 	<div id="segmentlinks">
 <?
 	foreach($theatre as $segment) {
-		echo("<div id='segmentlink" . $segment['id'] . "' class='segmentlink bigbutton' onClick='javascript:toSegment(" . $segment['id'] . ")'>" . $segment['name'] . "</div>\n");
+		echo("<div id='segmentlink" . $segment['id'] . "' class='segmentlink button large' onClick='javascript:toSegment(" . $segment['id'] . ")'>" . $segment['name'] . "</div>\n");
 		echo("<div id='segseats" . $segment['id'] . "'></div>");
 	}
 ?>
-	<div class='segmentstage bigbutton'>Stage</div>
+	<!--<div class='segmentstage button large'>Stage</div>-->
 	</div>
 </div>
 
@@ -142,8 +145,8 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 <h1>Select Your Seats</h1>
 
 <div id="buttonpanel">
-<div id="anotherday" onClick="javascript: toShow()" class="bigbutton">See Another Day</div>
-<div id="payfortickets" onClick="javascript: payForTickets()" class="bigbutton continue">Save Booking</div>
+<div id="anotherday" onClick="javascript: toShow()" class="button large">See Another Day</div>
+<div id="payfortickets" onClick="javascript: payForTickets()" class="button large continue">Save Booking</div>
 </div>
 
 <div id="legend">
@@ -151,8 +154,8 @@ print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 <h2>Legend</h2>
 <div class="legendentry"><div class="legendimage"><img src="images/free.gif"></div><div class="legendseat">Free</div></div>
 <div class="legendentry"><div class="legendimage"><img src="images/booked.gif"></div><div class="legendseat">Booked</div></div>
-<div class="legendentry"><div class="legendimage"><img src="images/confirmed.gif"></div><div class="legendseat">Confirmed</div></div>
-<div class="legendentry"><div class="legendimage"><img src="images/paid.gif"></div><div class="legendseat">Paid For</div></div>
+<!--<div class="legendentry"><div class="legendimage"><img src="images/confirmed.gif"></div><div class="legendseat">Confirmed</div></div>
+<div class="legendentry"><div class="legendimage"><img src="images/paid.gif"></div><div class="legendseat">Paid For</div></div>-->
 <div class="legendentry"><div class="legendimage"><img src="images/unavailable.gif"></div><div class="legendseat">Unavailable</div></div>
 </div>
 </div>

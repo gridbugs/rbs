@@ -31,7 +31,7 @@
     <script type="text/javascript" src="js/libs/html5shiv.min.js"></script><![endif]--><!--[if IE 7]>
     <link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
 	<link type="text/css" rel="stylesheet" href="css/modifications.css">
-	
+	<link type="text/css" rel="stylesheet" href="css/booking.css">
 	<? if (isset($production['css']) && !isset($_SESSION['admin_id']) && !isset($_SESSION['admin_production'])): ?>
 	<link rel="stylesheet" type="text/css" href="<?=$production['css']?>" />
 	<?endif?>
@@ -69,6 +69,5 @@
       });
       </script>
 	  <script type="text/javascript" src="js/sorttable.js"></script>
-	  
 </head>
 <body>

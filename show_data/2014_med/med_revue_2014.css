@@ -1,116 +1,63 @@
+/* The CSS file for Med Revue 2014 */
 
-/* The CSS file for Med Revue 2010 */
+body {
+	background: url('/show_data/2014_med/MR14_background.png') repeat-x top center;
+	background-color: #fff;
+	color: #000;
+	font-family: "Arial", serif;
+
+}
+
+.header {
+background: url('/show_data/2014_med/HeaderMedRevue14_02.png') no-repeat top center;
+padding-top: 350px;
+text-align: center;
+font-size: 150%;
+font-weight: bold;
+}
+
+.sponsors {
+display: block;
+height: 140px;
+background: url('/show_data/2014_med/MR14_sponsors.png') no-repeat top center;
+}
 
 h1 > img.banner {
     display: block;
     margin-left: auto;
     margin-right: auto;
+	width: 800px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+color: #2c3953;
 }
 
 footer {
     text-align: center;
 }
 
-h1 {
-	font-weight: normal;
+.invisible {
+display: none;
 }
 
-h2 {
-	font-weight: normal;
+#performances .button, #segmentlinks .button, #buttonpanel .button, #bigformbuttons .button, #totals .button {
+background: #2c3953;
+border: 1px solid #fff;
+color: #fff;
 }
 
-body {
-	background-color: #6bceec;
-	color: #fff;
-	font-family: "Arial", serif;
-
+#performances .button:hover, #segmentlinks .button:hover, #buttonpanel .button:hover, #bigformbuttons .button:hover, #totals .button:hover {
+color: #2c3953;
+background: #fff;
+border: 1px solid #2c3953
 }
 
-a {
-	color: #244e5b;
-	text-decoration: none;
+.bookingtable th, .paymentsummary th{
+background: #2c3953;
+color: #fff;
 }
 
-a:visited {
-	color: #244e5b;
-}
-
-a:hover {
-	color: #73e0ff;
-}
-
-.cseheader {
-	margin: 15px 0 -70px 0;
-	text-align: center;
-}
-
-.csecopy {
-	font-size: 0.6em;
-	text-align: center;
-}
-
-.loginfield input {
-	border: 2px groove #bbebe6;
-	background-color: #f7fffc;
-	color: #000;
-	width: 25em;
-}
-
-.loginsubmit input {
-	background-color: #1c404b;
-	border-color: #25505e;
-	color: #fff;
-}
-
-.segment {
-	background-color: #9797d3;
-	color: #fff;
-}
-
-.arc {
-   background-image: url(arc.png);
-   background-repeat: no-repeat;
-   padding-top: 160px;
-}
-
-.cc 
-{
-	background-image: url(childrenscancer.png);
-	background-repeat: no-repeat;
-   padding-top: 160px;
-}
-
-.medsoc 
-{
-	background-image: url(medsoc.png);
-   background-repeat: no-repeat;
-   padding-top: 160px;
-}
-
-.rege
-{
-	background-image: url(regenthotel.png);
-   background-repeat: no-repeat;
-   padding-top: 160px;
-}
-
-.sta
-{
-	background-image: url(statravel.png);
-   background-repeat: no-repeat;
-   padding-top: 160px;
-}
-
-.tourm
-{
-	background-image: url(tourismmalaysia.png);
-   background-repeat: no-repeat;
-   padding-top: 160px;
-}
-
-.unsw
-{
-	background-image: url(unsw.png);
-   background-repeat: no-repeat;
-   padding-top: 160px;
+#login .ticketprices {
+text-align: center;
 }
