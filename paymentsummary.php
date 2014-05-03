@@ -38,12 +38,19 @@ if(!$ps || count($ps) == 0) {
 	exit;
 }
 
-$htmlheaders = '<link rel="stylesheet" type="text/css" href="css/paymentsummary.css" /><script type="text/javascript" src="js/paymentsummary.js" ></script><script src="js/jquery.js" type="test/javascript"></script><script src="js/jquery.anchor.js" type="test/javascript"></script>';
+$htmlheaders = <<<HEADER
+<link rel="stylesheet" type="text/css" href="css/paymentsummary.css" />
+<script type="text/javascript" src="js/paymentsummary.js" ></script>
+<script src="js/jquery.js" type="test/javascript"></script>
+<script src="js/jquery.anchor.js" type="test/javascript"></script>
+<link rel="stylesheet" type="text/css" href="$production[css]" />
+HEADER;
+
 
 print_prod_header($link, $production, $htmlheaders);
 
 ?>
-
+<center>
 <h1>Payment Summary</h1>
 
 <!--p id="booktickets"><a href="booking.php">Click here to modify your bookings.</a></p-->
@@ -121,6 +128,7 @@ if($production['acceptpaypal']) {
 ?>
 
 </div>
+</center>
 
 <?php
 

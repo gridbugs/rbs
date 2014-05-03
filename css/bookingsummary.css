@@ -1,12 +1,12 @@
 .bookingtable {
+    color: black;
 	border-collapse: collapse;
 	margin: 2em 3em;
 }
 
 .bookingsummaryperf {
-	border: 1px solid #666;
 	margin: 2em;
-	width: 40em;
+	width: 42em;
 	padding: 2em;
 }
 

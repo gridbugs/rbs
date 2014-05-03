@@ -1,11 +1,11 @@
 .paymentsummaryperf {
-	border: 1px solid #666;
 	margin: 2em;
 	width: 40em;
 	padding: 2em;
 }
 
 .paymentsummary {
+    color: black;
 	margin: 2em 3em;
 	border-collapse: collapse;
 
@@ -42,10 +42,6 @@
 	border-top: 4px #393944 solid;
 }
 
-.paymenttotal {
-	margin-left: 3em;
-}
-
 .paymentexpiry {
 	margin-left: 3em;
 }
@@ -66,7 +62,6 @@
 }
 
 .paymentsummaryperf {
-	border: 1px solid #666;
 	margin: 2em;
 	width: 40em;
 	padding: 2em;

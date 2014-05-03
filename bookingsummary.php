@@ -20,7 +20,10 @@ $production = get_production($link, $_SESSION['production']);
 $user = $_SESSION['user_id'];
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
-$htmlheaders = '<link rel="stylesheet" type="text/css" href="css/bookingsummary.css" />';
+$htmlheaders = <<<HEADER
+<link rel="stylesheet" type="text/css" href="css/bookingsummary.css" />
+<link rel="stylesheet" type="text/css" href="$production[css]" />
+HEADER;
 
 $message = "";
 
@@ -55,7 +58,7 @@ print_prod_header($link, $production, $htmlheaders);
 ?>
 
 <?=$message?>
-
+<center id="summary">
 <h1>Booking Summary</h1>
 
 <!--p id="booktickets"><a href="booking.php#main">Click here to modify your bookings.</a></p-->
@@ -87,6 +90,7 @@ foreach($bookings as $booking) {
 <input type="submit" value="Confirm Booking" class="bigbutton continue">
 </div>
 </form>
+</center>
 
 <?
 print_prod_footer($link, $production);
