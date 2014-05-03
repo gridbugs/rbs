@@ -30,7 +30,7 @@ include('includes/groundwork-header.php');
 <div id="loginblurb">
 
 <h1><?=$production['name']?></h1>
-<p>24-27 September 2013<br />
+<p>13-16 May 2014<br />
 7:30-10:00pm<br />
 Science Theatre, UNSW</p>
 
