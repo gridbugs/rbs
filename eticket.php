@@ -58,7 +58,6 @@ EOT
 ?>
 </div>
 <div class="sponsors">
+<p>Please print out this ticket, or display it on a device, upon arrival at the Science Theatre.<br />
+Please ensure that all group members have a copy of their ticket.</p>
 </div>
-
-<p>Please print out this ticket, or display it on a device, upon arrival at the Science Theatre.</p>
-<p>Please ensure that all group members have a copy of their ticket.</p>

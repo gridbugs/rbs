@@ -34,7 +34,8 @@ top: 15px;
 .sponsors {
 display: block;
 margin-top: 410px;
-height: 140px;
+height: 180px;
+padding-top: 140px;
 background: url('/show_data/2014_med/MR14_sponsors.png') no-repeat top left;
 }
 }
