@@ -61,6 +61,7 @@ function send_email($to, $subject, $message, $headers='', $log=false) {
 		fwrite($fh, "Emailing...\r\n");
 		fwrite($fh, "To: $to\r\n");
 		fwrite($fh, "Subject: $subject\r\n");
+        fwrite($fh, "From: sales@medrevue.org");
 		fwrite($fh, "Message follows:\r\n");
 		fwrite($fh, $message);
 		fclose($fh);
