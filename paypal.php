@@ -112,7 +112,7 @@ function checkPaymentData($prodData) {
 		addLog("Error: No seats to pay for!", true);
 		// TODO: send email about this payment with no seats
 	} else {
-		$totalPrice = calculate_total_payment($seats);
+		$totalPrice = calculate_total_payment($seats) + 0.6;
 		addLog("Total price to pay is $totalPrice");
 
 		if($totalPrice == getPaymentAmount()) {
