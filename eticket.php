@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="show_data/2014_med/MR14eticket.css" />
+<div class="eticket">
+
 <?php
 include('includes/settings.php');
 include('includes/utilities.php');
@@ -11,9 +14,6 @@ $id = substr($ticket_id,0, 13);
 if($ticket_id == NULL){
     print "error";
 }else {
-
-
-    echo "<h1>eTicket for seat $seat</h1><hr/>";
 
     //set it to writable location, a place for temp generated PNG files
     $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
@@ -33,7 +33,7 @@ if($ticket_id == NULL){
 
         QRcode::png('rbs.cserevue.org.au/confirm_eticket.php?id='.$id, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
         
-    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><hr/>';  
+    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class=""ticketqrcode"/><hr/>';  
  
     $db = db_connect_pdo();
     $stmt = $db->prepare(<<<EOT
@@ -48,11 +48,17 @@ EOT
     }
 
     $performance = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo($performance[0]['title']);
-    echo "<br/>";
+	echo "<div class=\"ticketdata\">";
+	echo "<p class=\"ticketseat\">Seat: $seat</p>";
+    //echo($performance[0]['title']);
+    echo "<p class=\"ticketperformance\">";
     echo(prettydate($performance[0]['tsdate']));
-}
-
-
-   
+	echo "</p>"
+}   
 ?>
+</div>
+<div class="sponsors">
+</div>
+
+<p>Please print out this ticket, or display it on a device, upon arrival at the Science Theatre.</p>
+<p>Please ensure that all group members have a copy of their ticket.</p>
