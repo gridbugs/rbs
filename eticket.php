@@ -53,7 +53,7 @@ EOT
     //echo($performance[0]['title']);
     echo "<p class=\"ticketperformance\">";
     echo(prettydate($performance[0]['tsdate']));
-	echo "</p>"
+	echo "</p>";
 }   
 ?>
 </div>
