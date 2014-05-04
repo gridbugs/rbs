@@ -35,7 +35,7 @@ if(DEBUG) {
 <input type="hidden" name="lc" value="AU">
 <input type="hidden" name="item_name" value="<?php echo $production['name']; ?>">
 <input type="hidden" name="item_number" value="RBS-<?php echo $paymentId ?>">
-<input type="hidden" name="amount" value="<?php echo ($amount + 0.6); ?>">
+<input type="hidden" name="amount" value="<?php echo ($amount + 1); ?>"><?/* paypalfee */?>
 <input type="hidden" name="currency_code" value="AUD">
 <input type="hidden" name="button_subtype" value="products">
 <input type="hidden" name="no_note" value="1">
@@ -62,7 +62,7 @@ rbslog("Generating paypal button", 1);
 <input type="hidden" name="lc" value="AU">
 <input type="hidden" name="item_name" value="<?php echo $production['name']; ?>">
 <input type="hidden" name="item_number" value="RBS-<?php echo $paymentId ?>">
-<input type="hidden" name="amount" value="<?php echo($amount+0.6);?>">
+<input type="hidden" name="amount" value="<?php echo($amount+1);?>"><?/* paypalfee */?>
 <input type="hidden" name="currency_code" value="AUD">
 <input type="hidden" name="button_subtype" value="products">
 <input type="hidden" name="no_note" value="1">
