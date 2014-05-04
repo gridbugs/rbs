@@ -1,6 +1,7 @@
 <?php
 include('includes/settings.php');
 include('includes/utilities.php');
+include('includes/newutils.php');
 include('includes/prodmanagement.php');
 include('includes/paymentmanagement.php');
 error_reporting(-1);
@@ -33,15 +34,21 @@ if($ticket_id == NULL){
         QRcode::png('rbs.cserevue.org.au/confirm_eticket.php?id='.$id, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
         
     echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><hr/>';  
-    $DB_LINK = db_connect();
-
-    $results =  get_payment_total($DB_LINK, 'KbTLyN');
-    $seatList = array();
-    foreach($results as $seat) {
-        $seatList[] = $seat['seatId'];
+ 
+    $db = db_connect_pdo();
+    $stmt = $db->prepare(<<<EOT
+SELECT p.* 
+FROM bookedseat bs JOIN booking b JOIN performance p
+ON (bs.booking = b.id AND b.performance = p.id)
+WHERE bs.guid = :guid
+EOT
+);
+    if (!$stmt->execute(array(':guid' => $id))) {
+        echo "sql error";
     }
-    print "<p>";
-    //$results = send_confirmation_email($DB_LINK, $results);
+
+    $production = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo "$production[title]";
 }
 
 
