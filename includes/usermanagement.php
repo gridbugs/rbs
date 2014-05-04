@@ -54,11 +54,6 @@ function create_user($link, $production, $email, $pass, $name, $phone, $isadmin 
 
 	$production = (int)$production;
 
-	if(user_exists($link, $production, $email)) {
-		rbslog("Create user attempted for $email but user exists");
-		return -5;
-	}
-
 	// Create a salt, then put the info in the database
 	$salt = rand_str();
 	$passwordhash = md5($salt . $pass);
@@ -136,7 +131,7 @@ function user_login($link, $production, $email, $pass) {
 			$passwordhash = md5($row['salt'] . $pass);
 			if($passwordhash === $row['password']) {
 				$newid = create_user($link, $production, $email, $pass, $row['name'], $row['phone']);
-				if(isint($newid) && $newid >= 0) {
+				if(is_int($newid) && $newid >= 0) {
 					$_SESSION['user_id'] = $newid;
 					$_SESSION['user_name'] = $row['name'];
 					$_SESSION['user_email'] = $row['email'];
