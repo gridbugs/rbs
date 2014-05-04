@@ -87,7 +87,7 @@ if(isset($_POST['showcolumn']))
 else
 	$showcolumn = array();
 
-$ia = true;
+$ia = isset($_POST['includeadmin']);
 
 $sc = $showcolumn;
 
@@ -136,8 +136,12 @@ foreach($performances as $performance) {
 </div>
 
 <div class="one third padded"><strong>Other options</strong><br />
-<input type="checkbox" name="includeadmin" checked="checked" />Include tickets that have been booked by an admin<br />
-<input type="checkbox" name="printing" />Print friendly booking list
+<input type="checkbox" name="includeadmin" <?
+    if (isset($_POST['includeadmin']) ||$_SERVER['REQUEST_METHOD'] == 'GET') {
+        echo 'checked="checked"';
+    }
+?>/>Include tickets that have been booked by an admin<br />
+<input type="checkbox" name="printing" />Print friendly booking list (hides these controls)
 </div>
 
 <div class="three thirds padded"><strong>Select only bookings with this payment status:</strong>
@@ -152,6 +156,7 @@ if (!isset($rs) || count($rs) == 0){
 	<input type="checkbox" name="restrictstatus[5]"<?if(isset($rs[5])) echo(" checked='checked'")?>>Paid Sales Desk
 	<input type="checkbox" name="restrictstatus[9]"<?if(isset($rs[9])) echo(" checked='checked'")?>>Unavailable
 	<input type="checkbox" name="restrictstatus[10]"<?if(isset($rs[10])) echo(" checked='checked'")?>>VIP
+	<input type="checkbox" name="restrictstatus[7]"<?if(isset($rs[11])) echo(" checked='checked'")?>>Paypal
 	<input type="checkbox" name="restrictstatus[12]"<?if(isset($rs[12])) echo(" checked='checked'")?>>All Tickets
 </div>
 
@@ -200,7 +205,6 @@ $restrictions['status'] = $_POST['restrictstatus'];
 
 $sortby = $_POST['sortby'];
 $order = $_POST['order'];
-
 $bookings = get_all_bookings($link, $production['id'], $sortby, $order, $restrictions, $ia);
 $nbookings = count($bookings);
 $nseats = 0;

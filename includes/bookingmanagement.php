@@ -91,7 +91,7 @@ EOT;
 	$bookings =  sql_get_array($link, $sql);
 	foreach($bookings as $key => $booking) {
 		$seatconds = '';
-		if(isset($restricts['status'])) {
+		if(isset($restricts['status']) && !isset($restricts['status'][12])) {
 			foreach($restricts['status'] as $status => $ison) {
 				$seatconds .= "status = " . (int)$status . " OR ";
 			}
@@ -99,8 +99,9 @@ EOT;
 		}
 		$sql = "SELECT id, seat, status, price FROM bookedseat WHERE booking = " . $booking['id'] . $seatconds . " ORDER BY status ASC";
 		$bookings[$key]['seats'] = sql_get_array($link, $sql);
-		if(count($bookings[$key]['seats']) == 0)
+		if(count($bookings[$key]['seats']) == 0) {
 			unset($bookings[$key]);
+        }
 	}
 	return $bookings;
 }
