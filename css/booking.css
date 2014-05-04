@@ -1,3 +1,4 @@
+
 #performances .button, #segmentlinks .button, #buttonpanel .button, #bigformbuttons .button{
 display: block;
 width: 300px;
@@ -139,7 +140,7 @@ margin: 10px auto;}
 	text-align: center;
 	display: inline-block;
 	margin: 0 0.5em;
-	cursor: pointer;
+cursor: pointer;
 }
 
 #targetseats {
@@ -247,11 +248,11 @@ font-weight: bold;
 	margin: 2em;
 	width: 40em;
 	padding: 2em;
-} */
+}
 
 #paypalinfo {
 	display: none;
-}
+} */
 
 #ddinfo {
 	display: none;

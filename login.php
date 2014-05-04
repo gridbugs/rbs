@@ -38,8 +38,10 @@ include('includes/groundwork-header.php');
 <div class="loginfield"><div class="loginlabel">First Name:</div><input type="text" name="fname" autofocus="autofocus" /></div>
 <div class="loginfield"><div class="loginlabel">Last Name:</div><input type="text" name="lname" /></div>
 <div class="loginfield"><div class="loginlabel">Email Address:</div><input type="text" name="email"/></div>
+<?/*
 <div class="loginfield"><div class="loginlabel">Password:</div><input type="password" name="pass" /></div>
 <div class="loginfield"><div class="loginlabel">Repeat Password:</div><input type="password" name="pass_repeat" /></div>
+*/?>
 <div class="loginfield"><div class="loginlabel">Phone Number:</div><input type="text" name="phone" /></div>
 <input type="hidden" name="production" value="<?=$prodid?>" />
 <div class="loginsubmit"><input type="submit" value="Register" /></div>

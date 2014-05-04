@@ -8,12 +8,13 @@
 include_once('password_compat/lib/password.php');
 include_once('utilities.php');
 include_once('prodmanagement.php');
+include_once('includes/newutils.php');
 
 /*
  * Helpful variables.
  */
 
-$regex_email = '/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/';
+$regex_email = '/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z0-9\.]+$/';
 $regex_username = '/^[A-Za-z0-9_+-]+$/';
 $regex_name = '/^[A-Za-z0-9_\'+ -]+$/'; // IMPORTANT - DOES NOT SANITISE FOR SQL STATEMENTS
 $regex_phone = '/^[0-9 \(\)]{4,12}$/';
@@ -54,10 +55,14 @@ function create_user($link, $production, $email, $pass, $name, $phone, $isadmin 
 
 	$production = (int)$production;
 
+    $db = db_connect_pdo();
+
+    /*
 	if(user_exists($link, $production, $email)) {
 		rbslog("Create user attempted for $email but user exists");
 		return -5;
 	}
+    */
 
 	// Create a salt, then put the info in the database
 	$salt = rand_str();
@@ -66,28 +71,34 @@ function create_user($link, $production, $email, $pass, $name, $phone, $isadmin 
 	// Create a random booking id then make sure that it's not taken already
 	$paymentid = rand_str();
 	while(1) {
-		$query = "select id from user where paymentid = '$paymentid'";
-		$results = mysql_query($query);
-		if($results && mysql_num_rows($results) > 0)
+		$stmt = $db->prepare("select id from user where paymentid = :paymentid");
+        $success = $stmt->execute(array(':paymentid' => $paymentid));
+		if($success && $stmt->rowCount() > 0)
 			$paymentid = rand_str();
 		else
 			break;
 	}
 
-	$sql = "insert into user(production, name, email, salt, password, phone, admin, paymentid) values (";
-	$sql .= "$production, '$name', '$email', '$salt', '$passwordhash', '$phone', $isadmin, '$paymentid'";
-	$sql .= ")";
-	if(mysql_query($sql)) {
-		rbslog("Created user $email: $name", 1);
-		// Lets get the user id
-		$query = "select id from user where email = '$email' and production = '$production'";
-		$result = mysql_query($query);
-		$row = mysql_fetch_array($result);
-		return ($row['id']);
-	} else {
+    $stmt = $db->prepare(<<<EOT
+insert into user(production, name, email, salt, password, phone, admin, paymentid) 
+values (:production, :name, :email, :salt, :passwordhash, :phone, :isadmin, :paymentid)
+EOT
+);
+    if($stmt->execute(array(
+        ':production' => $production, 
+        ':name' => $name,
+        ':email' => $email,
+        ':salt' => $salt,
+        ':passwordhash' => $passwordhash,
+        ':phone' => $phone,
+        ':isadmin' => $isadmin,
+        ':paymentid' => $paymentid
+    ))) {
+        return $db->lastInsertId();
+    } else {
 		rbslog("Create user SQL statement failed: $sql");
 		return -6;
-	}
+    }
 }
 
 
@@ -111,7 +122,7 @@ function user_login($link, $production, $email, $pass) {
 	$q_thisproduction = "select * from user where email = '$email' and production = $production";
 	$r_thisproduction = mysql_query($q_thisproduction, $link);
 
-	if(mysql_num_rows($r_thisproduction) == 1) {
+	if(mysql_num_rows($r_thisproduction) >= 1) {
 		// Lets test the password
 		$row = mysql_fetch_array($r_thisproduction, MYSQL_ASSOC);
 
@@ -150,6 +161,25 @@ function user_login($link, $production, $email, $pass) {
 		}
 		return -2;
 	}
+}
+
+/*
+ * This function is for logging a newly created user.
+ * It exists to allow multiple user accounts with the 
+ * same email address for a production, which is needed
+ * if we don't allow logins.
+ */
+function user_login_by_id($link, $production, $id) {
+	$q_thisproduction = "select * from user where id = $id";
+	$r_thisproduction = mysql_query($q_thisproduction, $link);
+
+    $row = mysql_fetch_array($r_thisproduction, MYSQL_ASSOC);
+    $_SESSION['user_id'] = $row['id'];
+    $_SESSION['user_name'] = $row['name'];
+    $_SESSION['user_email'] = $row['email'];
+    $_SESSION['user_phone'] = $row['phone'];
+    $_SESSION['production'] = $production;
+    return $row['id'];
 }
 
 function get_prodadmin_shows($link, $userid) {

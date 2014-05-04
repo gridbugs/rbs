@@ -12,6 +12,11 @@ include_once('includes/session.php');
 include_once('includes/usermanagement.php');
 include_once('includes/frames/prodtheme.php');
 
+if (isset($_POST['pass'])) {
+    $pass = $_POST['pass'];
+} else {
+    $pass = '';
+}
 
 if(!isset($_POST['production']) || !production_exists($link, $_POST['production'])) { // The page has been accessed directly.
 	db_close($link);
@@ -20,8 +25,10 @@ if(!isset($_POST['production']) || !production_exists($link, $_POST['production'
 
 if(!isset($_POST['email']) || $_POST['email'] == '')
 	die('You need to give us an email address.  Please press back and enter in a valid email');
+/*
 if(!isset($_POST['pass']) || $_POST['pass'] == '')
 	die('Please give a password.  Press back to register.');
+*/
 if(!isset($_POST['fname']) || $_POST['fname'] == '')
 	die('Please give us a valid first name.  Press back to register.');
 if(!isset($_POST['lname']) || $_POST['lname'] == '')
@@ -29,13 +36,15 @@ if(!isset($_POST['lname']) || $_POST['lname'] == '')
 if(!isset($_POST['phone']) || $_POST['phone'] == '')
 	die("Please give us a phone number so that we can contact you if we need to (if you're running late or there's a ticketing issue.)");
 
-if ($_POST['pass'] != $_POST['pass_repeat']) {
-	die('The passwords given were not equal.  Please press Back and try again.');
+if (isset($_POST['pass_repeat'])) {
+    if ($pass != $_POST['pass_repeat']) {
+        die('The passwords given were not equal.  Please press Back and try again.');
+    }
 }
 
 $reason = '';
 
-$user = create_user($link, $_POST['production'], $_POST['email'], $_POST['pass'], $_POST['fname']." ".$_POST['lname'], $_POST['phone'], false, $reason);
+$user = create_user($link, $_POST['production'], $_POST['email'], $pass, $_POST['fname']." ".$_POST['lname'], $_POST['phone'], false, $reason);
 
 if($user < 0)
 {
@@ -53,6 +62,7 @@ if($user < 0)
 	}
 } else {
 	user_login($link, $_POST['production'], $_POST['email'], $_POST['pass']); // Login and set the session variables.
+    //user_login_by_id($user);
 	header('Location: paymentsummary.php');
 	exit;
 }

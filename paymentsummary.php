@@ -119,15 +119,15 @@ if($production['acceptdd']) {
 	echo('<div class="pay" id="ddinfo"><a name="dd"></a><h4>Direct Debit</h4>' . $ddinfo . '</div>');
 }
 if($production['acceptpaypal']) {
-	//echo('<div class="pay" id="paypalinfo"><a name="paypal"></a><center><h4>Paypal</h4>Click the Paypal button below to purchase your tickets now!<br/><br/>');
+	echo('<div class="pay" id="paypalinfo">Click the Paypal button below to purchase your tickets now!');
 	if($total > 0) {
 		$userRow = get_user($link, $user);
 		generate_paypal_button($production, $userRow['paymentid'], $total);
 	}
-//	echo('</center></div>');
+	echo('</div>');
 }
 ?>
-<a href="booking.php#main" class="button large">Modify Booking</a>
+<?/*<a href="booking.php#main" class="button large">Modify Booking</a>*/?>
 </div>
 
 </div>
