@@ -151,7 +151,7 @@ function send_confirmation_email_bookingid($link, $booking){
 
     $message .= "<b>Ticket Info:</b><br>";
     $message .= "<ul>";
-    $message .= "<li>The show will start at 8pm sharp. Doors will close at 8:15pm, after which you can only enter during intermission.</li>";
+    $message .= "<li>Doors will open at 7:30pm and the show will start at 8pm sharp. Doors will close at 8:15pm, after which you can only enter during intermission.</li>";
     $message .= "<li>Please print out each of the tickets found at the links above, or display the link on your phone or other device. Paypal receipts are not substitutes for tickets.</li>"; 
     $message .= "<li>Members of a group booking must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process.</li>";
@@ -220,7 +220,7 @@ function send_confirmation_email($link, $seats){
 
     $message .= "<b>Ticket Info:</b><br>";
     $message .= "<ul>";
-    $message .= "<li>The show will start at 8pm sharp. Doors will close at 8:15pm, after which you can only enter during intermission.</li>";
+    $message .= "<li>Doors will open at 7:30pm, and the show will start at 8pm sharp. Doors will close at 8:15pm, after which you can only enter during intermission.</li>";
     $message .= "<li>Please print out each of the tickets found at the links above, or display the link on your phone or other device. Paypal receipts are not substitutes for tickets.</li>"; 
     $message .= "<li>Members of a group booking must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process.</li>";
