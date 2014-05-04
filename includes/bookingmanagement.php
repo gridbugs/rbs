@@ -218,6 +218,7 @@ function get_current_deadline($link, $performance) {
 		exit();
 		return null;
 	}
+
 		
 	// Sorting out the deadline.
 	$deadline = time() + $paywindow;
@@ -233,7 +234,7 @@ function get_current_deadline($link, $performance) {
         }
 	}
 
-	if($deadline > $harddeadline)
+	if($harddeadline && $deadline > $harddeadline)
 		$deadline = $harddeadline;
 
 	return $deadline;
