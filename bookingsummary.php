@@ -95,6 +95,7 @@ foreach($bookings as $booking) {
 
 <div class='payforbooking' id='bigformbuttons'>
 <a href="booking.php#main" class="large button">Modify Booking</a>
+<p>After confirming your booking you will not be able to change the seats you have booked.</p>
 <input type="submit" value="Confirm Booking" class="button large continue">
 </div>
 </form>

@@ -47,6 +47,7 @@ function print_price_selection($link, $booking, $isadmin = false) {
 	if($booking['title'] !== '') {
 ?>
 <h2>Select ticket types for <? echo(prettydate($booking['tsdate']))?></h2>
+<p>Please be prepared to show proof that you are a student or arc member when selecting those options.</p>
 <?
 	} else {
 ?>
