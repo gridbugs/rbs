@@ -49,6 +49,8 @@ EOT
 
     $production = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo($production[0]['title']);
+    echo "<br/>";
+    echo(prettydate($performance['tsdate']));
 }
 
 
