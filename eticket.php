@@ -48,7 +48,7 @@ EOT
     }
 
     $production = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo "$production[title]";
+    echo($production[0]['title']);
 }
 
 
