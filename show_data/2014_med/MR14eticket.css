@@ -1,0 +1,40 @@
+@font-face
+{
+font-family: libertine;
+src: url('/show_data/2014_med/LinLibertine_RB.ttf');
+}
+
+.eticket {
+font-family: libertine;
+font-size: 225%;
+line-height: 30%;
+color: #fff;
+position:absolute;
+top: 0px;
+left: 0px;
+z-index: -1;
+width: 800px;
+height: 400px;
+background: url('/show_data/2014_med/MR14_ticket.png');
+}
+
+.ticketdata {
+margin-top: 270px;
+width: 500px;
+text-align: center;
+}
+
+img.ticketqrcode {
+z-index: 1;
+position: absolute;
+left: 563px;
+top: 15px;
+}
+
+.sponsors {
+display: block;
+margin-top: 410px;
+height: 140px;
+background: url('/show_data/2014_med/MR14_sponsors.png') no-repeat top left;
+}
+}

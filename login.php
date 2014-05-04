@@ -39,7 +39,7 @@ include('includes/groundwork-header.php');
 
 <div id="register" class="box">
 <h2>Book tickets</h2>
-<p class="loginblurb">To make a new booking, please create an account:</p>
+<p class="loginblurb">To make a new booking, please enter your details:</p>
 <form method="post" action="register.php#main">
 <div class="loginfield"><div class="loginlabel">First Name:</div><input type="text" name="fname" autofocus="autofocus" /></div>
 <div class="loginfield"><div class="loginlabel">Last Name:</div><input type="text" name="lname" /></div>
@@ -64,9 +64,10 @@ include('includes/groundwork-header.php');
 <h3>Group tickets (10+ tickets) $10</h3>
 </div>
 <h2>Terms and conditions</h2>
-<p>For large group bookings (10+ people), please <a href="mailto:sales@medrevue.org.au">contact the Sales Team</a></p>
+<p>For large group bookings (10+ people), please <a href="mailto:ticketing@medrevue.org.au">contact the Sales and Ticketing Team</a></p>
 <p>Upon payment, your tickets will be sent to the email address supplied. Once payment is made, under no circumstances will refunds be given.</p>
-<p>Please print and present your ticket at the door. Paypal receipts will be accepted.</p>
+<p>Please print and present your ticket at the door. Paypal receipts will not be accepted.</p>
+<p>A 60c booking fee will be added to each ticket booked online.</p>
 <p>Your contact details will not be used for any purposes other than the following:</p>
 <ul>
 <li>To send you your booking details and notify you of any necessary changes to your booking.</li>
