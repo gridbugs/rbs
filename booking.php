@@ -147,6 +147,7 @@ include('includes/groundwork-header.php');
 <div id="buttonpanel">
 <div id="anotherday" onClick="javascript: toShow()" class="button large">See Another Day</div>
 <div id="payfortickets" onClick="javascript: payForTickets()" class="button large continue">Save Booking</div>
+<p>After clicking "Save Booking" you will have 10 minutes to pay for your tickets (either by PayPal or Credit Card).</p>
 </div>
 
 <div id="legend">
