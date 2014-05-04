@@ -9,12 +9,18 @@ include_once('includes/utilities.php');
 include_once('includes/prodmanagement.php');
 include_once('includes/frames/prodtheme.php');
 
+
+
 if(isset($_GET['p']))
     $prodid = (int)$_GET['p'];
 else
     $prodid = (int)$_GET['production'];
 
 $link = db_connect();
+include_once('includes/session.php');
+if(!isset($_SESSION['user_id'])) {
+    session_destroy();
+}
 if(!production_exists($link, $prodid))
 	die('Production does not exist');
 

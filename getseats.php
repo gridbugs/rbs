@@ -27,9 +27,12 @@ include_once('includes/theatres/' . $production['theatre'] . '.inc');
 include_once('includes/bookingmanagement.php');
 
 
-if(isset($_SESSION['user_admin']))
+if(isset($_SESSION['user_admin'])) {
 	$isadmin = $_SESSION['user_admin'];
-$user = $_SESSION['admin_id'];
+    $user = $_SESSION['admin_id'];
+} else {
+    $user = $_SESSION['user_id'];
+}
 
 // Get the closed segments for a performance
 $cssql = "SELECT segment FROM closedsegment WHERE performance = $perfid";

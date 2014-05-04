@@ -61,9 +61,8 @@ if($user < 0)
 		die('Error registering user.  Please try again.');
 	}
 } else {
-	user_login($link, $_POST['production'], $_POST['email'], $_POST['pass']); // Login and set the session variables.
-    //user_login_by_id($user);
-	header('Location: paymentsummary.php');
+    user_login_by_id($link, $_POST['production'], $user);
+	header('Location: booking.php');
 	exit;
 }
 ?>

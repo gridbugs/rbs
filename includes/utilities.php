@@ -108,6 +108,7 @@ if(DEBUG)
  * Logs a message and takes appropriate action.  $priority can be a number between 0 and 5, 0 being debugging and 5 being an error that must be raised immediately.
  */
 function rbslog($message, $priority = 0) {
+    global $rbslog;
 	switch($priority) {
 	case 0: // For simple debug messages.  Will only do anything if debug is on
 		$prefix = "Debug ";
