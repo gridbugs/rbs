@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="show_data/2014_med/MR14eticket.css" />
 <div class="eticket">
-
 <?php
 include('includes/settings.php');
 include('includes/utilities.php');
@@ -33,7 +32,7 @@ if($ticket_id == NULL){
 
         QRcode::png('rbs.cserevue.org.au/confirm_eticket.php?id='.$id, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
         
-    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class=""ticketqrcode"/><hr/>';  
+    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class=""ticketqrcode" />';  
  
     $db = db_connect_pdo();
     $stmt = $db->prepare(<<<EOT
@@ -54,6 +53,7 @@ EOT
     echo "<p class=\"ticketperformance\">";
     echo(prettydate($performance[0]['tsdate']));
 	echo "</p>";
+	echo "</div>";
 }   
 ?>
 </div>
