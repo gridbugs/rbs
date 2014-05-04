@@ -37,7 +37,7 @@ if($ticket_id == NULL){
  
     $db = db_connect_pdo();
     $stmt = $db->prepare(<<<EOT
-SELECT p.* 
+SELECT p.*, UNIX_TIMESTAMP(p.date) tsdate
 FROM bookedseat bs JOIN booking b JOIN performance p
 ON (bs.booking = b.id AND b.performance = p.id)
 WHERE bs.guid = :guid
@@ -47,10 +47,10 @@ EOT
         echo "sql error";
     }
 
-    $production = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo($production[0]['title']);
+    $performance = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo($performance[0]['title']);
     echo "<br/>";
-    echo(prettydate($performance['tsdate']));
+    echo(prettydate($performance[0]['tsdate']));
 }
 
 
