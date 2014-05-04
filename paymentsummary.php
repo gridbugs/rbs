@@ -92,7 +92,11 @@ foreach($ps as $perfid => $summary) {
 
 <div id="totals">
 <p>Note that a $0.60 booking fee has been applied to cover the fee paypal charges us.</p>
+<? if ($total == 0): ?>
+<h2>All tickets have been paid for.</h2>
+<? else: ?>
 <h2 class="paymenttotal">Total Amount Due: <strong>$<?=$total.".60"?></strong></h2>
+<?endif?>
 <?php
 $paymentsummary = ob_get_contents();
 ob_end_flush();
