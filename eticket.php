@@ -32,7 +32,7 @@ if($ticket_id == NULL){
 
         QRcode::png('rbs.cserevue.org.au/confirm_eticket.php?id='.$id, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
         
-    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class=""ticketqrcode" />';  
+    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class="ticketqrcode" />';  
  
     $db = db_connect_pdo();
     $stmt = $db->prepare(<<<EOT
