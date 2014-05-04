@@ -88,6 +88,7 @@ if(!$bookings || count($bookings) == 0) {
 <?
 foreach($bookings as $booking) {
 	echo('<div class="bookingsummaryperf">');
+    ?><p>This booking will expire if not paid for at <?=$booking['deadline']?>.<?
 	print_price_selection($link, $booking);
 	echo('</div>');
 }
