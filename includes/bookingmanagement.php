@@ -95,8 +95,13 @@ EOT;
 			foreach($restricts['status'] as $status => $ison) {
 				$seatconds .= "status = " . (int)$status . " OR ";
 			}
-			$seatconds = ' AND (' . substr($seatconds, 0, -4) . ')';
+			$seatconds = ' AND (' . substr($seatconds, 0, -4) . ')'; // remove the last " OR "
+
 		}
+        
+        if (isset($restricts['status']) && !isset($restricts['status'][13])) {
+            $seatconds .= ' AND (status != -1) ';
+        }
 		$sql = "SELECT id, seat, status, price FROM bookedseat WHERE booking = " . $booking['id'] . $seatconds . " ORDER BY status ASC";
 		$bookings[$key]['seats'] = sql_get_array($link, $sql);
 		if(count($bookings[$key]['seats']) == 0) {

@@ -135,13 +135,18 @@ foreach($performances as $performance) {
 </select>
 </div>
 
-<div class="one third padded"><strong>Other options</strong><br />
+<div class="one third padded"><strong>Other Options</strong><br />
 <input type="checkbox" name="includeadmin" <?
     if (isset($_POST['includeadmin']) ||$_SERVER['REQUEST_METHOD'] == 'GET') {
         echo 'checked="checked"';
     }
 ?>/>Include tickets that have been booked by an admin<br />
-<input type="checkbox" name="printing" />Print friendly booking list (hides these controls)
+<input type="checkbox" name="printing" />Print friendly booking list (hides these controls)<br />
+<input type="checkbox" name="restrictstatus[13]"<?
+    if (isset($_POST['includeexpired'])) {
+        echo 'checked="checked"';
+    }
+?>/>Include expired tickets
 </div>
 
 <div class="three thirds padded"><strong>Select only bookings with this payment status:</strong>
