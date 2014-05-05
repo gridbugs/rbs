@@ -88,6 +88,7 @@ $bodyattrs = " onresize='widthToWindow()'";
 print_prod_header($link, $production, $htmlheaders, $bodyattrs);
 include('includes/groundwork-header.php');
 ?>
+<link type="text/css" rel="stylesheet" href="show_data/2014_med/med_revue_2014.css">
 <div class="header">
 <h1 class="invisible"><?=$production['name']?></h1>
 
@@ -99,9 +100,7 @@ include('includes/groundwork-header.php');
 <input type="hidden" name="submitseats" value="true">
 </form>
 <div>
-<center>
-<p>The your confirmation email and e-tickets will be sent to: <br/><strong><?=$_SESSION['user_email']?></strong></p>
-<center/>
+<p class="align-center">Your confirmation email and e-tickets will be sent to: <br /><strong><?=$_SESSION['user_email']?></strong></p>
 </div>
 <div id="performances">
 	<h1>When would you like to go?</h1>

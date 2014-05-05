@@ -58,6 +58,7 @@ $bookings = get_bookings($link, $user, $production['id']);
 print_prod_header($link, $production, $htmlheaders);
 include('includes/groundwork-header.php');
 ?>
+<link type="text/css" rel="stylesheet" href="show_data/2014_med/med_revue_2014.css">
 
 <div class="header">
 <h1 class="invisible"><?=$production['name']?></h1>
