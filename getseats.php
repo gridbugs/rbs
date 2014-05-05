@@ -27,8 +27,8 @@ include_once('includes/theatres/' . $production['theatre'] . '.inc');
 include_once('includes/bookingmanagement.php');
 
 
-if(isset($_SESSION['user_admin'])) {
-	$isadmin = $_SESSION['user_admin'];
+if(isset($_SESSION['admin_id'])) {
+	$isadmin = true;
     $user = $_SESSION['admin_id'];
 } else {
     $user = $_SESSION['user_id'];
