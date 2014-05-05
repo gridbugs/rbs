@@ -306,7 +306,15 @@ foreach($bookings as $booking) {
 		echo("<td>" . htmlspecialchars($booking['deadline']) . "</td>");
 	if(isset($showcolumn['bookedtime']))
 		echo("<td>" . htmlspecialchars($booking['bookedtime']) . "</td>");
-	echo ("<td>" . htmlspecialchars($booking['user']) . "</td>");
+
+    echo "<td>";
+    if ($booking['bookedbyadmin']) {
+        echo "<span style='color:blue'>";
+    } else {
+        echo "<span style='color:green'>";
+    }
+	printf("%s", htmlspecialchars($booking['bbname']));
+    echo "</td>";
  	echo("</tr>");
 }
 

@@ -82,11 +82,11 @@ function get_all_bookings($link, $prodid, $sortby = 'id', $sortdir = 'asc', $res
 	$usertable .= ")";
 
 	$sql = <<<EOT
-(select b.*, UNIX_TIMESTAMP(p.date) tsdate, u.paymentid, b.email, u.phone, b.name
+(select b.*, UNIX_TIMESTAMP(p.date) tsdate, u.paymentid, b.email, u.phone, b.name, u.email as bbemail, u.name as bbname
 from booking b, performance p, $usertable u 
 where b.performance = p.id and b.user = u.id and b.bookedbyadmin = 1 and p.production = $prodid)
 UNION
-(select b.*, UNIX_TIMESTAMP(p.date) tsdate, u.paymentid, u.email, u.phone, u.name
+(select b.*, UNIX_TIMESTAMP(p.date) tsdate, u.paymentid, u.email, u.phone, u.name, u.email as bbemail, u.name as bbname
 from booking b, performance p, $usertable u 
 where b.performance = p.id and b.user = u.id and b.bookedbyadmin = 0 and p.production = $prodid)
 EOT;
