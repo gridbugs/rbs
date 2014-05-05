@@ -7,7 +7,7 @@
   <!--<![endif]-->
  <head>
  <? if (isset($_SESSION['admin_id']) && !isset($_SESSION['admin_production'])): ?>
-    <? if (isset($production['name'])): ?>
+    <? if (isset($productio) && isset($production['name'])): ?>
         <title>RBS Admin - <?=$production['name']?></title>
     <? else: ?>
         <title>RBS Admin</title>
