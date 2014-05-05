@@ -29,6 +29,7 @@ include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
 include('includes/groundwork-header.php');
 ?>
+<link type="text/css" rel="stylesheet" href="show_data/2014_med/med_revue_2014.css">
 <div class="container">
 <div class="header">
 <h1 class="invisible"><?=$production['name']?></h1>
@@ -55,7 +56,6 @@ include('includes/groundwork-header.php');
 </div>
 
 <div id="login">
-<h2>Prices</h2>
 <div class="ticketprices">
 <h3>Opening night $10</h3>
 <h3>Arc members $12</h3>

@@ -130,7 +130,7 @@ function send_confirmation_email_bookingid($link, $booking){
 
     $name = $booking['name'];
     $message = "Dear $name,<p>";
-    $message .= "Thank you for buying tickets to $result[prod]!<br />"; 
+    $message .= "Thank you for buying tickets to Med Revue 2014, Peter Pandemic!<br />"; 
     $message .= "<b>Venue:</b> UNSW Science Theatre<br />";
     $message .= "<b>Time:</b> Doors open at 7:30pm for a 8pm start.<p>";
     $date = "";
@@ -155,7 +155,7 @@ function send_confirmation_email_bookingid($link, $booking){
     $message .= "<li>Please print out each of the tickets found at the links above, or display the link on your phone or other device. Paypal receipts are not substitutes for tickets.</li>"; 
     $message .= "<li>Members of a group booking must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process.</li>";
-    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@cserevue.org.au.</li>";
+    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@medrevue.org.</li>";
     $message .= "</ul>";
 
     $message .= "<b> Getting there on foot</b><br>";
@@ -198,7 +198,7 @@ function send_confirmation_email($link, $seats){
 
 
     $message = "Dear $result[name],<p>";
-    $message .= "Thank you for buying tickets to $result[prod]!<br />"; 
+    $message .= "Thank you for buying tickets to Med Revue 2014, Peter Pandemic!<br />"; 
     $message .= "<b>Venue:</b>UNSW Science Theatre<br>";
     $message .= "<b>Time:</b> Doors open at 7:30pm for a 8pm start.<p>";
     $date = "";
@@ -224,7 +224,7 @@ function send_confirmation_email($link, $seats){
     $message .= "<li>Please print out each of the tickets found at the links above, or display the link on your phone or other device. Paypal receipts are not substitutes for tickets.</li>"; 
     $message .= "<li>Members of a group booking must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process.</li>";
-    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@cserevue.org.au.</li>";
+    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@medrevue.org.</li>";
     $message .= "</ul>";
 
     $message .= "<b> Getting there on foot</b><br>";
