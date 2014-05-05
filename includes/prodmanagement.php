@@ -236,7 +236,11 @@ function send_confirmation_email($link, $seats){
     $message .= "Enter through Gate 2, High St, turn left at the Io Myers Theatre, then first right, turn left into Union Rd, then first right. Handicapped patrons may park here in designated bays. Other vehicles should return and exit via Gate 2 and proceed to the Barker St Parking Station.<p>";
 
     $headers = "Content-type: text/html; charset=iso-8859-1 \r\n";
-    $headers .= "From: ticketing@medrevue.org\r\n" ;
+    $headers .= "From: ticketing@medrevue.org\r\n";
+
+    // this should fix the random spaces appearing in emails
+    $headers .= "Content-Transfer-Encoding: base64\r\n\r\n";
+    $message = chunk_split(base64_encode($message));
 
     send_email($result[email], $result[prod]." eTickets" , $message, $headers);
     print $message;
