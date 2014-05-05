@@ -6,11 +6,15 @@
 <html lang="en" class="no-js">
   <!--<![endif]-->
  <head>
+ <? if (isset($_SESSION['admin_id']) && !isset($_SESSION['admin_production'])): ?>
     <? if (isset($production['name'])): ?>
         <title>RBS Admin - <?=$production['name']?></title>
     <? else: ?>
         <title>RBS Admin</title>
     <?endif?>
+<? else: ?>
+    <title><?=$production['name']?></title>
+<? endif ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
