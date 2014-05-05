@@ -98,7 +98,11 @@ include('includes/groundwork-header.php');
 <span id="seatsubmit"></span>
 <input type="hidden" name="submitseats" value="true">
 </form>
-
+<div>
+<center>
+<p>The your confirmation email and e-tickets will be sent to: <br/><strong><?=$_SESSION['user_email']?></strong></p>
+<center/>
+</div>
 <div id="performances">
 	<h1>When would you like to go?</h1>
 	<div id="perfdates">
