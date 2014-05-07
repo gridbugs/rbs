@@ -37,7 +37,7 @@ foreach ( $tickettotals as $tt ) {
 
 <?php
     if (isset($tt['confirmed']) and count($tt['confirmed']) > 0){
-        echo "<div class=\"one fourth padded\"><h4>Total confirmed/paid by price class:</h4><ul>";
+        echo "<div class=\"one fourth padded\"><h4>Total paid by price class:</h4><ul>";
         foreach ($tt['confirmed'] as $price){
             echo "<li class='margin-left: 5em;'>".$price['name'].": ".$price['count']."</li>";
         }
