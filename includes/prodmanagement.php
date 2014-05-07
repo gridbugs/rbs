@@ -127,6 +127,18 @@ function send_confirmation_email_bookingid($link, $booking){
     $sql = "SELECT bs.* , p.date, p.starttime FROM bookedseat bs, performance p, booking b WHERE bs.id in ($seatsInQuery) and b.id = bs.booking and p.id = b.performance";
     $seats = sql_get_array($link, $sql);
 
+    // determine if at least one seat is being marked as paid
+    $some_paid_seats = false;
+    foreach($seats as $seat) {
+        if ($seat['status'] == 4) {
+            $some_paid_seats = true;
+            break;
+        }
+    }
+
+    if (!$some_paid_seats) {
+        return;
+    }
 
     $name = $booking['name'];
     $message = "Dear $name,<p>";
@@ -136,6 +148,10 @@ function send_confirmation_email_bookingid($link, $booking){
     $date = "";
 
     foreach($seats as $seat){
+        // don't include unpaid seats in the email
+        if ($seat['status'] != 4) {
+            continue;
+        }
         if($date == "" || $date != $seat['date']){
             if($date != $seat['date']){
                 $message .="</ul>";
