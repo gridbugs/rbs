@@ -136,9 +136,11 @@ function send_confirmation_email_bookingid($link, $booking){
         }
     }
 
+    /* TODO: uncomment this after med revue and test more
     if (!$some_paid_seats) {
         return;
     }
+    */
 
     $name = $booking['name'];
     $message = "Dear $name,<p>";
