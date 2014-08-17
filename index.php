@@ -2,6 +2,10 @@
 include('includes/utilities.php');
 include('includes/prodmanagement.php');
 
+if (defined('CURRENT_SHOW')) {
+    header("Location: login.php?production=".CURRENT_SHOW);
+}
+
 $link = db_connect();
 $prodlist = get_prodlist($link);
 if(count($prodlist) == 1) {
