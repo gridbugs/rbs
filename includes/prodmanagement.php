@@ -6,7 +6,6 @@
 include_once('utilities.php');
 include_once('newutils.php');
 
-
 function production_exists($link, $prodid) {
 	$prodid = (int)$prodid;
 
