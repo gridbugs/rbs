@@ -1,0 +1,63 @@
+/* The CSS file for Med Revue 2014 */
+
+body {
+	background: url('/show_data/2014_med/MR14_background.png') repeat-x top center;
+	background-color: #fff;
+	color: #000;
+	font-family: "Arial", serif;
+
+}
+
+.header {
+background: url('/show_data/2014_med/HeaderMedRevue14_02.png') no-repeat top center;
+padding-top: 350px;
+text-align: center;
+font-size: 150%;
+font-weight: bold;
+}
+
+.sponsors {
+display: block;
+height: 140px;
+background: url('/show_data/2014_med/MR14_sponsors.png') no-repeat top center;
+}
+
+h1 > img.banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 800px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+color: #2c3953;
+}
+
+footer {
+    text-align: center;
+}
+
+.invisible {
+display: none;
+}
+
+#performances .button, #segmentlinks .button, #buttonpanel .button, #bigformbuttons .button, #totals .button {
+background: #2c3953;
+border: 1px solid #fff;
+color: #fff;
+}
+
+#performances .button:hover, #segmentlinks .button:hover, #buttonpanel .button:hover, #bigformbuttons .button:hover, #totals .button:hover {
+color: #2c3953;
+background: #fff;
+border: 1px solid #2c3953
+}
+
+.bookingtable th, .paymentsummary th{
+background: #2c3953;
+color: #fff;
+}
+
+#login .ticketprices {
+text-align: center;
+}
