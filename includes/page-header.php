@@ -10,7 +10,7 @@
 		<div class="two thirds align-right">
 			<a role="button" href="admin_booking.php">New Booking</a>
 			<a role="button" href="admin_bookinglist.php">Booking List</a>
-			<?if(isset($production['id']) && is_superadmin($production['id'])):?>
+			<?if(isset($production['id']) && can_manage_production($production['id'])):?>
 			<a role="button" href="admin_editproduction.php">Edit Production Details</a>
 			<a role="button" href="admin_manageticketers.php?prod=<?=$production['id']?>">Manage Ticketers</a>
 			<?endif?>
