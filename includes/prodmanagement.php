@@ -118,7 +118,7 @@ function send_confirmation_email_bookingid($link, $booking){
         $seatList[] = $seat['seatId'];
     }
     $seatsInQuery = implode(",", $seatList);
-    $sql = "SELECT p.name as prod, p.id as id";
+    $sql = "SELECT p.name as prod, p.id as id, p.bookingslocation as bookingsite, p.salesemail as salesemail";
     $sql .= "FROM production p, booking b, performance ps";
     $sql .= "WHERE b.id = $id and ps.id = b.performance and p.id = ps.production";
     $result = sql_get_array($link, $sql);
@@ -143,7 +143,7 @@ function send_confirmation_email_bookingid($link, $booking){
 
     $name = $booking['name'];
     $message = "Dear $name,<p>";
-    $message .= "Thank you for buying tickets to Med Revue 2014, Peter Pandemic!<br />"; 
+    $message .= "Thank you for buying tickets to $result[prod]!<br/>"; 
     $message .= "<b>Venue:</b> UNSW Science Theatre<br />";
     $message .= "<b>Time:</b> Doors open at 7:30pm for a 8pm start.<p>";
     $date = "";
@@ -162,7 +162,7 @@ function send_confirmation_email_bookingid($link, $booking){
             $message .= "<ul>";
             $date = $seat['date'];
         }
-        $message .= "<li><b>Ticket for seat $seat[seat]:</b> http://rbs.cserevue.org.au/eticket.php?ticket_id=$seat[guid]$seat[seat]</li>";
+        $message .= "<li><b>Ticket for seat $seat[seat]:</b> $result[bookingsite]/eticket.php?ticket_id=$seat[guid]$seat[seat]</li>";
     }
     $message .= "</ul><hr/>";
 
@@ -172,7 +172,7 @@ function send_confirmation_email_bookingid($link, $booking){
     $message .= "<li>Please print out each of the tickets found at the links above, or display the link on your phone or other device. Paypal receipts are not substitutes for tickets.</li>"; 
     $message .= "<li>Members of a group booking must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process.</li>";
-    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@medrevue.org.</li>";
+    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to $result[salesemail].</li>";
     $message .= "</ul>";
 
     $message .= "<b> Getting there on foot</b><br>";
@@ -184,7 +184,7 @@ function send_confirmation_email_bookingid($link, $booking){
     $message .= "Enter through Gate 2, High St, turn left at the Io Myers Theatre, then first right, turn left into Union Rd, then first right. Handicapped patrons may park here in designated bays. Other vehicles should return and exit via Gate 2 and proceed to the Barker St Parking Station.<p>";
 
     $headers = "Content-type: text/html; charset=iso-8859-1 \r\n";
-    $headers .= "From: ticketing@medrevue.org\r\n" ;
+    $headers .= "From: $result[salesemail]\r\n" ;
 
     send_email($booking['email'], $result['prod']." eTickets" , $message, $headers);
     print "Emailing $booking[name] ($booking[email])<br/>";
@@ -205,7 +205,7 @@ function send_confirmation_email($link, $seats){
         $seatList[] = $seat['seatId'];
     }
     $seatsInQuery = implode(",", $seatList);
-    $sql = "SELECT p.name as prod, u.name, u.email ";
+    $sql = "SELECT p.name as prod, u.name, u.email, p.bookingslocation as bookingsite, p.salesemail as salesemail ";
     $sql .= "FROM production p, booking b, bookedseat bs, user u ";
     $sql .= "WHERE bs.id = $seatList[0] and b.id = bs.booking and u.id = b.user and p.id = u.production";
     $result = sql_get_array($link, $sql);
@@ -215,7 +215,7 @@ function send_confirmation_email($link, $seats){
 
 
     $message = "Dear $result[name],<p>";
-    $message .= "Thank you for buying tickets to Med Revue 2014, Peter Pandemic!<br />"; 
+    $message .= "Thank you for buying tickets to $result[prod]!<br />"; 
     $message .= "<b>Venue:</b>UNSW Science Theatre<br>";
     $message .= "<b>Time:</b> Doors open at 7:30pm for a 8pm start.<p>";
     $date = "";
@@ -230,7 +230,7 @@ function send_confirmation_email($link, $seats){
             $message .= "<ul>";
             $date = $seat[date];
         }
-        $message .= "<li><b>Ticket for seat $seat[seat]:</b> http://rbs.cserevue.org.au/eticket.php?ticket_id=$seat[guid]$seat[seat]</li>";
+        $message .= "<li><b>Ticket for seat $seat[seat]:</b> $result[bookingsite]/eticket.php?ticket_id=$seat[guid]$seat[seat]</li>";
     }
     $message .= "</ul><hr/>";
 
@@ -241,7 +241,7 @@ function send_confirmation_email($link, $seats){
     $message .= "<li>Please print out each of the tickets found at the links above, or display the link on your phone or other device. Paypal receipts are not substitutes for tickets.</li>"; 
     $message .= "<li>Members of a group booking must present each ticket individually.</li>";
     $message .= "<li>You can email the above seat links to other members of the group booking to facilitate the admissions process.</li>";
-    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to ticketing@medrevue.org.</li>";
+    $message .= "<li>Any questions, concerns or issues regarding your tickets can be directed to $result[salesemail].</li>";
     $message .= "</ul>";
 
     $message .= "<b> Getting there on foot</b><br>";
@@ -253,7 +253,7 @@ function send_confirmation_email($link, $seats){
     $message .= "Enter through Gate 2, High St, turn left at the Io Myers Theatre, then first right, turn left into Union Rd, then first right. Handicapped patrons may park here in designated bays. Other vehicles should return and exit via Gate 2 and proceed to the Barker St Parking Station.<p>";
 
     $headers = "Content-type: text/html; charset=iso-8859-1 \r\n";
-    $headers .= "From: ticketing@medrevue.org\r\n";
+    $headers .= "From: $result[salesemail]\r\n";
 
     // this should fix the random spaces appearing in emails
     $headers .= "Content-Transfer-Encoding: base64\r\n\r\n";
