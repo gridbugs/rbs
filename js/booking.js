@@ -104,7 +104,10 @@ function toSegment(seg) {
 
 	window.location.hash='target';
 
+
 	toSegmentSpec();
+    
+    $('body').height($(document).height());
 }
 
 // The seat state images

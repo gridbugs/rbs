@@ -58,9 +58,9 @@ include('includes/groundwork-header.php');
 <div id="login">
 <div class="ticketprices">
 <h3>Opening night $10</h3>
-<h3>Arc members $12</h3>
-<h3>Students $14</h3>
-<h3>General Admission $16<h3>
+<h3>Arc members $10</h3>
+<h3>Students $12</h3>
+<h3>General Admission $15<h3>
 <h3>Group tickets (10+ tickets) $10</h3>
 </div>
 <h2>Terms and conditions</h2>
@@ -85,3 +85,5 @@ Please read the <a href="<?=$production['faqlocation']?>">FAQ</a> or <a href="ma
 </div>
 <div class="sponsors clear"></div>
 </div>
+</body>
+</html>

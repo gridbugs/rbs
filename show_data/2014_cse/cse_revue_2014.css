@@ -1,0 +1,74 @@
+/* The CSS file for CSE Revue 2014 */
+
+body {
+	background: linear-gradient(rgba(0,0,0,0), black), url('/show_data/2014_cse/Background_tile.png') repeat top center;
+	background-color: #000;
+	color: #000;
+	font-family: "Arial", serif;
+}
+
+.header {
+background: url('/show_data/2014_cse/Header.PNG') no-repeat top center;
+padding-top: 350px;
+text-align: center;
+font-size: 150%;
+font-weight: bold;
+}
+
+.sponsors {
+display: block;
+height: 140px;
+background: url('/show_data/2014_cse/Logos.png') no-repeat top center;
+}
+
+h1 > img.banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 800px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+color: #2c3953;
+}
+
+footer {
+    text-align: center;
+}
+
+.invisible {
+display: none;
+}
+
+#performances .button, #segmentlinks .button, #buttonpanel .button, #bigformbuttons .button, #totals .button {
+background: #2c3953;
+border: 1px solid #fff;
+color: #fff;
+}
+
+#performances .button:hover, #segmentlinks .button:hover, #buttonpanel .button:hover, #bigformbuttons .button:hover, #totals .button:hover {
+color: #2c3953;
+background: #fff;
+border: 1px solid #2c3953
+}
+
+.bookingtable th, .paymentsummary th{
+background: #2c3953;
+color: #fff;
+}
+
+p, h1, .pay {
+    color: white;
+}
+
+#login p, ul, h2, h3 {
+    color: white;
+}
+#login .ticketprices {
+text-align: center;
+}
+
+#register h2 {
+    color: black;
+}
+

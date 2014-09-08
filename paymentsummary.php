@@ -49,7 +49,7 @@ HEADER;
 
 include('includes/groundwork-header.php');
 ?>
-<link type="text/css" rel="stylesheet" href="show_data/2014_med/med_revue_2014.css">
+<link type="text/css" rel="stylesheet" href="<?=$production['css']?>">
 <div class="container">
 <div class="header">
 <h1 class="invisible"><?=$production['name']?></h1>

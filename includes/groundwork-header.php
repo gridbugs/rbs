@@ -73,5 +73,16 @@
       });
       </script>
 	  <script type="text/javascript" src="js/sorttable.js"></script>
+
+      <script type="text/javascript">
+        $(function() {
+            $('body').height($(document).height())
+        });
+        $(window).resize(function() {
+            $('body').height($(document).height())
+        });
+      </script>
+
+
 </head>
 <body>
