@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'gameofthrones';
+    src: url('/show_data/2014_cse/Game of Thrones.ttf');
+}
+
+.eticket {
+font-family: gameofthrones;
+font-size: 20px;
+line-height: 30%;
+color: #4F2515;
+position:absolute;
+top: 0px;
+left: 0px;
+z-index: -1;
+width: 800px;
+height: 400px;
+background: url('/show_data/2014_cse/E-ticket_blank.png');
+}
+
+.ticketdata {
+font-weight: bold;
+margin-top: 330px;
+width: 100%;
+text-align: center;
+}
+
+.ticketdata p span#seat {
+    margin-left: 40px;
+}
+
+.ticketseat {
+    float:left;
+}
+
+img.ticketqrcode {
+z-index: 1;
+position: absolute;
+left: 563px;
+top: 15px;
+}
+
+.sponsors {
+display: block;
+margin-top: 410px;
+height: 180px;
+padding-top: 140px;
+background: url('/show_data/2014_med/MR14_sponsors.png') no-repeat top left;
+}
+
+#instructions {
+margin-top: 410px;
+}

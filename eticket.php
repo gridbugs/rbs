@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="show_data/2014_med/MR14eticket.css" />
+<link rel="stylesheet" type="text/css" href="show_data/2014_cse/eticket.css" />
 <div class="eticket">
 <?php
 include('includes/settings.php');
@@ -30,9 +30,9 @@ if($ticket_id == NULL){
     $errorCorrectionLevel = 'L';
     $matrixPointSize = 6;
 
-        QRcode::png('rbs.cserevue.org.au/confirm_eticket.php?id='.$id, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
+//        QRcode::png('rbs.cserevue.org.au/confirm_eticket.php?id='.$id, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
         
-    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class="ticketqrcode" />';  
+//    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" class="ticketqrcode" />';  
  
     $db = db_connect_pdo();
     $stmt = $db->prepare(<<<EOT
@@ -48,16 +48,14 @@ EOT
 
     $performance = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	echo "<div class=\"ticketdata\">";
-	echo "<p class=\"ticketseat\">Seat: $seat</p>";
-    //echo($performance[0]['title']);
-    echo "<p class=\"ticketperformance\">";
+	echo "<p><span id='date'>";
     echo(prettydate($performance[0]['tsdate']));
+    echo "</span><span id='seat'>Seat: $seat</span>";
 	echo "</p>";
 	echo "</div>";
 }   
 ?>
 </div>
-<div class="sponsors">
-<p>Please print out this ticket, or display it on a device, upon arrival at the Science Theatre.<br />
+<p id='instructions'>Please print out this ticket, or display it on a device, upon arrival at the Science Theatre.<br />
 Please ensure that all group members have a copy of their ticket.</p>
 </div>
