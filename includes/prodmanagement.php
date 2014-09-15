@@ -118,9 +118,9 @@ function send_confirmation_email_bookingid($link, $booking){
         $seatList[] = $seat['seatId'];
     }
     $seatsInQuery = implode(",", $seatList);
-    $sql = "SELECT p.name as prod, p.id as id, p.bookingslocation as bookingsite, p.salesemail as salesemail";
-    $sql .= "FROM production p, booking b, performance ps";
-    $sql .= "WHERE b.id = $id and ps.id = b.performance and p.id = ps.production";
+    $sql = "SELECT p.name as prod, p.id as id, p.bookingslocation as bookingsite, p.salesemail as salesemail ";
+    $sql .= "FROM production p, booking b, performance ps ";
+    $sql .= "WHERE b.id = $id and ps.id = b.performance and p.id = ps.production ";
     $result = sql_get_array($link, $sql);
     $result = $result[0];
     $sql = "SELECT bs.* , p.date, p.starttime FROM bookedseat bs, performance p, booking b WHERE bs.id in ($seatsInQuery) and b.id = bs.booking and p.id = b.performance";
@@ -140,7 +140,6 @@ function send_confirmation_email_bookingid($link, $booking){
         return;
     }
     */
-
     $name = $booking['name'];
     $message = "Dear $name,<p>";
     $message .= "Thank you for buying tickets to $result[prod]!<br/>"; 
@@ -212,7 +211,6 @@ function send_confirmation_email($link, $seats){
     $result = $result[0];
     $sql = "SELECT bs.* , p.date, p.starttime FROM bookedseat bs, performance p, booking b WHERE bs.id in ($seatsInQuery) and b.id = bs.booking and p.id = b.performance";
     $seats = sql_get_array($link, $sql);
-
 
     $message = "Dear $result[name],<p>";
     $message .= "Thank you for buying tickets to $result[prod]!<br />"; 
