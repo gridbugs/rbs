@@ -14,12 +14,12 @@ left: 0px;
 z-index: -1;
 width: 800px;
 height: 400px;
-background: url('/show_data/2014_cse/E-ticket_blank.png');
+/*background: url('/show_data/2014_cse/E-ticket_blank.png');*/
 }
 
 .ticketdata {
 font-weight: bold;
-margin-top: 330px;
+margin-top: -88px;
 width: 100%;
 text-align: center;
 }

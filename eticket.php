@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="show_data/2014_cse/eticket.css" />
 <div class="eticket">
+<img height="400" width="800" src="/show_data/2014_cse/E-ticket_blank.png"/>
 <?php
 include('includes/settings.php');
 include('includes/utilities.php');
