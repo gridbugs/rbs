@@ -29,7 +29,7 @@ $production = get_production($link, $prodid);
 if(isset($_GET['bookingref'])) {
     user_login_by_id($link, $production['id'], $_GET['bookingref']);
     print_r($_SESSION);
-	header('Location: booking.php');
+	header('Location: bookingsummary.php');
 	exit;
 }
 
