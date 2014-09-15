@@ -8,8 +8,7 @@
 include_once('includes/utilities.php');
 include_once('includes/prodmanagement.php');
 include_once('includes/frames/prodtheme.php');
-
-
+include_once('includes/usermanagement.php');
 
 if(isset($_GET['p']))
     $prodid = (int)$_GET['p'];
@@ -25,6 +24,15 @@ if(!production_exists($link, $prodid))
 	die('Production does not exist');
 
 $production = get_production($link, $prodid);
+
+
+if(isset($_GET['bookingref'])) {
+    user_login_by_id($link, $production['id'], $_GET['bookingref']);
+    print_r($_SESSION);
+	header('Location: booking.php');
+	exit;
+}
+
 include_once('includes/theatres/' . $production['theatre'] . '.inc');
 
 include('includes/groundwork-header.php');
