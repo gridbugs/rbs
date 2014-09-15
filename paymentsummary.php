@@ -152,7 +152,7 @@ if(isset($_POST['price'])) {
     $email .= "<br/><em><strong>Booking ID:</strong> ".strtoupper($userRow['paymentid'])."</em><br/>";
     $email .= $paymentsummary;
     $email .= "<br/><h3>Payment Options</h3>";
-    $email .= "Please visit ".$production['bookingslocation']." to view your payment options.<br/>";
+    $email .= "Please visit ".$production['bookingslocation']."/login.php?production=".$production['id']."&bookingref=".$user." to view your payment options.<br/>";
     $email .= "<br/><br/>If you have any queries, please feel free to respond to this email.<br/><br/>";
     send_email($userinfo['email'], "Your booking for ".$production['name']." [booked at ".date('g:ia')."]", $email, 
     "Content-Type: text/html; charset=ISO-8859-1\r\nFrom: ".$production['salesemail']."\r\n");
