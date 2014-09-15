@@ -7,6 +7,15 @@
 
 include_once('includes/utilities.php');
 $link = db_connect();
+include_once('includes/session.php');
+include_once('includes/session.php');
+include_once('includes/usermanagement.php');
+
+if(isset($_GET['bookingref']) && isset($_GET['production'])) {
+    user_login_by_id($link, $_GET['production'], $_GET['bookingref']);
+}
+
+
 
 include_once('includes/userauth.php');
 
@@ -14,7 +23,6 @@ include_once('includes/prodmanagement.php');
 include_once('includes/pricemanagement.php');
 include_once('includes/paymentmanagement.php');
 include_once('includes/perfmanagement.php');
-include_once('includes/usermanagement.php');
 include_once('includes/frames/paymentsummary.php');
 include_once('includes/frames/prodtheme.php');
 include_once('paypalbutton.php');
@@ -57,7 +65,10 @@ include('includes/groundwork-header.php');
 <p class="invisible">13-16 May 2014, 7:30pm, UNSW Science Theatre</p>
 </div>
 <h1 class="align-center">Payment Summary</h1>
-
+<?
+$userinfo = get_user($link, $user);
+?>
+<h2 class="align-center"><?=$userinfo['name']?> (<?=$userinfo['email']?>)</h2>
 <!--p id="booktickets"><a href="booking.php">Click here to modify your bookings.</a></p-->
 
 <?

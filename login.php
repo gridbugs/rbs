@@ -28,8 +28,7 @@ $production = get_production($link, $prodid);
 
 if(isset($_GET['bookingref'])) {
     user_login_by_id($link, $production['id'], $_GET['bookingref']);
-    print_r($_SESSION);
-	header('Location: paymentsummary.php');
+	header('Location: paymentsummary.php?production='.$production['id'].'&bookingref='.$_GET['bookingref']);
 	exit;
 }
 
