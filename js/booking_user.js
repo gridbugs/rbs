@@ -225,6 +225,7 @@ function toPerformanceSpec() {
 			slid.style.borderColor = '#444';
 			slid.style.color = '#444';
 			slid.style.cursor = 'default';
+            slid.onclick = "";
 		} else {
 			slid.style.borderColor = '';
 			slid.style.color = '';
